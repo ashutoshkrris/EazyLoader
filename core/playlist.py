@@ -21,6 +21,7 @@ class Playlist:
         self.pl_response = None
         
         self.vid_ids = None
+        self.youtube = None
 
 
     def get_duration_of_playlist(self, speed):
