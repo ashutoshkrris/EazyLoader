@@ -1,6 +1,5 @@
-{% extends "base.html" %} {% block title %}Home{% endblock title %} 
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Home{% endblock title %} {% block
+content %}
 
 <!-- Header-->
 <header class="bg-dark py-5">
@@ -9,18 +8,18 @@
       <div class="col-lg-6">
         <div class="text-center my-5">
           <h1 class="display-5 fw-bolder text-white mb-2">
-            Present your business in a whole new way
+            Easily Download Videos and Images
           </h1>
           <p class="lead text-white-50 mb-4">
-            Quickly design and customize responsive mobile-first sites with
-            Bootstrap, the world’s most popular front-end open source toolkit!
+            Quickly download audio and videos from YouTube and pictures from
+            Instagram!
           </p>
           <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
             <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features"
               >Get Started</a
             >
-            <a class="btn btn-outline-light btn-lg px-4" href="#!"
-              >Learn More</a
+            <a class="btn btn-outline-light btn-lg px-4" href="#contact"
+              >Contact Us</a
             >
           </div>
         </div>
@@ -33,48 +32,29 @@
 <section class="py-5 border-bottom" id="features">
   <div class="container px-5 my-5">
     <div class="row gx-5">
-      <div class="col-lg-4 mb-5 mb-lg-0">
+      <div class="col-lg-6 mb-5 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
-          <i class="bi bi-collection"></i>
+          <i class="bi bi-youtube"></i>
         </div>
-        <h2 class="h4 fw-bolder">Featured title</h2>
+        <h2 class="h4 fw-bolder">Download from YouTube</h2>
         <p>
-          Paragraph of text beneath the heading to explain the heading. We'll
-          add onto it with another sentence and probably just keep going until
-          we run out of words.
+          You can download audio and video from YouTube in various available resolutions. Highest resolution available upto 720p. You can also download complete playlist in one go! Even downloading all videos from a channel won't be a problem for us. 😉
         </p>
-        <a class="text-decoration-none" href="#!">
-          Call to action
+        <a class="text-decoration-none" href="{{url_for('yt_video_downloader')}}">
+          Let's Go
           <i class="bi bi-arrow-right"></i>
         </a>
       </div>
-      <div class="col-lg-4 mb-5 mb-lg-0">
+      <div class="col-lg-6 mb-5 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
-          <i class="bi bi-building"></i>
+          <i class="bi bi-instagram"></i>
         </div>
-        <h2 class="h4 fw-bolder">Featured title</h2>
+        <h2 class="h4 fw-bolder">Download from Instagram</h2>
         <p>
-          Paragraph of text beneath the heading to explain the heading. We'll
-          add onto it with another sentence and probably just keep going until
-          we run out of words.
+          Do you need to take screenshots of pictures on Instagram or record your screen to share with your friends? Now download pictures and videos from Instagram now without any hassle.😲
         </p>
         <a class="text-decoration-none" href="#!">
-          Call to action
-          <i class="bi bi-arrow-right"></i>
-        </a>
-      </div>
-      <div class="col-lg-4">
-        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
-          <i class="bi bi-toggles2"></i>
-        </div>
-        <h2 class="h4 fw-bolder">Featured title</h2>
-        <p>
-          Paragraph of text beneath the heading to explain the heading. We'll
-          add onto it with another sentence and probably just keep going until
-          we run out of words.
-        </p>
-        <a class="text-decoration-none" href="#!">
-          Call to action
+          Coming Soon
           <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -83,7 +63,7 @@
 </section>
 
 <!-- Contact section-->
-<section class="bg-light py-5">
+<section class="bg-light py-5" id="contact">
   <div class="container px-5 my-5 px-5">
     <div class="text-center mb-5">
       <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
@@ -94,13 +74,6 @@
     </div>
     <div class="row gx-5 justify-content-center">
       <div class="col-lg-6">
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
           <!-- Name input-->
           <div class="form-floating mb-3">

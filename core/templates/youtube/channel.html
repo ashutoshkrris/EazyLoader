@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %}Channel | YT Downloader{% endblock title %} 
+
+{% block content %}
+
+<div class="container download-container shadow p-4">
+  <div class="row">
+    <div class="col-12 text-center py-2">
+      <h3>Download Channel</h3>
+    </div>
+    <div class="col-10 col-sm-10 col-md-6 mx-auto">
+      {% if messages %} {% for msg in messages %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{msg}}
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          area-label="Close"
+        >
+          <span area-hidden-true>&times;</span>
+        </button>
+      </div>
+      {% endfor %} {% endif %}
+
+      <form action="" method="POST">
+        <div class="form-group mb-3">
+          <input
+            type="url"
+            name="channel-url"
+            class="form-control"
+            placeholder="Enter Video Link Here"
+          />
+        </div>
+          <p id="shorthelp" class="form-text text-muted">
+            Choose your custom short URL (6 characters only) or leave blank to
+            generate randomly.
+          </p>
+        </div>
+        <div class="form-group mb-3">
+          <center><input type="submit" class="btn btn-primary px-4" value="Download Channel" /></center>
+        </div>
+      </form>
+    </div>
+</div>
+
+{% endblock content %}

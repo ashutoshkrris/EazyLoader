@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "fc4716f0582ceef2a8dd63b972081a4678dc0e6692262dd0a732d9cabe624a3d"
+            "sha256": "25069b38b844c692ad5c5fe2e21f28b96241a5793a4979c50d887fb42de93df7"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -50,11 +50,11 @@
         },
         "jinja2": {
             "hashes": [
-                "sha256:1f06f2da51e7b56b8f238affdd6b4e2c61e39598a378cc49345bc1bd42a978a4",
-                "sha256:703f484b47a6af502e743c9122595cc812b0271f661722403114f71a79d0f5a4"
+                "sha256:827a0e32839ab1600d4eb1c4c33ec5a8edfbc5cb42dafa13b81f182f97784b45",
+                "sha256:8569982d3f0889eed11dd620c706d39b60c36d6d25843961f33f77fb6bc6b20c"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==3.0.1"
+            "version": "==3.0.2"
         },
         "markupsafe": {
             "hashes": [
@@ -122,6 +122,14 @@
             ],
             "index": "pypi",
             "version": "==3.5"
+        },
+        "pytube": {
+            "hashes": [
+                "sha256:47643a6ff553cbc4d6be748ff14c9c45f79984e15005adff25d62b18110abe43",
+                "sha256:d4dfea7394d7662edac3831432b349b2afac984e0d0bc4bdb611ec1f3fc16318"
+            ],
+            "index": "pypi",
+            "version": "==11.0.1"
         },
         "werkzeug": {
             "hashes": [

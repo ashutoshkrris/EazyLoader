@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block title %}{{ url.title }} | YT Downloader{% endblock title %} {% block content %}
+
+<div class="jumbotron vertical-center">
+  <div class="container download-container shadow">
+    <div class="row">
+      <div class="col-12 text-center py-2">
+        <h3>Download Video</h3>
+      </div>
+      <div class="col-12 mx-auto">
+        <form method="POST" action="{{ url_for('download_video') }}">
+        <div class="card my-4 mx-auto" style="max-width: 1300px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{{url.thumbnail_url}}" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ url.title }}</h5>
+                  <p>Length : {{duration}} | Views : {{views}} | Uploaded by <a href="{{url.channel_url}}" style="text-decoration: none;">{{url.author}}</a> on {{publish_date}}</p>
+                  <p class="card-text">
+                    <div class="col-md-5">
+                      <select name="itag" class="form-select input-sm" aria-label="Default select example">
+                          {% for i in url.streams.filter(progressive=True) %}
+                              <option value="{{ i.itag }}"> {{ i.resolution }} </option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-danger mt-3" id="download_btn">
+                      Download
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.getElementById('download_btn').addEventListener('click', ()=>{
+        new Notify ({
+            status: 'success',
+            title: 'Downloading Video',
+            text: '{{url.title}}',
+            effect: 'slide',
+            speed: 300,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+        })
+    })
+</script>
+
+  {% endblock content %}
+

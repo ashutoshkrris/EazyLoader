@@ -25,12 +25,23 @@
       href="{{url_for('static', filename='css/styles.css')}}"
       rel="stylesheet"
     />
+    <!-- Custom CSS -->
+    <link
+      href="{{url_for('static', filename='css/custom.css')}}"
+      rel="stylesheet"
+    />
+    <!-- Simple Notify -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.css" />
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script>
   </head>
   <body>
     <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container px-5">
-        <a class="navbar-brand" href="#!">EazyLoader</a>
+        <a class="navbar-brand" href="{{url_for('index')}}"><strong>EazyLoader</strong></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -45,20 +56,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#!">Home</a>
+              <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}#features">Features</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                YT Downloader
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{url_for('yt_video_downloader')}}">Download Video</a></li>
+                <li><a class="dropdown-item" href="#">Download Playlist</a></li>
+                <li><a class="dropdown-item" href="#">Download Channel</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Instagram Downloader</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{url_for('index')}}#contact">Contact</a></li>
           </ul>
         </div>
       </div>
     </nav>
-
     {% block content %} {% endblock content %}
     
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="py-3 bg-dark" id="footer">
       <div class="container px-5">
         <p class="m-0 text-center text-white">
           Copyright &copy; EazyLoader 2021<script>new Date().getFullYear()>2021&&document.write("-"+new Date().getFullYear());</script> <br>
@@ -70,5 +90,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+    {% if not request.path == '/' %}
+    <script>
+      document.getElementById('footer').classList.add('fixed-bottom')
+    </script>
+    {% else %}
+    <script>
+      document.getElementById('footer').classList.remove('fixed-bottom')
+    </script>
+    {% endif %}
   </body>
 </html>
