@@ -21,7 +21,7 @@ class Playlist:
         self.pl_response = None
         
         self.vid_ids = None
-        self.youtube = None
+        self.youtube = build('youtube', 'v3', developerKey="API KEY GOES HERE")
 
 
     def get_duration_of_playlist(self, speed):
