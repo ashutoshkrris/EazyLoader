@@ -1,7 +1,5 @@
 <p align="center">
-    <a href="">
-        <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/logo.png" width="30%">
-    </a>
+    <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/logo.png" width="30%">
 </p>
 
 <h1 align="center"> 
