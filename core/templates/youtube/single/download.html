@@ -4,6 +4,7 @@
   <div class="container download-container shadow">
     <div class="row">
       <div class="col-12 text-center py-2">
+        <img src="{{url_for('static', filename='assets/yt.png')}}" style="height:100px" alt="">
         <h3>Download Video</h3>
       </div>
       <div class="col-12 mx-auto">
@@ -16,7 +17,7 @@
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">{{ url.title }}</h5>
-                  <p>Length : {{duration}} | Views : {{views}} | Uploaded by <a href="{{url.channel_url}}" style="text-decoration: none;">{{url.author}}</a> on {{publish_date}}</p>
+                  <p>Length : {{url.length|humanize_duration}} | Views : {{url.views|humanize_views}} | Uploaded by <a href="{{url.channel_url}}" style="text-decoration: none;">{{url.author}}</a> on {{url.publish_date|humanize_date}}</p>
                   <p class="card-text">
                     <div class="col-md-5">
                       <select name="itag" class="form-select input-sm" aria-label="Default select example">

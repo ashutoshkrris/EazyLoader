@@ -6,6 +6,7 @@
   <div class="container download-container shadow">
     <div class="row">
       <div class="col-12 text-center py-2">
+        <img src="{{url_for('static', filename='assets/yt.png')}}" style="height:100px" alt="">
         <h3>Download Video</h3>
       </div>
       <div class="col-12 col-sm-10 col-md-8 mx-auto">
@@ -24,7 +25,7 @@
           >
             <use xlink:href="#exclamation-triangle-fill" />
           </svg>
-          <div>{{message}}</div>
+          {{message}}
           <button
             type="button"
             class="btn-close"
