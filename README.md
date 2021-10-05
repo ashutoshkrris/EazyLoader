@@ -13,7 +13,7 @@
 
 - [Introduction](#introduction) - What this project is all about
 - [Upcoming Features](#upcoming-features) - Features to be worked on
-- [Contributing Guide](https://github.com/MLH/mlh-hackathon-flask-starter/blob/main/docs/CONTRIBUTING.md) - How to contribute to the project
+- [Contributing Guide](https://github.com/ashutoshkrris/EazyLoader/blob/main/CONTRIBUTING.md) - How to contribute to the project
 
 
 ## <a name="introduction">📌 Introduction</a>
