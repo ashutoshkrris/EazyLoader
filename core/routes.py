@@ -4,6 +4,7 @@ from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
 from zipfile import ZipFile, ZipInfo
+from core import playlist
 
 
 @app.get('/')
@@ -81,3 +82,19 @@ def download_playlist():
         video.streams.get_highest_resolution().download()
 
     return redirect(url_for('yt_playlist_downloader'))
+
+
+@app.route('/yt-downloader/playlist/calculate', methods=['GET', 'POST'])
+def calculate_playlist_duration():
+    if request.method == 'POST':
+        try:
+            playlist_link = request.form.get('playlist-url')
+            pl = Playlist(playlist_link)
+            pl_obj = playlist.Playlist(playlist_link)
+            duration = pl_obj.get_duration_of_playlist([1, 1.25, 1.5, 1.75, 2])
+            return render_template('youtube/duration/playlist.html', playlist=pl, duration=duration, result=True)
+        except Exception:
+            flash('Unable to fetch the videos from YouTube Playlist')
+            return redirect(url_for('calculate_playlist_duration'))
+
+    return render_template('youtube/duration/playlist.html')

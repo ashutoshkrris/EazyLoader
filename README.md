@@ -18,11 +18,14 @@
 
 EazyLoader is Flask based web-application built to make downloading easy for you. Now you can easily download videos from YouTube in the best available quality.
 
+Features of the application includes :
+- Download YouTube Videos
+- Calculate YouTube Playlist Duration
+
 ## <a name='upcoming-features'>⭐ Upcoming Features</a>
 
 * YouTube Playlist Downloader
 * YouTube Channel Downloader
-* YouTube Playlist Duration Calculator
 * Instagram Pictures Downloader
 * Instagram Videos Downloader
 
