@@ -3,6 +3,7 @@ from flask import render_template, send_file, request, session, flash, url_for, 
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
+from zipfile import ZipFile, ZipInfo
 
 
 @app.get('/')
@@ -53,20 +54,30 @@ def yt_playlist_downloader():
         session['playlist_link'] = request.form.get('playlist-url')
         try:
             url = Playlist(session['playlist_link'])
-            last_updated = url.last_updated.strftime("%b %d, %Y")
-            return render_template('youtube/playlist/download.html', url=url, last_updated=last_updated, views=convert_to_views(url.views))
+            return render_template('youtube/playlist/download.html', url=url)
         except exceptions.MembersOnly:
             flash('Join this channel to get access to members-only content like this video, and other exclusive perks.')
-            return redirect(url_for('yt_video_downloader'))
+            return redirect(url_for('yt_playlist_downloader'))
         except exceptions.RecordingUnavailable:
             flash('The video recording is not available!')
-            return redirect(url_for('yt_video_downloader'))
+            return redirect(url_for('yt_playlist_downloader'))
         except exceptions.VideoPrivate:
             flash(
                 'This is a private video. Please sign in to verify that you may see it.')
-            return redirect(url_for('yt_video_downloader'))
-        except Exception:
+            return redirect(url_for('yt_playlist_downloader'))
+        except Exception as e:
+            print(e)
             flash('Unable to fetch the videos from YouTube Playlist')
             return redirect(url_for('yt_playlist_downloader'))
 
     return render_template('youtube/playlist/playlist.html')
+
+
+@app.post('/yt-downloader/playlist/download')
+def download_playlist():
+
+    url = Playlist(session['playlist_link'])
+    for video in url.videos:
+        video.streams.get_highest_resolution().download()
+
+    return redirect(url_for('yt_playlist_downloader'))

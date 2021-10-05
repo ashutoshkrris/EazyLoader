@@ -1,5 +1,6 @@
 from core import app
 
+
 @app.template_filter('humanize_duration')
 def humanize_duration(seconds):
     """Converts seconds into HH:MM:SS"""
@@ -14,6 +15,7 @@ def humanize_duration(seconds):
     else:
         return "%02d:%02d" % (minutes, seconds)
 
+
 @app.template_filter('humanize_views')
 def humanize_views(views):
     str_views = len(str(views))
@@ -26,6 +28,9 @@ def humanize_views(views):
     else:
         return f"{round(views/1000000000,1)}B"
 
+
 @app.template_filter('humanize_date')
 def humanize_date(date):
+    if type(date) == str:
+        return date
     return date.strftime("%b %d, %Y")

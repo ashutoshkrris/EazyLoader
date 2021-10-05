@@ -1,0 +1,78 @@
+{% extends "base.html" %} {% block title %}{{ url.title }} | YT Downloader{% endblock title %} {% block content %}
+
+<div class="jumbotron vertical-center mb-5">
+  <div class="container download-container shadow">
+    <div class="row">
+      <div class="col-12 text-center py-2">
+        <img src="{{url_for('static', filename='assets/yt.png')}}" style="height:100px" alt="">
+        <h3>Download Playlist</h3>
+      </div>
+      <div class="col-12 mx-auto">
+        <form method="POST" action="{{ url_for('download_playlist') }}">
+        <div class="card my-4 mx-auto px-3" style="max-width: 1300px;">
+          <h4 class="text-center mt-3 mb-3">{{url.title}}</h4>
+          <div class="row text-center">
+            <div class="col-md-6">
+              <p>Total Videos : {{url.length}}</p>
+              <p>Last Updated : {{url.last_updated|humanize_date}}</p>
+            </div>
+            <div class="col-md-6">
+              <p>Total Views : {{url.views|humanize_views}}</p>
+              <p>Playlist Created By : <a href="{{url.owner_url}}" style="text-decoration: none;">{{url.owner}}</a></p>
+            </div>
+            <button type="submit" class="btn btn-danger mt-3" id="download_btn">Download</button>
+          </div>
+            {% for video in url.videos %}
+            <hr>
+            <div class="row no-gutters mb-4">
+              <div class="col-md-4">
+                <img src="{{video.thumbnail_url}}" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ video.title }}</h5>
+                  <p>Length : {{video.length}} | Views : {{video.views}} | Uploaded by <a href="{{video.channel_url}}" style="text-decoration: none;">{{video.author}}</a> on {{video.publish_date|humanize_date}}</p>
+                  <p class="card-text">
+                    <div class="col-md-5">
+                      <select name="itag" class="form-select input-sm" aria-label="Default select example">
+                          {% for i in video.streams.filter(progressive=True) %}
+                              <option value="{{ i.itag }}"> {{ i.resolution }} </option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-danger mt-3" id="download_btn">
+                      Download
+                    </button> -->
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+    </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.getElementById('download_btn').addEventListener('click', ()=>{
+        new Notify ({
+            status: 'success',
+            title: 'Downloading Video',
+            text: '{{url.title}}',
+            effect: 'slide',
+            speed: 300,
+            showCloseButton: true,
+            autoclose: true,
+            autotimeout: 3000,
+            gap: 20,
+            distance: 20,
+            type: 1,
+            position: 'right top'
+        })
+    })
+</script>
+
+  {% endblock content %}
+
