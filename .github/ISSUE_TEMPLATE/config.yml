@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Want to discuss something?
+    url: https://github.com/ashutoshkrris/EazyLoader/discussions
+    about: For any Discussion, Query.
+  - name: Guidelines
+    url: https://github.com/ashutoshkrris/EazyLoader/blob/main/CONTRIBUTING.md
+    about: Our contribution guidelines (Please go through them).
