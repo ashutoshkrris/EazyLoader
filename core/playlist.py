@@ -21,6 +21,7 @@ class Playlist:
         self.pl_response = None
         
         self.vid_ids = None
+        self.youtube = build('youtube', 'v3', developerKey="API KEY GOES HERE")
 
 
     def get_duration_of_playlist(self, speed):
@@ -36,8 +37,8 @@ class Playlist:
             
 
         while True:
-            self.pl_request = youtube.playlistItems.list(
-                part = "contentdeetails",
+            self.pl_request = self.youtube.playlistItems.list(
+                part = "contentDetails",
                 playlistId = self.playlist_id,
                 maxResults = 50,
                 pageToken = self.next_page_token
@@ -49,8 +50,8 @@ class Playlist:
             for item in self.pl_response['items']:
                 self.vid_ids.append(item['contentDetails']['videoId'])
 
-            self.vid_request = youtube.videos().list(
-                part="contentdetails",
+            self.vid_request = self.youtube.videos().list(
+                part="contentDetails",
                 id = ','.join(self.vid_ids)
             )
 
