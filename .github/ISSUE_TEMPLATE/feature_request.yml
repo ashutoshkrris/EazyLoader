@@ -39,6 +39,13 @@ body:
       description: Anything other than the above mentioned to support your feature request report.
         Links? References? Screenshots? Anything that will give us more context about the feature you want to propose!
   - type: checkboxes
+    id: event
+    attributes:
+      label: Hacktoberfest
+      description: Is this issue a part of Hacktoberfest?
+      options:
+        - label: Yeah
+  - type: checkboxes
     id: terms
     attributes:
       label: Code of Conduct
