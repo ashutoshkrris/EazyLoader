@@ -16,7 +16,7 @@ from datetime import datetime
 import os
 from pathlib import Path
 
-from core import playlist
+from core.utils import playlist
 
 chrome_options = Options()
 chrome_options.headless = False

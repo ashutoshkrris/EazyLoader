@@ -23,3 +23,7 @@ _Please delete options that are not relevant._
 - [ ] I have made corresponding changes to the documentation (if any)
 - [ ] My changes generate no new warnings
 - [ ] I have added tests/screenshots(if any) that prove my fix is effective or that my feature works
+
+# Event
+
+- [ ] Hacktoberfest 2021
