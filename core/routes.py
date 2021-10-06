@@ -4,8 +4,27 @@ from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
 from zipfile import ZipFile, ZipInfo
+
+from bs4 import BeautifulSoup
+import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from datetime import datetime
+import os
+from pathlib import Path
+
 from core import playlist
 
+chrome_options = Options()
+chrome_options.headless = False
+
+download_folder = str(os.path.join(Path.home(), "Downloads"))+'/'
+
+name = datetime.now()
+name = 'ig-video-' + name.strftime("%d-%m-%Y-%H:%M:%S")
 
 @app.get('/')
 def index():
@@ -98,3 +117,28 @@ def calculate_playlist_duration():
             return redirect(url_for('calculate_playlist_duration'))
 
     return render_template('youtube/duration/playlist.html')
+
+@app.route('/ig-downloader/video', methods=['GET', 'POST'])
+def ig_video_downloader():
+    if request.method == 'POST':
+        try:
+            driver = webdriver.Chrome(options=chrome_options)
+            url = request.form['video-url']
+            driver.get(url)
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME,"_5wCQW")))
+
+            flash('your vidro download is in progress. Please wait!','info')
+            soup = BeautifulSoup(driver.page_source, 'lxml')
+            source = soup.find("video", class_="tWeCl")
+            video = requests.get(source['src'],allow_redirects=True)
+            
+            if 'video' in (video.headers)['Content-type']:
+                open(download_folder+name+'.mp4','wb').write(video.content)
+            driver.quit()
+        except Exception:
+            flash('Unable to fetch and download the video, try again!','error')
+            return redirect(url_for('ig_video_downloader'))
+        
+    return render_template('instagram/video.html')
+
+
