@@ -4,6 +4,9 @@ import requests
 header = {'Accept': 'application/vnd.github.v3+json', 'Authorization':config('TOKEN')}
 
 def getName(username):
+    """
+    returns name of the Github user
+    """
     url = 'https://api.github.com/users/'+username
     response = requests.get(url, headers=header)
     response_dict = response.json()
@@ -12,6 +15,9 @@ def getName(username):
     
 
 def getContributors():
+    """
+    returns contributor details
+    """
     url = 'https://api.github.com/repos/ashutoshkrris/EazyLoader/stats/contributors'
     
     response = requests.get(url, headers=header)
