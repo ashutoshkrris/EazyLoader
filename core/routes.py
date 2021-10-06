@@ -4,7 +4,7 @@ from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
 from zipfile import ZipFile, ZipInfo
-from core import playlist
+from core.utils import playlist
 
 
 @app.get('/')
