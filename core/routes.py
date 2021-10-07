@@ -18,7 +18,7 @@ from pathlib import Path
 from core.utils import playlist
 
 
-if app.debug:
+if not app.debug:
     GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
     CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
     chrome_options = webdriver.ChromeOptions()
@@ -131,7 +131,7 @@ def ig_video_downloader():
     if request.method == 'POST':
         
         try:
-            if app.debug:
+            if not app.debug:
                 driver = webdriver.Chrome(
                     executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
             else:
@@ -153,7 +153,6 @@ def ig_video_downloader():
             driver.quit()
         except Exception as e:
             print(e)
-            driver.quit()
             flash('Unable to fetch and download the video, try again!','error')
             return redirect(url_for('ig_video_downloader'))
         
