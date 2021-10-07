@@ -147,7 +147,6 @@ def ig_video_downloader():
             driver.get(url)
             print("Page opened")
             print(driver.current_url)
-            time.sleep(10)
             if 'login' in driver.current_url:
                 driver.find_element_by_name(
                     'username').send_keys(IG_USERNAME)
