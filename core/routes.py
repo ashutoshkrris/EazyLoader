@@ -17,8 +17,19 @@ from pathlib import Path
 
 from core.utils import playlist
 
-chrome_options = Options()
-chrome_options.headless = False
+
+if app.debug:
+    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--headless')
+    chrome_options.binary_location = GOOGLE_CHROME_PATH
+
+else:
+    chrome_options = Options()
+    chrome_options.headless = False
 
 download_folder = os.path.join(Path.home(), "Downloads")
 
@@ -120,7 +131,11 @@ def ig_video_downloader():
     if request.method == 'POST':
         
         try:
-            driver = webdriver.Chrome(options=chrome_options)
+            if app.debug:
+                driver = webdriver.Chrome(
+                    executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+            else:
+                driver = webdriver.Chrome(options=chrome_options)
             url = request.form['video-url']
             driver.get(url)
             WebDriverWait(driver, 10).until(
