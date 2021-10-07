@@ -19,10 +19,6 @@ jobs:
         exempt-issue-labels: 'Announcement,Pinned'
         remove-stale-when-updated: true
 
-
-    runs-on: ubuntu-latest
-
-    steps:
     - uses: actions/stale@v4
       with:
         # Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.
