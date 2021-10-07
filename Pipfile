@@ -10,6 +10,7 @@ pytube = "*"
 beautifulsoup4 = "*"
 selenium = "*"
 lxml = "*"
+gunicorn = "*"
 
 [dev-packages]
 autopep8 = "*"
