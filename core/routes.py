@@ -132,7 +132,7 @@ def ig_video_downloader():
         try:
             if not app.debug:
                 driver = webdriver.Chrome(
-                    executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+                    executable_path=CHROMEDRIVER_PATH, options=chrome_options)
             else:
                 driver = webdriver.Chrome(options=chrome_options)
             url = request.form['video-url']
