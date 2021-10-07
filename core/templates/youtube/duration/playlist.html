@@ -12,21 +12,14 @@
         <h3>Calculate Playlist Duration</h3>
       </div>
       <div class="col-12 col-sm-10 col-md-8 mx-auto">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for
-        message in messages %}
+        {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+        {% for category, message in messages %}
+        {% if category == 'error' %}
         <div
-          class="alert alert-danger alert-dismissible fade show"
+          class="alert alert-danger alert-dismissible fade show text-center
           role="alert"
         >
-          <svg
-            class="bi flex-shrink-0 me-2"
-            width="24"
-            height="24"
-            role="img"
-            aria-label="Danger:"
-          >
-            <use xlink:href="#exclamation-triangle-fill" />
-          </svg>
           {{message}}
           <button
             type="button"
@@ -35,6 +28,21 @@
             aria-label="Close"
           ></button>
         </div>
+        {% else %}
+        <div
+          class="alert alert-{{category}} alert-dismissible fade show text-center"
+          role="alert"
+        >
+          {{message}}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        {% endif %}
+        
         {% endfor %} {% endif %} {% endwith %}
 
         <form action="{{url_for('calculate_playlist_duration')}}" method="POST">
