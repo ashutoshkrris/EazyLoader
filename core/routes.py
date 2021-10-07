@@ -13,8 +13,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import os
 from pathlib import Path
-
+from selenium.webdriver.common.keys import Keys
+import time
 from core.utils import playlist
+
+IG_USERNAME = config('IG_USERNAME')
+IG_PASSWORD = config('IG_PASSWORD')
+
 
 chrome_options = webdriver.ChromeOptions()
 user_agent = 'Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36'
@@ -139,6 +144,18 @@ def ig_video_downloader():
             print("Loading Page")
             driver.get(url)
             print("Page opened")
+            print(driver.current_url)
+            time.sleep(2)
+            if 'login' in driver.current_url:
+                driver.find_element_by_name(
+                    'username').send_keys(IG_USERNAME)
+                time.sleep(2)
+                password = driver.find_element_by_name(
+                    'password')
+                time.sleep(2)
+                password.send_keys(IG_PASSWORD)
+                password.send_keys(Keys.ENTER)
+            driver.get(url)
             print(driver.current_url)
             open(os.path.join(download_folder, 'img.txt'),
                  'w').write(driver.get_screenshot_as_base64())
