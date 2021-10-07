@@ -151,9 +151,9 @@ def ig_video_downloader():
                     'username').send_keys(IG_USERNAME)
                 time.sleep(2)
                 password = driver.find_element_by_name(
-                    IG_PASSWORD)
+                    'password')
                 time.sleep(2)
-                password.send_keys('ashuvishu')
+                password.send_keys(IG_PASSWORD)
                 password.send_keys(Keys.ENTER)
             driver.get(url)
             print(driver.current_url)
