@@ -11,6 +11,7 @@ beautifulsoup4 = "*"
 selenium = "*"
 lxml = "*"
 gunicorn = "*"
+requests = "*"
 
 [dev-packages]
 autopep8 = "*"

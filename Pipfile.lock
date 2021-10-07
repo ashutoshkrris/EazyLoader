@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7f0a474801fa47501dd0517eb97ede1a7d88c4ef3e57c03f9675943dc11fbb88"
+            "sha256": "94ee8291ebd253f544ce1032c72b8d1df83000d2ee885eef51801f236d5dd906"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,6 +23,21 @@
             ],
             "index": "pypi",
             "version": "==4.10.0"
+        },
+        "certifi": {
+            "hashes": [
+                "sha256:2bbf76fd432960138b3ef6dda3dde0544f27cbf8546c458e60baf371917ba9ee",
+                "sha256:50b1e4f8446b06f41be7dd6338db18e0990601dce795c2b1686458aa7e8fa7d8"
+            ],
+            "version": "==2021.5.30"
+        },
+        "charset-normalizer": {
+            "hashes": [
+                "sha256:5d209c0a931f215cee683b6445e2d77677e7e75e159f78def0db09d68fafcaa6",
+                "sha256:5ec46d183433dcbd0ab716f2d7f29d8dee50505b3fdb40c6b985c7c4f5a3591f"
+            ],
+            "markers": "python_version >= '3'",
+            "version": "==2.0.6"
         },
         "click": {
             "hashes": [
@@ -55,6 +70,14 @@
             ],
             "index": "pypi",
             "version": "==20.1.0"
+        },
+        "idna": {
+            "hashes": [
+                "sha256:14475042e284991034cb48e06f6851428fb14c4dc953acd9be9a5e95c7b6dd7a",
+                "sha256:467fbad99067910785144ce333826c71fb0e63a425657295239737f7ecd125f3"
+            ],
+            "markers": "python_version >= '3'",
+            "version": "==3.2"
         },
         "itsdangerous": {
             "hashes": [
@@ -200,6 +223,14 @@
             ],
             "index": "pypi",
             "version": "==11.0.1"
+        },
+        "requests": {
+            "hashes": [
+                "sha256:6c1246513ecd5ecd4528a0906f910e8f0f9c6b8ec72030dc9fd154dc1a6efd24",
+                "sha256:b8aa58f8cf793ffd8782d3d8cb19e66ef36f7aba4353eec859e74678b01b07a7"
+            ],
+            "index": "pypi",
+            "version": "==2.26.0"
         },
         "selenium": {
             "hashes": [
