@@ -24,13 +24,14 @@ if not app.debug:
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
-    # chrome_options.add_argument('--headless')
-    chrome_options.headless = False
     chrome_options.binary_location = GOOGLE_CHROME_PATH
 
 else:
     chrome_options = Options()
-    chrome_options.headless = False
+
+user_agent = 'Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36'
+chrome_options.add_argument(f'user-agent={user_agent}')
+chrome_options.add_argument('--headless')
 
 download_folder = os.path.join(Path(__file__).resolve().parent.parent, "temp")
 
@@ -139,8 +140,9 @@ def ig_video_downloader():
             else:
                 driver = webdriver.Chrome(options=chrome_options)
             url = request.form['video-url']
-            driver.get(url)
             print("Loading Page")
+            driver.get(url)
+            driver.get_screenshot_as_file('ss.png')
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
 
