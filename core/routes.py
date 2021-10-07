@@ -4,7 +4,7 @@ from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
 from zipfile import ZipFile, ZipInfo
-
+from decouple import config
 from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
@@ -19,8 +19,8 @@ from core.utils import playlist
 
 
 if not app.debug:
-    GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+    GOOGLE_CHROME_PATH = config('GOOGLE_CHROME_BIN')
+    CHROMEDRIVER_PATH = config('CHROMEDRIVER_PATH')
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
