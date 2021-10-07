@@ -7,6 +7,9 @@ name = "pypi"
 flask = "*"
 python-decouple = "*"
 pytube = "*"
+beautifulsoup4 = "*"
+selenium = "*"
+lxml = "*"
 
 [dev-packages]
 autopep8 = "*"

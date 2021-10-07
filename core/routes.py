@@ -4,7 +4,23 @@ from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
 from zipfile import ZipFile, ZipInfo
+
+from bs4 import BeautifulSoup
+import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+import os
+from pathlib import Path
+
 from core.utils import playlist
+
+chrome_options = Options()
+chrome_options.headless = False
+
+download_folder = os.path.join(Path.home(), "Downloads")
 
 
 @app.get('/')
@@ -98,3 +114,34 @@ def calculate_playlist_duration():
             return redirect(url_for('calculate_playlist_duration'))
 
     return render_template('youtube/duration/playlist.html')
+
+@app.route('/ig-downloader/video', methods=['GET', 'POST'])
+def ig_video_downloader():
+    if request.method == 'POST':
+        
+        try:
+            driver = webdriver.Chrome(options=chrome_options)
+            url = request.form['video-url']
+            driver.get(url)
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
+
+            flash(
+                f'Your video has been downloaded to {download_folder}!', 'success')
+            soup = BeautifulSoup(driver.page_source, 'lxml')
+            source = soup.find("video", class_="tWeCl")
+            video = requests.get(source['src'], allow_redirects=True)
+
+            if 'video' in (video.headers)['Content-type']:
+                open(os.path.join(download_folder, 'ig-video.mp4'), 'wb').write(video.content)
+
+            driver.quit()
+        except Exception as e:
+            print(e)
+            driver.quit()
+            flash('Unable to fetch and download the video, try again!','error')
+            return redirect(url_for('ig_video_downloader'))
+        
+    return render_template('instagram/video.html')
+
+
