@@ -6,7 +6,7 @@ charset-normalizer==2.0.6
 click==8.0.1
 colorama==0.4.4
 Flask==2.0.2
-google-api-core==2.0.1
+google-api-core==2.1.0
 google-api-python-client==2.24.0
 google-auth==2.2.1
 google-auth-httplib2==0.1.0
@@ -18,7 +18,7 @@ itsdangerous==2.0.1
 Jinja2==3.0.2
 lxml==4.6.3
 MarkupSafe==2.0.1
-protobuf==3.18.0
+protobuf==3.18.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycodestyle==2.7.0

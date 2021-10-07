@@ -12,6 +12,7 @@ selenium = "*"
 lxml = "*"
 gunicorn = "*"
 requests = "*"
+google-api-python-client = "*"
 
 [dev-packages]
 autopep8 = "*"
