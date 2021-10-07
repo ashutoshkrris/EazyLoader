@@ -17,21 +17,18 @@ from pathlib import Path
 
 from core.utils import playlist
 
+chrome_options = webdriver.ChromeOptions()
+user_agent = 'Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36'
+chrome_options.add_argument(f'user-agent={user_agent}')
+chrome_options.add_argument('--headless')
 
 if not app.debug:
     GOOGLE_CHROME_PATH = config('GOOGLE_CHROME_BIN')
     CHROMEDRIVER_PATH = config('CHROMEDRIVER_PATH')
-    chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.binary_location = GOOGLE_CHROME_PATH
 
-else:
-    chrome_options = Options()
-
-user_agent = 'Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36'
-chrome_options.add_argument(f'user-agent={user_agent}')
-chrome_options.add_argument('--headless')
 
 download_folder = os.path.join(Path(__file__).resolve().parent.parent, "temp")
 
@@ -142,7 +139,6 @@ def ig_video_downloader():
             url = request.form['video-url']
             print("Loading Page")
             driver.get(url)
-            driver.get_screenshot_as_file('ss.png')
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
 
