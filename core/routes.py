@@ -31,7 +31,7 @@ else:
     chrome_options = Options()
     chrome_options.headless = False
 
-download_folder = os.path.join(Path.home(), "Downloads")
+download_folder = os.path.join(Path(__file__).resolve().parent.parent, "temp")
 
 
 @app.get('/')
@@ -126,10 +126,11 @@ def calculate_playlist_duration():
 
     return render_template('youtube/duration/playlist.html')
 
+
 @app.route('/ig-downloader/video', methods=['GET', 'POST'])
 def ig_video_downloader():
     if request.method == 'POST':
-        
+
         try:
             if not app.debug:
                 driver = webdriver.Chrome(
@@ -141,21 +142,22 @@ def ig_video_downloader():
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
 
-            flash(
-                f'Your video has been downloaded to {download_folder}!', 'success')
             soup = BeautifulSoup(driver.page_source, 'lxml')
             source = soup.find("video", class_="tWeCl")
             video = requests.get(source['src'], allow_redirects=True)
 
             if 'video' in (video.headers)['Content-type']:
-                open(os.path.join(download_folder, 'ig-video.mp4'), 'wb').write(video.content)
+                print('Saving')
+                open(os.path.join(download_folder, 'ig-video.mp4'),
+                     'wb').write(video.content)
 
             driver.quit()
+            flash(
+                f'Your video has been downloaded to {download_folder}!', 'success')
+            return send_file(os.path.join(download_folder, 'ig-video.mp4'), as_attachment=True, mimetype="video/mp4")
         except Exception as e:
             print(e)
-            flash('Unable to fetch and download the video, try again!','error')
+            flash('Unable to fetch and download the video, try again!', 'error')
             return redirect(url_for('ig_video_downloader'))
-        
+
     return render_template('instagram/video.html')
-
-
