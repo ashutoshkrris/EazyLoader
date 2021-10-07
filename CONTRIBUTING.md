@@ -93,9 +93,14 @@ Create a new file named `.env` and update the new file with the following data. 
 SECRET_KEY=fdkjshfhjsdfdskfdsfdcbsjdkfdsdf
 DEBUG=True
 APP_SETTINGS=config.DevelopmentConfig
+GOOGLE_CLIENT_API_KEY=None
+GITHUB_API_TOKEN=None
 ```
 
-Learn more about the Environment Variables [here](https://iread.ga/posts/49/do-you-really-need-environment-variables-in-python).
+> Note : 
+> - Get started with YouTube Data API [here](https://developers.google.com/youtube/v3/getting-started).
+> - Learn how to generate Personal Access Tokens on Github [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+> - Learn more about the Environment Variables [here](https://iread.ga/posts/49/do-you-really-need-environment-variables-in-python).
 
 **Step 5: Install required Webdriver**
 
