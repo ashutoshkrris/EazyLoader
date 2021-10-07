@@ -20,23 +20,24 @@ def get_contributors():
     """
     returns contributor details
     """
-    url = 'https://api.github.com/repos/ashutoshkrris/EazyLoader/stats/contributors'
+    url = 'https://api.github.com/repos/ashutoshkrris/EazyLoader/contributors?per_page=1000'
 
     response = requests.get(url, headers=header)
     response_dict = response.json()
-
+    bots = ['dependabot[bot]', 'dependabot-preview[bot]', 'restyled-commits',
+            'bug-debug-done', 'allcontributors[bot]', 'ImgBotApp']
     contributors = []
     for contributor in response_dict:
-        username = contributor["author"]["login"]
+        username = contributor["login"]
         name = get_name(username)
-        avatar = contributor["author"]["avatar_url"]
-        profile = contributor["author"]["html_url"]
-
-        contributors.append({
-            "username": username,
-            "name": name,
-            "avatar_url": avatar,
-            "profile_url": profile
-        })
+        avatar = contributor["avatar_url"]
+        profile = contributor["html_url"]
+        if username not in bots:
+            contributors.append({
+                "username": username,
+                "name": name,
+                "avatar_url": avatar,
+                "profile_url": profile
+            })
 
     return contributors
