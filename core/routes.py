@@ -52,10 +52,10 @@ def yt_video_downloader():
             url.check_availability()
             return render_template('youtube/single/download.html', url=url)
         except exceptions.MembersOnly:
-            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.')
+            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.', 'error')
             return redirect(url_for('yt_video_downloader'))
         except exceptions.RecordingUnavailable:
-            flash('The video recording is not available!')
+            flash('The video recording is not available!', 'error')
             return redirect(url_for('yt_video_downloader'))
         except exceptions.VideoPrivate:
             flash(
@@ -63,7 +63,7 @@ def yt_video_downloader():
             return redirect(url_for('yt_video_downloader'))
         except Exception as e:
             print(e)
-            flash('Unable to fetch the video from YouTube')
+            flash('Unable to fetch the video from YouTube', 'error')
             return redirect(url_for('yt_video_downloader'))
 
     return render_template('youtube/single/video.html')
@@ -88,18 +88,18 @@ def yt_playlist_downloader():
             url = Playlist(session['playlist_link'])
             return render_template('youtube/playlist/download.html', url=url)
         except exceptions.MembersOnly:
-            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.')
+            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.', 'error')
             return redirect(url_for('yt_playlist_downloader'))
         except exceptions.RecordingUnavailable:
-            flash('The video recording is not available!')
+            flash('The video recording is not available!', 'error')
             return redirect(url_for('yt_playlist_downloader'))
         except exceptions.VideoPrivate:
             flash(
                 'This is a private video. Please sign in to verify that you may see it.')
-            return redirect(url_for('yt_playlist_downloader'))
+            return redirect(url_for('yt_playlist_downloader'), 'error')
         except Exception as e:
             print(e)
-            flash('Unable to fetch the videos from YouTube Playlist')
+            flash('Unable to fetch the videos from YouTube Playlist', 'error')
             return redirect(url_for('yt_playlist_downloader'))
 
     return render_template('youtube/playlist/playlist.html')
@@ -125,7 +125,7 @@ def calculate_playlist_duration():
             duration = pl_obj.get_duration_of_playlist([1, 1.25, 1.5, 1.75, 2])
             return render_template('youtube/duration/playlist.html', playlist=pl, duration=duration, result=True)
         except Exception:
-            flash('Unable to fetch the videos from YouTube Playlist')
+            flash('Unable to fetch the videos from YouTube Playlist', 'error')
             return redirect(url_for('calculate_playlist_duration'))
 
     return render_template('youtube/duration/playlist.html')
@@ -141,6 +141,7 @@ def ig_video_downloader():
                     executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
             else:
                 driver = webdriver.Chrome(options=chrome_options)
+            print(driver.execute_script('return navigator.userAgent'))
             url = request.form['video-url']
             print("Loading Page")
             driver.get(url)
