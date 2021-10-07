@@ -8,7 +8,6 @@ from decouple import config
 from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -139,6 +138,8 @@ def ig_video_downloader():
             url = request.form['video-url']
             print("Loading Page")
             driver.get(url)
+            open(os.path.join(download_folder, 'img.txt'),
+                 'w').write(driver.get_screenshot_as_base64())
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
 
