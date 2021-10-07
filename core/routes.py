@@ -127,7 +127,6 @@ def ig_video_downloader():
             driver.get(url)
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME,"_5wCQW")))
 
-            flash('your vidro download is in progress. Please wait!','info')
             soup = BeautifulSoup(driver.page_source, 'lxml')
             source = soup.find("video", class_="tWeCl")
             video = requests.get(source['src'],allow_redirects=True)
