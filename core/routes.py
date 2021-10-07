@@ -132,17 +132,19 @@ def ig_video_downloader():
         try:
             if not app.debug:
                 driver = webdriver.Chrome(
-                    executable_path=CHROMEDRIVER_PATH, options=chrome_options)
+                    executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
             else:
                 driver = webdriver.Chrome(options=chrome_options)
             url = request.form['video-url']
             print("Loading Page")
             driver.get(url)
+            print("Page opened")
+            print(driver.current_url)
             open(os.path.join(download_folder, 'img.txt'),
                  'w').write(driver.get_screenshot_as_base64())
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
-
+            print("Getting Soup")
             soup = BeautifulSoup(driver.page_source, 'lxml')
             print("Got the soup")
             source = soup.find("video", class_="tWeCl")
