@@ -139,12 +139,16 @@ def ig_video_downloader():
                 driver = webdriver.Chrome(options=chrome_options)
             url = request.form['video-url']
             driver.get(url)
+            print("Loading Page")
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
 
             soup = BeautifulSoup(driver.page_source, 'lxml')
+            print("Got the soup")
             source = soup.find("video", class_="tWeCl")
+            print("Got the source")
             video = requests.get(source['src'], allow_redirects=True)
+            print("Got the video")
 
             if 'video' in (video.headers)['Content-type']:
                 print('Saving')
