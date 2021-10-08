@@ -31,7 +31,7 @@
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">{{ video.title }}</h5>
-                  <p>Length : {{video.length}} | Views : {{video.views}} | Uploaded by <a href="{{video.channel_url}}" style="text-decoration: none;">{{video.author}}</a> on {{video.publish_date|humanize_date}}</p>
+                  <p>Length : {{video.length|humanize_duration}} | Views : {{video.views|humanize_views}} | Uploaded by <a href="{{video.channel_url}}" style="text-decoration: none;">{{video.author}}</a> on {{video.publish_date|humanize_date}}</p>
                   <p class="card-text">
                     <div class="col-md-5">
                       <select name="itag" class="form-select input-sm" aria-label="Default select example">
