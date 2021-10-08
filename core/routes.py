@@ -24,7 +24,7 @@ IG_PASSWORD = config('IG_PASSWORD')
 chrome_options = webdriver.ChromeOptions()
 user_agent = 'Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36'
 chrome_options.add_argument(f'user-agent={user_agent}')
-chrome_options.add_argument('--headless')
+# chrome_options.add_argument('--headless')
 # chrome_options.add_argument('--incognito')
 
 if not app.debug:
@@ -141,14 +141,10 @@ def ig_video_downloader():
                     executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
             else:
                 driver = webdriver.Chrome(options=chrome_options)
-            print(driver.execute_script('return navigator.userAgent'))
             url = request.form['video-url']
-            print("Loading Page")
             driver.get(url)
-            print("Page opened")
-            print(driver.current_url)
             time.sleep(5)
-            if 'login' in driver.current_url:
+            if 'Login' in driver.title:
                 driver.find_element_by_name(
                     'username').send_keys(IG_USERNAME)
                 time.sleep(2)
@@ -157,22 +153,17 @@ def ig_video_downloader():
                 time.sleep(2)
                 password.send_keys(IG_PASSWORD)
                 password.send_keys(Keys.ENTER)
-                driver.get(url)
-            print(driver.current_url)
+                
             open(os.path.join(download_folder, 'img.txt'),
                  'w').write(driver.get_screenshot_as_base64())
+            driver.get(url)
             WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
-            print("Getting Soup")
             soup = BeautifulSoup(driver.page_source, 'lxml')
-            print("Got the soup")
             source = soup.find("video", class_="tWeCl")
-            print("Got the source")
             video = requests.get(source['src'], allow_redirects=True)
-            print("Got the video")
 
             if 'video' in (video.headers)['Content-type']:
-                print('Saving')
                 open(os.path.join(download_folder, 'ig-video.mp4'),
                      'wb').write(video.content)
 
