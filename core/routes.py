@@ -20,7 +20,6 @@ from core.utils import playlist
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
 
-
 chrome_options = webdriver.ChromeOptions()
 user_agent = 'Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36'
 chrome_options.add_argument(f'user-agent={user_agent}')
@@ -33,7 +32,6 @@ if not app.debug:
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.binary_location = GOOGLE_CHROME_PATH
-
 
 download_folder = os.path.join(Path(__file__).resolve().parent.parent, "temp")
 
@@ -52,7 +50,8 @@ def yt_video_downloader():
             url.check_availability()
             return render_template('youtube/single/download.html', url=url)
         except exceptions.MembersOnly:
-            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.', 'error')
+            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.',
+                  'error')
             return redirect(url_for('yt_video_downloader'))
         except exceptions.RecordingUnavailable:
             flash('The video recording is not available!', 'error')
@@ -88,7 +87,8 @@ def yt_playlist_downloader():
             url = Playlist(session['playlist_link'])
             return render_template('youtube/playlist/download.html', url=url)
         except exceptions.MembersOnly:
-            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.', 'error')
+            flash('Join this channel to get access to members-only content like this video, and other exclusive perks.',
+                  'error')
             return redirect(url_for('yt_playlist_downloader'))
         except exceptions.RecordingUnavailable:
             flash('The video recording is not available!', 'error')
@@ -107,7 +107,6 @@ def yt_playlist_downloader():
 
 @app.post('/yt-downloader/playlist/download')
 def download_playlist():
-
     url = Playlist(session['playlist_link'])
     for video in url.videos:
         video.streams.get_highest_resolution().download()
@@ -153,7 +152,7 @@ def ig_video_downloader():
                 time.sleep(2)
                 password.send_keys(IG_PASSWORD)
                 password.send_keys(Keys.ENTER)
-                
+
             open(os.path.join(download_folder, 'img.txt'),
                  'w').write(driver.get_screenshot_as_base64())
             driver.get(url)

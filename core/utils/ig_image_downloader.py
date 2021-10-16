@@ -11,7 +11,12 @@ class IgImage:
 
     def save_image(self):
         try:
-            driver = webdriver.Chrome(self.chromedriver)
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.binary_location = os.environ.get("/lib/chromium/chromium")
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+            chrome_options.add_argument("--no-sandbox")
+            driver = webdriver.Chrome(executable_path=self.chromedriver, chrome_options=chrome_options)
             driver.get(self.link)
 
             soup = BeautifulSoup(driver.page_source, 'lxml')
