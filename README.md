@@ -22,13 +22,13 @@ Features of the application includes :
 - Download YouTube Videos
 - Calculate YouTube Playlist Duration
 - Download Instagram Profile Pictures
+- Download Instagram Pictures
 
 
 ## <a name='upcoming-features'>⭐ Upcoming Features</a>
 
 * YouTube Playlist Downloader
 * YouTube Channel Downloader
-* Instagram Pictures Downloader
 
 
 ## <a name='how-to-contribute'>💥 How to Contribute?</a>

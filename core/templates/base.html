@@ -46,8 +46,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container px-5">
         <a class="navbar-brand" href="{{url_for('index')}}"
-          ><img src="{{ url_for('static', filename='assets/logo_header.png') }}" style="height: 50px;" alt="EazyLoader Logo"></a
-        >
+          ><img
+            src="{{ url_for('static', filename='assets/logo_header.png') }}"
+            style="height: 50px"
+            alt="EazyLoader Logo"
+        /></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -124,7 +127,11 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="#">Download Picture</a>
+                  <a
+                    class="dropdown-item"
+                    href="{{url_for('ig_image_downloader')}}"
+                    >Download Post Images</a
+                  >
                 </li>
                 <li>
                   <a

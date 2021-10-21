@@ -1,5 +1,5 @@
 from core import app
-from flask import render_template, send_file, request, session, flash, url_for, redirect
+from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
@@ -197,10 +197,52 @@ def ig_dp_downloader():
             return_img.seek(0)
             os.remove(file_path)
             os.removedirs(os.path.abspath(username))
-            return send_file(return_img, mimetype='image/jpg',as_attachment=True, attachment_filename=f'{username}.jpg')
+            return send_file(return_img, mimetype='image/jpg', as_attachment=True, attachment_filename=f'{username}.jpg')
         except Exception as e:
             print(e)
             flash('Unable to fetch and download the profile picture, try again!', 'error')
             return redirect(url_for('ig_dp_downloader'))
 
     return render_template('instagram/profile_pic.html')
+
+
+@app.route('/ig-downloader/image', methods=['GET', 'POST'])
+def ig_image_downloader():
+    if request.method == 'POST':
+        try:
+            post_url = request.form.get('post-url')
+            post_url = post_url.replace(
+                "https://instagram", "https://www.instagram")
+            post_url = post_url.replace(
+                "https://m.instagram", "https://www.instagram")
+            ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
+            filename = ig.download_image(post_url)
+            if filename:
+                if 'jpg' in filename:
+                    return_img = BytesIO()
+                    with open(filename, 'rb') as fp:
+                        return_img.write(fp.read())
+                    return_img.seek(0)
+                    os.remove(filename)
+                    return send_file(return_img, mimetype='image/jpg', as_attachment=True, attachment_filename=filename)
+                elif 'zip' in filename:
+                    with open(os.path.abspath(filename), 'rb') as fp:
+                        data = fp.readlines()
+                    os.remove(os.path.abspath(filename))
+                    return Response(
+                        data,
+                        headers={
+                            'Content-Type': 'application/zip',
+                            'Content-Disposition': f'attachment; filename={filename}'
+                        }
+                    )
+            else:
+                flash(
+                    'Please make sure the account is not private and the post contains image only!', 'error')
+                return redirect(url_for('ig_image_downloader'))
+        except Exception as e:
+            print(e)
+            flash('Unable to fetch and download the profile picture, try again!', 'error')
+            return redirect(url_for('ig_image_downloader'))
+
+    return render_template('instagram/picture.html')

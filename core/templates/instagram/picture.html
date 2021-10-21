@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}Profile Picture | IG Downloader{%
-endblock title %} {% block content %}
+{% extends "base.html" %} {% block title %}Images | IG Downloader{% endblock
+title %} {% block content %}
 
 <div class="jumbotron vertical-center">
   <div class="container download-container shadow">
@@ -10,18 +10,18 @@ endblock title %} {% block content %}
           style="height: 100px"
           alt=""
         />
-        <h3>Download Profile Picture</h3>
+        <h3>Download Images</h3>
       </div>
       <div class="col-12 col-sm-10 col-md-8 mx-auto">
         {% include 'alerts.html' %}
 
-        <form action="{{url_for('ig_dp_downloader')}}" method="POST">
+        <form action="{{url_for('ig_image_downloader')}}" method="POST">
           <div class="form-group mb-3">
             <input
-              type="text"
-              name="username"
+              type="url"
+              name="post-url"
               class="form-control"
-              placeholder="Enter Username"
+              placeholder="Enter Post URL"
             />
           </div>
           <div class="form-group mb-3">
@@ -30,7 +30,7 @@ endblock title %} {% block content %}
                 type="submit"
                 id="download_btn"
                 class="btn btn-primary px-4"
-                value="Download Profile Picture"
+                value="Download Images"
               />
             </center>
           </div>
@@ -44,7 +44,7 @@ endblock title %} {% block content %}
   document.getElementById("download_btn").addEventListener("click", () => {
     new Notify({
       status: "success",
-      title: "Trying to fetch profile picture",
+      title: "Trying to fetch images",
       text: "Hold on a bit...",
       effect: "slide",
       speed: 300,
