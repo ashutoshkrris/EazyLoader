@@ -13,6 +13,7 @@ lxml = "*"
 gunicorn = "*"
 requests = "*"
 google-api-python-client = "*"
+instaloader = "*"
 
 [dev-packages]
 autopep8 = "*"

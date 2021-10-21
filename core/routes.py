@@ -16,6 +16,7 @@ from pathlib import Path
 from selenium.webdriver.common.keys import Keys
 import time
 from core.utils import playlist
+from core.utils.ig_downloader import IGDownloader
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
@@ -180,3 +181,26 @@ def ig_video_downloader():
             return redirect(url_for('ig_video_downloader'))
 
     return render_template('instagram/video.html')
+
+
+@app.route('/ig-downloader/profile-pic', methods=['GET', 'POST'])
+def ig_dp_downloader():
+    if request.method == 'POST':
+        try:
+            username = request.form.get('username')
+            ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
+            filename = ig.download_profile_picture(username)
+            file_path = os.path.join(os.path.abspath(username), filename)
+            return_img = BytesIO()
+            with open(file_path, 'rb') as fp:
+                return_img.write(fp.read())
+            return_img.seek(0)
+            os.remove(file_path)
+            os.removedirs(os.path.abspath(username))
+            return send_file(return_img, mimetype='image/jpg',as_attachment=True, attachment_filename=f'{username}.jpg')
+        except Exception as e:
+            print(e)
+            flash('Unable to fetch and download the profile picture, try again!', 'error')
+            return redirect(url_for('ig_dp_downloader'))
+
+    return render_template('instagram/profile_pic.html')
