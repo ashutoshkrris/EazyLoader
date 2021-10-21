@@ -19,7 +19,7 @@ jobs:
         uses: JasonEtco/slash-assign-action@v0.0.3
         with:
           required_label: Up-For-Grab
-          assigned_label: Assigned
+          assigned_label: PR:Assigned
           days_until_warning: 7
           days_until_unassign: 14
           stale_assignment_label: Open
