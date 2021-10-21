@@ -119,6 +119,10 @@ def calculate_playlist_duration():
     if request.method == 'POST':
         try:
             playlist_link = request.form.get('playlist-url')
+            playlist_link = playlist_link.replace(
+                "https://youtube", "https://www.youtube")
+            playlist_link = playlist_link.replace(
+                "https://m.youtube", "https://www.youtube")
             pl = Playlist(playlist_link)
             pl_obj = playlist.Playlist(playlist_link)
             duration = pl_obj.get_duration_of_playlist([1, 1.25, 1.5, 1.75, 2])
