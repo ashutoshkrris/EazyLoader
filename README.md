@@ -1,10 +1,10 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/logo.png" width="30%">
+    <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/logo_header.png" width="100%">
 </p>
 
-<h1 align="center"> 
-    EazyLoader | Downloading Made Easy
-</h1>
+<h2 align="center"> 
+    Downloading Made Easy
+</h2>
 
 
 ### Table of Contents
