@@ -1,6 +1,5 @@
 import os
 from instaloader import Instaloader, Post, Profile
-import requests
 from zipfile import ZipFile
 
 
@@ -37,22 +36,16 @@ class IGDownloader:
             post = Post.from_shortcode(self.loader.context, post_id)
             if post.is_video:
                 return None
+
             if post.mediacount > 1:
-                if not os.path.exists(post_id):
-                    os.mkdir(post_id)
-                li = list(post.get_sidecar_nodes())
-                i = 1
-                for l in li:
-                    res = requests.get(l.display_url)
-                    with open(f'{post_id}/{i}.jpg', 'wb') as f:
-                        f.write(res.content)
-                    i += 1
+                self.loader.download_post(post, post_id)
                 zfname = f'{post_id}.zip'
                 foo = ZipFile(zfname, 'w')
                 # Adding files from directory 'post_id'
                 for root, dirs, files in os.walk(f'{post_id}'):
                     for f in files:
-                        foo.write(os.path.join(root, f))
+                        if f.lower().endswith(('.png', 'jpg', '.jpeg', '.tiff', '.bmp', '.gif')):
+                            foo.write(os.path.join(root, f))
                         os.remove(os.path.join(root, f))
                 foo.close()
                 os.removedirs(post_id)
