@@ -17,6 +17,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 from core.utils import playlist
 from core.utils.ig_downloader import IGDownloader
+from core import ig
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
@@ -188,7 +189,6 @@ def ig_dp_downloader():
     if request.method == 'POST':
         try:
             username = request.form.get('username')
-            ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
             filename = ig.download_profile_picture(username)
             file_path = os.path.join(os.path.abspath(username), filename)
             return_img = BytesIO()
@@ -215,7 +215,6 @@ def ig_image_downloader():
                 "https://instagram", "https://www.instagram")
             post_url = post_url.replace(
                 "https://m.instagram", "https://www.instagram")
-            ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
             filename = ig.download_image(post_url)
             if filename:
                 if 'jpg' in filename:
