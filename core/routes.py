@@ -3,7 +3,6 @@ from flask import render_template, send_file, request, session, flash, url_for, 
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
-from zipfile import ZipFile, ZipInfo
 from decouple import config
 from bs4 import BeautifulSoup
 import requests
@@ -16,7 +15,6 @@ from pathlib import Path
 from selenium.webdriver.common.keys import Keys
 import time
 from core.utils import playlist
-from core.utils.ig_downloader import IGDownloader
 from core import ig
 
 IG_USERNAME = config('IG_USERNAME', default='username')
@@ -63,7 +61,7 @@ def yt_video_downloader():
                 'This is a private video. Please sign in to verify that you may see it.')
             return redirect(url_for('yt_video_downloader'))
         except Exception as e:
-            print(e)
+            app.logger.error(e)
             flash('Unable to fetch the video from YouTube', 'error')
             return redirect(url_for('yt_video_downloader'))
 
@@ -100,7 +98,7 @@ def yt_playlist_downloader():
                 'This is a private video. Please sign in to verify that you may see it.')
             return redirect(url_for('yt_playlist_downloader'), 'error')
         except Exception as e:
-            print(e)
+            app.logger.error(e)
             flash('Unable to fetch the videos from YouTube Playlist', 'error')
             return redirect(url_for('yt_playlist_downloader'))
 
@@ -177,7 +175,7 @@ def ig_video_downloader():
                 f'Your video has been downloaded to {download_folder}!', 'success')
             return send_file(os.path.join(download_folder, 'ig-video.mp4'), as_attachment=True, mimetype="video/mp4")
         except Exception as e:
-            print(e)
+            app.logger.error(e)
             flash('Unable to fetch and download the video, try again!', 'error')
             return redirect(url_for('ig_video_downloader'))
 
@@ -199,7 +197,7 @@ def ig_dp_downloader():
             os.removedirs(os.path.abspath(username))
             return send_file(return_img, mimetype='image/jpg', as_attachment=True, attachment_filename=f'{username}.jpg')
         except Exception as e:
-            print(e)
+            app.logger.error(e)
             flash('Unable to fetch and download the profile picture, try again!', 'error')
             return redirect(url_for('ig_dp_downloader'))
 
@@ -240,7 +238,7 @@ def ig_image_downloader():
                     'Please make sure the account is not private and the post contains image only!', 'error')
                 return redirect(url_for('ig_image_downloader'))
         except Exception as e:
-            print(e)
+            app.logger.error(e)
             flash('Unable to fetch and download the profile picture, try again!', 'error')
             return redirect(url_for('ig_image_downloader'))
 
