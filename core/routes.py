@@ -1,39 +1,17 @@
 from core import app
-from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
+from flask import render_template, send_file, request, session, flash, url_for, redirect, Response, after_this_request
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
 from decouple import config
-from bs4 import BeautifulSoup
-import requests
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 import os
-from pathlib import Path
-from selenium.webdriver.common.keys import Keys
-import time
 from core.utils import playlist
 from core import ig
+import shutil
+
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
-
-chrome_options = webdriver.ChromeOptions()
-user_agent = 'Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 Mobile Safari/537.36'
-chrome_options.add_argument(f'user-agent={user_agent}')
-chrome_options.add_argument('--headless')
-# chrome_options.add_argument('--incognito')
-
-if not app.debug:
-    GOOGLE_CHROME_PATH = config('GOOGLE_CHROME_BIN')
-    CHROMEDRIVER_PATH = config('CHROMEDRIVER_PATH')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.binary_location = GOOGLE_CHROME_PATH
-
-download_folder = os.path.join(Path(__file__).resolve().parent.parent, "temp")
 
 
 @app.get('/')
@@ -134,54 +112,6 @@ def calculate_playlist_duration():
     return render_template('youtube/duration/playlist.html')
 
 
-@app.route('/ig-downloader/video', methods=['GET', 'POST'])
-def ig_video_downloader():
-    if request.method == 'POST':
-
-        try:
-            if not app.debug:
-                driver = webdriver.Chrome(
-                    executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-            else:
-                driver = webdriver.Chrome(options=chrome_options)
-            url = request.form['video-url']
-            driver.get(url)
-            time.sleep(5)
-            if 'Login' in driver.title:
-                driver.find_element_by_name(
-                    'username').send_keys(IG_USERNAME)
-                time.sleep(2)
-                password = driver.find_element_by_name(
-                    'password')
-                time.sleep(2)
-                password.send_keys(IG_PASSWORD)
-                password.send_keys(Keys.ENTER)
-
-            open(os.path.join(download_folder, 'img.txt'),
-                 'w').write(driver.get_screenshot_as_base64())
-            driver.get(url)
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "_5wCQW")))
-            soup = BeautifulSoup(driver.page_source, 'lxml')
-            source = soup.find("video", class_="tWeCl")
-            video = requests.get(source['src'], allow_redirects=True)
-
-            if 'video' in (video.headers)['Content-type']:
-                open(os.path.join(download_folder, 'ig-video.mp4'),
-                     'wb').write(video.content)
-
-            driver.quit()
-            flash(
-                f'Your video has been downloaded to {download_folder}!', 'success')
-            return send_file(os.path.join(download_folder, 'ig-video.mp4'), as_attachment=True, mimetype="video/mp4")
-        except Exception as e:
-            app.logger.error(e)
-            flash('Unable to fetch and download the video, try again!', 'error')
-            return redirect(url_for('ig_video_downloader'))
-
-    return render_template('instagram/video.html')
-
-
 @app.route('/ig-downloader/profile-pic', methods=['GET', 'POST'])
 def ig_dp_downloader():
     if request.method == 'POST':
@@ -243,3 +173,32 @@ def ig_image_downloader():
             return redirect(url_for('ig_image_downloader'))
 
     return render_template('instagram/picture.html')
+
+
+@app.route('/ig-downloader/video', methods=['GET', 'POST'])
+def ig_video_downloader():
+    if request.method == 'POST':
+        try:
+            video_url = request.form.get('video-url')
+            video_url = video_url.replace(
+                "https://instagram", "https://www.instagram")
+            video_url = video_url.replace(
+                "https://m.instagram", "https://www.instagram")
+            folder_name = ig.download_video(video_url)
+            
+            # Delete after sending
+            
+            for (dirpath, dirnames, filenames) in os.walk(os.path.abspath(folder_name)):
+                if not 'temp' in filenames[0]:
+                    return_video = BytesIO()
+                    with open(os.path.join(os.path.abspath(folder_name), filenames[0]), 'rb') as fp:
+                        return_video.write(fp.read())
+                    return_video.seek(0)
+                    shutil.rmtree(os.path.abspath(folder_name))
+                    return send_file(return_video, as_attachment=True, attachment_filename=f'{folder_name}.mp4')
+        except Exception as e:
+            app.logger.error(e)
+            flash('Unable to fetch and download the profile picture, try again!', 'error')
+            return redirect(url_for('ig_video_downloader'))
+
+    return render_template('instagram/video.html')

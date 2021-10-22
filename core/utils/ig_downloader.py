@@ -17,6 +17,11 @@ class IGDownloader:
         username -- str
         Return: image filename
         """
+        self.loader.download_pictures = True
+        self.loader.download_videos = False
+        self.loader.post_metadata_txt_pattern = ''
+        self.loader.save_metadata = False
+        self.loader.download_comments = False
 
         self.profile = Profile.from_username(self.loader.context, username)
         self.loader.download_profilepic(self.profile)
@@ -30,7 +35,12 @@ class IGDownloader:
         post_url -- str
         Return: image filename or None
         """
-
+        self.loader.download_pictures = True
+        self.loader.download_videos = False
+        self.loader.post_metadata_txt_pattern = ''
+        self.loader.save_metadata = False
+        self.loader.download_comments = False
+    
         post_id = post_url.split('/')[4]
         try:
             post = Post.from_shortcode(self.loader.context, post_id)
@@ -52,6 +62,32 @@ class IGDownloader:
                 return zfname
             self.loader.download_pic(post_id, post.url, post.date_utc)
             return f'{post_id}.jpg'
+        except Exception as e:
+            print(e)
+            return None
+
+    def download_video(self, video_url) -> str or None:
+        """Download post image from public accounts
+
+        Keyword arguments:
+        video_url -- str
+        Return: video filename or None
+        """
+
+        self.loader.download_pictures = False
+        self.loader.download_videos = True
+        self.loader.post_metadata_txt_pattern = ''
+        self.loader.save_metadata = False
+        self.loader.download_comments = False
+
+        video_id = video_url.split('/')[4]
+        try:
+            post = Post.from_shortcode(self.loader.context, video_id)
+            if not post.is_video:
+                return None
+
+            self.loader.download_post(post, video_id)
+            return video_id
         except Exception as e:
             print(e)
             return None
