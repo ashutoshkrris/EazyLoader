@@ -198,7 +198,7 @@ def ig_video_downloader():
                     return send_file(return_video, as_attachment=True, attachment_filename=f'{folder_name}.mp4')
         except Exception as e:
             app.logger.error(e)
-            flash('Unable to fetch and download the profile picture, try again!', 'error')
+            flash('Unable to fetch and download the video, try again!', 'error')
             return redirect(url_for('ig_video_downloader'))
 
     return render_template('instagram/video.html')
