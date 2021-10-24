@@ -42,7 +42,7 @@
         <h3 class="mt-3">Download Profile Picture</h3>
       </div>
       <div class="col-12 col-sm-10 col-md-8 mx-auto">
-        {% include 'alerts.html' %}
+        {% include 'includes/alerts.html' %}
 
         <form action="{{url_for('ig_dp_downloader')}}" method="POST">
           <div class="form-group mb-3">
@@ -65,6 +65,7 @@
           </div>
         </form>
       </div>
+      {% include 'includes/warning.html' %}
     </div>
   </div>
 </div>

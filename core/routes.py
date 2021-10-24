@@ -203,3 +203,7 @@ def ig_video_downloader():
             return redirect(url_for('ig_video_downloader'))
 
     return render_template('instagram/video.html', title='Download Videos')
+
+@app.route("/tos")
+def tos():
+    return render_template('tos.html', title='Terms of Service')

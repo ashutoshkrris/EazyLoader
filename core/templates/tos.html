@@ -1,0 +1,110 @@
+{% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
+block meta_tags %}
+<meta
+  name="description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
+{% endblock %} {% block content %}
+
+<!-- Features section-->
+<section class="py-5" style="margin-bottom: 80px;">
+  <div class="container px-5">
+    <div class="row gx-5">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <h1 class="text-center mb-5">Website Terms and Conditions of Use</h1>
+
+        <h2>1. Terms</h2>
+
+        <p>
+          By accessing this Website, accessible from
+          <a href="https://eazyloader.herokuapp.com">https://eazyloader.herokuapp.com</a>, you are agreeing to be bound by
+          these Website Terms and Conditions of Use and agree that you are
+          responsible for the agreement with any applicable local laws. If you
+          disagree with any of these terms, you are prohibited from accessing
+          this site. The materials contained in this Website are protected by
+          copyright and trade mark law.
+        </p>
+
+        <h2>2. Use License</h2>
+
+        <p>
+          Please understand that you must abide by the following terms: 
+        </p>
+
+        <ul>
+          <li>don't use this service to download any copyrighted content;</li>
+          <li>
+            we do not host or store any video/audio here, for any copyright infringement please contact Youtube and Instagram respectively;
+          </li>
+          <li>
+            the service is only for educational purposes and you are free to download teaching and learning materials;
+          </li>
+        </ul>
+
+        <p>
+          This will let EazyLoader to terminate upon violations of any of these
+          restrictions. Upon termination, your viewing right will also be
+          terminated and you should destroy any downloaded materials in your
+          possession whether it is printed or electronic format.
+        </p>
+
+        <h2>3. Disclaimer</h2>
+
+        <p>
+          All the materials on EazyLoader’s Website are provided "as is".
+          EazyLoader makes no warranties, may it be expressed or implied,
+          therefore negates all other warranties. Furthermore, EazyLoader does
+          not make any representations concerning the accuracy or reliability of
+          the use of the materials on its Website or otherwise relating to such
+          materials or any sites linked to this Website.
+        </p>
+
+        <h2>4. Copyright</h2>
+
+        <p>
+          As this site is mainly for education purpose, we've already blocked almost all videos that contain copyright content. If you are the owner of video or copyright holders that found any copyright infringement on our site, please contact us at copyright.eazyloader@ashutoshkrris.tk, we will try to resolve the issue as soon as possible.
+        </p>
+
+        <h2>5. Site Terms of Use Modifications</h2>
+
+        <p>
+          EazyLoader may revise these Terms of Use for its Website at any time
+          without prior notice. By using this Website, you are agreeing to be
+          bound by the current version of these Terms and Conditions of Use.
+        </p>
+
+        <h2>6. Governing Law</h2>
+
+        <p>
+          Any claim related to EazyLoader's Website shall be governed by the
+          laws of in without regards to its conflict of law provisions.
+        </p>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
