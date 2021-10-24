@@ -1,4 +1,34 @@
-{% extends "base.html" %} {% block title %}Calculate Playlist Duration | YT Downloader{% endblock title %} {% block content %}
+{% extends "base.html" %} {% block title %}{{title}} | YT Downloader{% endblock title %} 
+
+{% block meta_tags %}
+<meta
+  name="description"
+  content="Calculate YouTube Playlist duration at different speeds for free using EazyLoader"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="Calculate YouTube Playlist duration at different speeds for free using EazyLoader"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/yt.png') }}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="Calculate YouTube Playlist duration at different speeds for free using EazyLoader"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/yt.png') }}"
+/>
+{% endblock %}
+
+{% block content %}
 
 <div class="jumbotron vertical-center">
   <div class="container download-container shadow">

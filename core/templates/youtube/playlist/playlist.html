@@ -1,4 +1,32 @@
-{% extends "base.html" %} {% block title %}Playlist | YT Downloader{% endblock title %} 
+{% extends "base.html" %} {% block title %}{{title}} | YT Downloader{% endblock title %} 
+
+{% block meta_tags %}
+<meta
+  name="description"
+  content="Download YouTube Playlist for free using EazyLoader"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="Download YouTube Playlist for free using EazyLoader"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/yt.png') }}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="Download YouTube Playlist for free using EazyLoader"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/yt.png') }}"
+/>
+{% endblock %}
 
 {% block content %}
 

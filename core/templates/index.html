@@ -1,5 +1,31 @@
-{% extends "base.html" %} {% block title %}Home{% endblock title %} {% block
-content %}
+{% extends "base.html" %} {% block title %}{{title}}{% endblock title %} 
+{% block meta_tags %}
+<meta
+  name="description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
+{% endblock %} {% block content %}
 
 <!-- Header-->
 <header class="bg-dark py-5">
@@ -38,9 +64,15 @@ content %}
         </div>
         <h2 class="h4 fw-bolder">Download from YouTube</h2>
         <p>
-          You can download audio and video from YouTube in various available resolutions. Highest resolution available upto 720p. You can also download complete playlist in one go! Even downloading all videos from a channel won't be a problem for us. 😉
+          You can download audio and video from YouTube in various available
+          resolutions. Highest resolution available upto 720p. You can also
+          download complete playlist in one go! Even downloading all videos from
+          a channel won't be a problem for us. 😉
         </p>
-        <a class="text-decoration-none" href="{{url_for('yt_video_downloader')}}">
+        <a
+          class="text-decoration-none"
+          href="{{url_for('yt_video_downloader')}}"
+        >
           Let's Go
           <i class="bi bi-arrow-right"></i>
         </a>
@@ -51,9 +83,14 @@ content %}
         </div>
         <h2 class="h4 fw-bolder">Download from Instagram</h2>
         <p>
-          Do you need to take screenshots of pictures on Instagram or record your screen to share with your friends? Now download pictures and videos from Instagram now without any hassle.😲
+          Do you need to take screenshots of pictures on Instagram or record
+          your screen to share with your friends? Now download pictures and
+          videos from Instagram now without any hassle.😲
         </p>
-        <a class="text-decoration-none" href="{{url_for('ig_video_downloader')}}">
+        <a
+          class="text-decoration-none"
+          href="{{url_for('ig_video_downloader')}}"
+        >
           Let's Go
           <i class="bi bi-arrow-right"></i>
         </a>

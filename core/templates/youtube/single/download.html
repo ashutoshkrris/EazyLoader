@@ -1,4 +1,34 @@
-{% extends "base.html" %} {% block title %}{{ url.title }} | YT Downloader{% endblock title %} {% block content %}
+{% extends "base.html" %} {% block title %}{{ url.title }} | YT Downloader{% endblock title %} 
+
+{% block meta_tags %}
+<meta
+  name="description"
+  content="Download {{ url.title }} video in different resolutions for free using EazyLoader"
+/>
+<meta property="og:title" content="Download {{ url.title }} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="Download {{ url.title }} video in different resolutions for free using EazyLoader"
+/>
+<meta
+  property="og:image"
+  content="{{url.thumbnail_url}}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="Download {{ url.title }} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="Download {{ url.title }} video in different resolutions for free using EazyLoader"
+/>
+<meta
+  name="twitter:image"
+  content="{{url.thumbnail_url}}"
+/>
+{% endblock %}
+
+{% block content %}
 
 <div class="jumbotron vertical-center">
   <div class="container download-container shadow">

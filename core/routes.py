@@ -16,7 +16,7 @@ IG_PASSWORD = config('IG_PASSWORD', default='password')
 
 @app.get('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Home')
 
 
 @app.route('/yt-downloader/video', methods=['GET', 'POST'])
@@ -42,8 +42,9 @@ def yt_video_downloader():
             app.logger.error(e)
             flash('Unable to fetch the video from YouTube', 'error')
             return redirect(url_for('yt_video_downloader'))
+            return redirect(url_for('yt_video_downloader'))
 
-    return render_template('youtube/single/video.html')
+    return render_template('youtube/single/video.html', title='Download Video')
 
 
 @app.post('/yt-downloader/video/download')
@@ -80,7 +81,7 @@ def yt_playlist_downloader():
             flash('Unable to fetch the videos from YouTube Playlist', 'error')
             return redirect(url_for('yt_playlist_downloader'))
 
-    return render_template('youtube/playlist/playlist.html')
+    return render_template('youtube/playlist/playlist.html', title='Download YouTube Playlist')
 
 
 @app.post('/yt-downloader/playlist/download')
@@ -104,12 +105,12 @@ def calculate_playlist_duration():
             pl = Playlist(playlist_link)
             pl_obj = playlist.Playlist(playlist_link)
             duration = pl_obj.get_duration_of_playlist([1, 1.25, 1.5, 1.75, 2])
-            return render_template('youtube/duration/playlist.html', playlist=pl, duration=duration, result=True)
+            return render_template('youtube/duration/playlist.html', playlist=pl, duration=duration, result=True, title='Calculate Playlist Duration')
         except Exception:
             flash('Unable to fetch the videos from YouTube Playlist', 'error')
             return redirect(url_for('calculate_playlist_duration'))
 
-    return render_template('youtube/duration/playlist.html')
+    return render_template('youtube/duration/playlist.html', title='Calculate Playlist Duration')
 
 
 @app.route('/ig-downloader/profile-pic', methods=['GET', 'POST'])
@@ -131,7 +132,7 @@ def ig_dp_downloader():
             flash('Unable to fetch and download the profile picture, try again!', 'error')
             return redirect(url_for('ig_dp_downloader'))
 
-    return render_template('instagram/profile_pic.html')
+    return render_template('instagram/profile_pic.html', title="Download Profile Picture")
 
 
 @app.route('/ig-downloader/image', methods=['GET', 'POST'])
@@ -172,7 +173,7 @@ def ig_image_downloader():
             flash('Unable to fetch and download the profile picture, try again!', 'error')
             return redirect(url_for('ig_image_downloader'))
 
-    return render_template('instagram/picture.html')
+    return render_template('instagram/picture.html', title='Download Images')
 
 
 @app.route('/ig-downloader/video', methods=['GET', 'POST'])
@@ -201,4 +202,4 @@ def ig_video_downloader():
             flash('Unable to fetch and download the video, try again!', 'error')
             return redirect(url_for('ig_video_downloader'))
 
-    return render_template('instagram/video.html')
+    return render_template('instagram/video.html', title='Download Videos')
