@@ -76,29 +76,32 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a
-                class="nav-link active"
+                class="nav-link"
+                id="homelink"
                 aria-current="page"
                 href="{{url_for('index')}}"
                 >Home</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('index')}}#features"
+              <a
+                class="nav-link"
+                id="ftrslink"
+                href="{{url_for('index')}}#features"
                 >Features</a
               >
             </li>
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
+                id="ytlink"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 YT Downloader
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="ytlink">
                 <li>
                   <a
                     class="dropdown-item"
@@ -127,15 +130,14 @@
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
+                id="iglink"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 IG Downloader
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" aria-labelledby="iglink">
                 <li>
                   <a
                     class="dropdown-item"
@@ -160,12 +162,15 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('index')}}#contact"
+              <a
+                class="nav-link"
+                id="contactlink"
+                href="{{url_for('index')}}#contact"
                 >Contact</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url_for('tos')}}"
+              <a class="nav-link" id="toslink" href="{{url_for('tos')}}"
                 >Terms of Service</a
               >
             </li>
@@ -174,7 +179,6 @@
       </div>
     </nav>
     {% block content %} {% endblock content %}
-  
 
     <!-- Footer-->
     <footer class="py-3 bg-dark" id="footer">
@@ -208,7 +212,46 @@
     <script>
       document.getElementById("footer").classList.remove("fixed-bottom");
     </script>
+    {% endif %} {% if 'yt-downloader' in request.path %}
+    <script>
+      document.getElementById("ytlink").classList.add("active");
+    </script>
+    {% elif 'ig-downloader' in request.path %}
+    <script>
+      document.getElementById("iglink").classList.add("active");
+    </script>
+    {% elif 'tos' in request.path %}
+    <script>
+      document.getElementById("toslink").classList.add("active");
+    </script>
+    {% else %}
+    <script>
+      document.getElementById("homelink").classList.add("active");
+    </script>
+
     {% endif %}
-    
+    <script>
+      document.getElementById("homelink").onclick = function () {
+        var links = document.getElementsByClassName("nav-link");
+        for (var i = 0; i < links.length; i++) {
+          links[i].classList.remove("active");
+        }
+        document.getElementById("homelink").classList.add("active");
+      };
+      document.getElementById("ftrslink").onclick = function () {
+        var links = document.getElementsByClassName("nav-link");
+        for (var i = 0; i < links.length; i++) {
+          links[i].classList.remove("active");
+        }
+        document.getElementById("ftrslink").classList.add("active");
+      };
+      document.getElementById("contactlink").onclick = function () {
+        var links = document.getElementsByClassName("nav-link");
+        for (var i = 0; i < links.length; i++) {
+          links[i].classList.remove("active");
+        }
+        document.getElementById("contactlink").classList.add("active");
+      };
+    </script>
   </body>
 </html>
