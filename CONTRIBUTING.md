@@ -102,16 +102,6 @@ GITHUB_API_TOKEN=None
 > - Learn how to generate Personal Access Tokens on Github [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 > - Learn more about the Environment Variables [here](https://iread.ga/posts/49/do-you-really-need-environment-variables-in-python).
 
-**Step 5: Install required Webdriver**
-
-To use this feature, you need to have Google Chrome and [Chrrome Webdriver](https://chromedriver.chromium.org/downloads) added in your ```$PATH``` in ```/bin``` folder. Download and install the version compatible with your google chrome version(the same version). You may have to update this from time to time.
-
-
-You may also use the Firefox browser and [gekodriver](https://github.com/mozilla/geckodriver/releases/) alternatively.
-
-
-**Note**: use may use anyone of the above options, the web application will run perfectly fine in either browser without any issue.
-
 
 Now we're ready to start our server which is as simple as:
 
@@ -125,7 +115,7 @@ The app will automatically reload if you make changes to the code.
 You will see the build errors and warnings in the console.
 
 
-**Step 6 : Work on the issue assigned**
+**Step 5 : Work on the issue assigned**
 
 - Work on the issue(s) assigned to you.
 - Add all the files/folders needed.
@@ -139,7 +129,7 @@ You will see the build errors and warnings in the console.
     git add <some files>
     ```
 
-**Step 7 : Commit**
+**Step 6 : Commit**
 
 - To commit give a descriptive message for the convenience of reviewer by:
 
@@ -150,7 +140,7 @@ You will see the build errors and warnings in the console.
 
 - **NOTE**: A PR should have only one commit. Multiple commits should be squashed.
 
-**Step 8 : Work Remotely**
+**Step 7 : Work Remotely**
 
 - Now you are ready to your work to the remote repository.
 - When your work is ready and complies with the project conventions, upload your changes to your fork:
@@ -160,7 +150,7 @@ You will see the build errors and warnings in the console.
     git push -u origin <branch-name>
     ```
 
-**Step 9 : Pull Request**
+**Step 8 : Pull Request**
 
 - Go to your repository in browser and click on compare and pull requests. Then add a title and description to your pull request that explains your contribution.
 - Voila! Your Pull Request has been submitted and will be reviewed by the moderators and merged.🥳
