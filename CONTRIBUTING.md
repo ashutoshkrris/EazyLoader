@@ -95,6 +95,8 @@ DEBUG=True
 APP_SETTINGS=config.DevelopmentConfig
 GOOGLE_CLIENT_API_KEY=None
 GITHUB_API_TOKEN=None
+IG_USERNAME=None
+IG_PASSWORD=None
 ```
 
 > Note : 
