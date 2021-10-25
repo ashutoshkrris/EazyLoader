@@ -232,6 +232,10 @@
     <script>
       document.getElementById("toslink").classList.add("active");
     </script>
+    {% elif 'donate' in request.path %}
+    <script>
+      document.getElementById("donatelink").classList.add("active");
+    </script>
     {% else %}
     <script>
       document.getElementById("homelink").classList.add("active");
