@@ -164,6 +164,14 @@
             <li class="nav-item">
               <a
                 class="nav-link"
+                id="donatelink"
+                href="{{url_for('donate')}}"
+                >Donate</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
                 id="contactlink"
                 href="{{url_for('index')}}#contact"
                 >Contact</a
@@ -251,6 +259,13 @@
           links[i].classList.remove("active");
         }
         document.getElementById("contactlink").classList.add("active");
+      };
+      document.getElementById("donatelink").onclick = function () {
+        var links = document.getElementsByClassName("nav-link");
+        for (var i = 0; i < links.length; i++) {
+          links[i].classList.remove("active");
+        }
+        document.getElementById("donatelink").classList.add("active");
       };
     </script>
   </body>

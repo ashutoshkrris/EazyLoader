@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
+block meta_tags %}
+<meta
+  name="description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
+{% endblock %} {% block content %}
+
+<!-- Features section-->
+<section class="py-5" style="margin-bottom: 80px">
+  <div class="container px-5">
+    <div class="row gx-5">
+      <h1 class="text-center">I ask you, humbly, to help.</h1>
+
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <hr>
+        <p>
+          EazyLoader is a free tool to quickly download audio, videos and shorts
+          from Youtube and pictures, profile pictures, videos, IGTV videos and
+          reels from Instagram.
+        </p>
+        <p>
+          I know that most people will ignore this message. But if EazyLoader is
+          useful to you, please consider making a donation of ₹50, ₹100 or
+          whatever you can to protect and sustain EazyLoader.
+        </p>
+        <p>
+          If everyone who uses Eazyloader gave just a little, I could keep
+          Eazyloader thriving for years to come. The price of a cup of coffee is
+          all I ask.
+        </p>
+        <br />
+        <center>
+          <a href="https://buy.stripe.com/4gw17t5uhaK26qsfYZ">
+            <button class="bn54">
+              <span class="bn54span">
+                Donate Now<br />
+                <small>using Stripe</small>
+              </span>
+            </button>
+          </a>
+          <br />
+          <form>
+            <script
+              src="https://checkout.razorpay.com/v1/payment-button.js"
+              data-payment_button_id="pl_IDcRjGcPSWbnB5"
+              async
+            ></script>
+          </form>
+        </center>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -207,3 +207,8 @@ def ig_video_downloader():
 @app.route("/tos")
 def tos():
     return render_template('tos.html', title='Terms of Service')
+
+
+@app.route("/donate")
+def donate():
+    return render_template('donate.html', title='Make your donation now')
