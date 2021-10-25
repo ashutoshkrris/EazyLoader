@@ -1,9 +1,9 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/logo.png" width="50%">
+    <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/icon.png">
 </p>
 
 <h2 align="center"> 
-    Downloading Made Easy
+    EazyLoader | Downloading Made Easy
 </h2>
 
 
