@@ -26,4 +26,4 @@ jobs:
         with:
           issue-number: ${{tojson(github.event.number)}}
           body: |
-            @${{ github.event.pull_request.user.login }} Hurray, your PR got merged 🥳. Thanks a bunch. Feel free to take another Issue.💖
+            @${{ github.event.pull_request.user.login }} Hurray, your PR got merged 🥳. Thanks a bunch. Feel free to take another Issue.💖 If you loved the project, make sure to 🌟 the repository and [upvote the project on Product Hunt](https://www.producthunt.com/posts/eazyloader).
