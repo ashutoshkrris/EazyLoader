@@ -1,11 +1,14 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/logo.png" width="50%">
+    <img src="https://raw.githubusercontent.com/ashutoshkrris/EazyLoader/main/core/static/assets/icon.png">
 </p>
 
 <h2 align="center"> 
-    Downloading Made Easy
+    EazyLoader | Downloading Made Easy
 </h2>
 
+<p align="center">
+<a href="https://www.producthunt.com/posts/eazyloader?utm_source=badge-review&utm_medium=badge&utm_souce=badge-eazyloader#discussion-body" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/review.svg?post_id=317311&theme=light" alt="EazyLoader - Downloading Made Easy | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+</p>
 
 ### Table of Contents
 

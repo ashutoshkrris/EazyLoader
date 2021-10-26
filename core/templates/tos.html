@@ -14,6 +14,8 @@ block meta_tags %}
   property="og:image"
   content="{{ url_for('static', filename='assets/logo.png') }}"/>
   
+  content="{{ url_for('static', filename='assets/icon.png') }}"
+/>
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:title" content="{{title}} | EazyLoader" />
@@ -23,7 +25,7 @@ block meta_tags %}
 />
 <meta
   name="twitter:image"
-  content="{{ url_for('static', filename='assets/logo.png') }}"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
 />
 {% endblock %} {% block content %}
 
