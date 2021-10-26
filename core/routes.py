@@ -207,3 +207,7 @@ def ig_video_downloader():
 @app.route("/tos")
 def tos():
     return render_template('tos.html', title='Terms of Service')
+
+@app.route("/blog")
+def blog():
+    return render_template('blog.html', title='Blogs')

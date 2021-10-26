@@ -40,6 +40,11 @@
       href="{{url_for('static', filename='css/custom.css')}}"
       rel="stylesheet"
     />
+    <!-- Custom CSS -->
+    <link
+      href="{{url_for('static', filename='css/blog.css')}}"
+      rel="stylesheet"
+    />
     <!-- Simple Notify -->
     <!-- CSS -->
     <link
@@ -91,6 +96,16 @@
                 >Features</a
               >
             </li>
+            
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="bloglink"
+                href="{{url_for('blog')}}" 
+                >Blog</a
+              >
+            </li>
+            
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -223,6 +238,10 @@
     {% elif 'tos' in request.path %}
     <script>
       document.getElementById("toslink").classList.add("active");
+    </script>
+    {% elif 'blog' in request.path %}
+    <script>
+      document.getElementById("bloglink").classList.add("active");
     </script>
     {% else %}
     <script>
