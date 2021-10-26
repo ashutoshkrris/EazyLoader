@@ -60,29 +60,53 @@ $ cd EazyLoader
 
 **Step 3. Create a Virtual Environment and install Dependencies.**
 
-Create a new Virtual Environment for the project and activate it. If you don't have the `virtualenv` command yet, you can find installation [instructions here](https://virtualenv.readthedocs.io/en/latest/). Learn more about [Virtual Environments](http://flask.pocoo.org/docs/1.0/installation/#virtual-environments).
+- We'll be using `venv` module that comes in-built with Python 3.4 and above. Learn more about [Virtual Environments](http://flask.pocoo.org/docs/1.0/installation/#virtual-environments).
 
-- Using virtualenv :
-    ```bash
-    $ virtualenv venv
-    $ source venv/bin/activate
-    ```
+    - Create virtual environment using the following command on Windows, Linux or MacOS :
+        ```bash
+        python -m venv env
+        ```
 
-- Using pipenv : 
+        - Activate the virtual environment:
+            - On Windows:
+                ```terminal
+                env\Scripts\activate.bat
+                ```
+
+            - On Linux and MacOS:
+                ```bash
+                source env/bin/activate
+                ```
+            
+        - Deactivate the virtual environment (not needed at this stage):
+            ```
+            deactivate
+            ```
+
+- Instead of using `venv` module, you can also use `pipenv` to manage virtual environment. If you don't have it installed, use the command to install it:
     ```bash
-    $ pipenv shell
+    pip install pipenv
     ```
+    - To create new virtual environment and activate it using `pipenv`:
+        ```bash
+        pipenv shell
+        ```
+    
+    - To deactivate the virtual environment (not needed at this stage):
+        ```bash
+        exit
+        ```
 
 Next, we need to install the project dependencies, which are listed in `requirements.txt` or `Pipfile`.
 
-- Using virtualenv :
+- If you've used `venv` module in the previous step, use this command :
     ```bash
-    $ pip install -r requirements.txt
+    pip install -r requirements.txt
     ```
 
-- Using pipenv : 
+- If you've used `pipenv` module in the previous step, use this command : 
     ```bash
-    $ pipenv install
+    pipenv install
     ```
 
 **Step 4: Update environment variables and run the Server.**
@@ -100,6 +124,7 @@ IG_PASSWORD=None
 ```
 
 > Note : 
+> - Every time you modify the environment variables,you need to deactivate the virtual environment and activate it again.
 > - Get started with YouTube Data API [here](https://developers.google.com/youtube/v3/getting-started).
 > - Learn how to generate Personal Access Tokens on Github [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 > - Learn more about the Environment Variables [here](https://iread.ga/posts/49/do-you-really-need-environment-variables-in-python).
