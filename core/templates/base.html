@@ -40,6 +40,7 @@
       href="{{url_for('static', filename='css/custom.css')}}"
       rel="stylesheet"
     />
+
     <!-- Simple Notify -->
     <!-- CSS -->
     <link
@@ -49,6 +50,7 @@
 
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.4/dist/simple-notify.min.js"></script>
+    {% block custom_head %} {% endblock %}
   </head>
 
   <body>
@@ -91,6 +93,13 @@
                 >Features</a
               >
             </li>
+
+            <li class="nav-item">
+              <a class="nav-link" id="bloglink" href="{{url_for('blog')}}"
+                >Blog</a
+              >
+            </li>
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -162,10 +171,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link"
-                id="donatelink"
-                href="{{url_for('donate')}}"
+              <a class="nav-link" id="donatelink" href="{{url_for('donate')}}"
                 >Donate</a
               >
             </li>
@@ -232,6 +238,10 @@
     <script>
       document.getElementById("toslink").classList.add("active");
     </script>
+    {% elif 'blog' in request.path %}
+    <script>
+      document.getElementById("bloglink").classList.add("active");
+    </script>
     {% elif 'donate' in request.path %}
     <script>
       document.getElementById("donatelink").classList.add("active");
@@ -263,13 +273,6 @@
           links[i].classList.remove("active");
         }
         document.getElementById("contactlink").classList.add("active");
-      };
-      document.getElementById("donatelink").onclick = function () {
-        var links = document.getElementsByClassName("nav-link");
-        for (var i = 0; i < links.length; i++) {
-          links[i].classList.remove("active");
-        }
-        document.getElementById("donatelink").classList.add("active");
       };
     </script>
   </body>

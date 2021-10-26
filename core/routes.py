@@ -186,9 +186,9 @@ def ig_video_downloader():
             video_url = video_url.replace(
                 "https://m.instagram", "https://www.instagram")
             folder_name = ig.download_video(video_url)
-            
+
             # Delete after sending
-            
+
             for (dirpath, dirnames, filenames) in os.walk(os.path.abspath(folder_name)):
                 if not 'temp' in filenames[0]:
                     return_video = BytesIO()
@@ -204,9 +204,15 @@ def ig_video_downloader():
 
     return render_template('instagram/video.html', title='Download Videos')
 
+
 @app.route("/tos")
 def tos():
     return render_template('tos.html', title='Terms of Service')
+
+
+@app.route("/blog")
+def blog():
+    return render_template('blog.html', title='Blogs')
 
 
 @app.route("/donate")
