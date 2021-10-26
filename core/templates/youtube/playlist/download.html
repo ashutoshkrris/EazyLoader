@@ -32,14 +32,14 @@
 
 <div class="jumbotron vertical-center mb-5">
   <div class="container download-container shadow">
-    <div class="row">
+    <div class="row mb-4">
       <div class="col-12 text-center py-2">
         <img src="{{url_for('static', filename='assets/yt.png')}}" style="height:100px" alt="">
         <h3>Download Playlist</h3>
       </div>
       <div class="col-12 mx-auto">
         <form method="POST" action="{{ url_for('download_playlist') }}">
-        <div class="card my-4 mx-auto px-3" style="max-width: 1300px;">
+        <div class="card py-4 px-3 mx-auto" style="max-width: 1300px;">
           <h4 class="text-center mt-3 mb-3">{{url.title}}</h4>
           <div class="row text-center">
             <div class="col-md-6">

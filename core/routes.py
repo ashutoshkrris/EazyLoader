@@ -24,9 +24,12 @@ def yt_video_downloader():
     if request.method == 'POST':
         session['video_link'] = request.form.get('video-url')
         try:
+            highest_res = False
             url = YouTube(session['video_link'])
             url.check_availability()
-            return render_template('youtube/single/download.html', url=url)
+            if url.streams.filter(res="1080p"):
+                highest_res = url.streams.filter(res="1080p").first()
+            return render_template('youtube/single/download.html', url=url, highest_res=highest_res)
         except exceptions.MembersOnly:
             flash('Join this channel to get access to members-only content like this video, and other exclusive perks.',
                   'error')
@@ -50,8 +53,9 @@ def yt_video_downloader():
 def download_video():
     url = session['video_link']
     itag = request.form.get("itag")
+    print(itag)
     buffer, filename = yt.download_single_video(url, itag)
-    return send_file(buffer, as_attachment=True, attachment_filename=f"{filename}.mp4", mimetype="video/mp4")
+    return send_file(buffer, as_attachment=True, attachment_filename=filename,mimetype="video/mp4")
 
 
 @app.route('/yt-downloader/audio', methods=['GET', 'POST'])
