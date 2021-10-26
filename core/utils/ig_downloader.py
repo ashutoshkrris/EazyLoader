@@ -8,7 +8,7 @@ class IGDownloader:
 
     def __init__(self, login_username, login_password):
         self.loader = Instaloader()
-        # self.loader.login(login_username, login_password)
+        self.loader.login(login_username, login_password)
 
     def download_profile_picture(self, username: str) -> str:
         """Download profile picture for any Instagram profile
