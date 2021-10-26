@@ -1,12 +1,12 @@
 from core import app
-from flask import render_template, send_file, request, session, flash, url_for, redirect, Response, after_this_request
+from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
 from io import BytesIO
 from decouple import config
 import os
 from core.utils import playlist
-from core import ig
+from core import ig, yt
 import shutil
 
 
@@ -42,20 +42,50 @@ def yt_video_downloader():
             app.logger.error(e)
             flash('Unable to fetch the video from YouTube', 'error')
             return redirect(url_for('yt_video_downloader'))
-            return redirect(url_for('yt_video_downloader'))
 
     return render_template('youtube/single/video.html', title='Download Video')
 
 
 @app.post('/yt-downloader/video/download')
 def download_video():
-    buffer = BytesIO()
-    url = YouTube(session['video_link'])
+    url = session['video_link']
     itag = request.form.get("itag")
-    video = url.streams.get_by_itag(itag)
-    video.stream_to_buffer(buffer)
-    buffer.seek(0)
-    return send_file(buffer, as_attachment=True, download_name=f"{url.title}.mp4", mimetype="video/mp4")
+    buffer, filename = yt.download_single_video(url, itag)
+    return send_file(buffer, as_attachment=True, attachment_filename=f"{filename}.mp4", mimetype="video/mp4")
+
+
+@app.route('/yt-downloader/audio', methods=['GET', 'POST'])
+def yt_audio_downloader():
+    if request.method == 'POST':
+        session['video_link'] = request.form.get('video-url')
+        try:
+            url = YouTube(session['video_link'])
+            url.check_availability()
+            return render_template('youtube/audio/download.html', url=url)
+        except exceptions.MembersOnly:
+            flash('Join this channel to get access to members-only content like this audio, and other exclusive perks.',
+                  'error')
+            return redirect(url_for('yt_audio_downloader'))
+        except exceptions.RecordingUnavailable:
+            flash('The audio recording is not available!', 'error')
+            return redirect(url_for('yt_audio_downloader'))
+        except exceptions.VideoPrivate:
+            flash(
+                'This is a private video and hence cannot get the audio. Please sign in to verify that you may see it.')
+            return redirect(url_for('yt_audio_downloader'))
+        except Exception as e:
+            app.logger.error(e)
+            flash('Unable to fetch the video/audio from YouTube', 'error')
+            return redirect(url_for('yt_audio_downloader'))
+
+    return render_template('youtube/audio/audio.html', title='Download Audio')
+
+
+@app.post('/yt-downloader/audio/download')
+def download_audio():
+    url = session['video_link']
+    buffer, filename = yt.download_audio(url)
+    return send_file(buffer, as_attachment=True, attachment_filename=f"{filename}.mp3", mimetype="audio/mp3")
 
 
 @app.route('/yt-downloader/playlist', methods=['GET', 'POST'])
@@ -103,7 +133,7 @@ def calculate_playlist_duration():
             playlist_link = playlist_link.replace(
                 "https://m.youtube", "https://www.youtube")
             pl = Playlist(playlist_link)
-            pl_obj = playlist.Playlist(playlist_link)
+            pl_obj = playlist.PlaylistCalculator(playlist_link)
             duration = pl_obj.get_duration_of_playlist([1, 1.25, 1.5, 1.75, 2])
             return render_template('youtube/duration/playlist.html', playlist=pl, duration=duration, result=True, title='Calculate Playlist Duration')
         except Exception:

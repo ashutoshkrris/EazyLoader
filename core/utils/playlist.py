@@ -4,7 +4,7 @@ from datetime import timedelta
 from googleapiclient.discovery import build
 
 
-class Playlist:
+class PlaylistCalculator:
     def __init__(self, link_of_playlist):
 
         self.youtube = build(
