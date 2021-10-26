@@ -1,14 +1,26 @@
 {% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
 block meta_tags %}
-<meta
-  name="description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
-/>
+<meta name="description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
 <meta property="og:title" content="{{title}} | EazyLoader" />
 <meta property="og:url" content="{{request.url}}" />
+
+<meta property="og:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
+<meta property="og:image" content="{{ url_for('static', filename='assets/logo.png') }}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta name="twitter:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
+<meta name="twitter:image" content="{{ url_for('static', filename='assets/logo.png') }}" />
 <meta
   property="og:description"
   content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
 />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@" />
@@ -16,6 +28,10 @@ block meta_tags %}
 <meta
   name="twitter:description"
   content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
 />
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
