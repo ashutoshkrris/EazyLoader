@@ -3,6 +3,7 @@ from decouple import config
 from core.utils.ig_downloader import IGDownloader
 from logging.config import dictConfig
 from core.utils.yt_downloader import YTDownloader
+from flask_mail import Mail
 
 # dictConfig({
 #     'version': 1,
@@ -29,6 +30,8 @@ app.config.from_object(config("APP_SETTINGS"))
 print("Logging into IG Account")
 ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
 yt = YTDownloader()
+
+mail = Mail(app)
 
 from core import routes
 from core.utils import custom_filters, playlist, contributors

@@ -1,4 +1,4 @@
-from core import app
+from core import app, mail
 from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
@@ -8,14 +8,30 @@ import os
 from core.utils import playlist
 from core import ig, yt
 import shutil
-
+from flask_mail import Message
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
+ADMIN_EMAIL = config('ADMIN_EMAIL', default=None) 
 
-
-@app.get('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+
+    if request.method == 'POST':    
+        if True:
+            name = request.form.get('name')
+            email = request.form.get('email')
+            ph_no = request.form.get('ph_no')
+            message = request.form.get('message')
+            
+            msg = Message("HELLO", sender=ADMIN_EMAIL, recipients=[ADMIN_EMAIL])
+            msg.html = "Hey, sending this email from my Flask app"
+            mail.send(msg)
+            return 'Mail sent!'
+            
+        # except Exception as e:
+        #     return(str(e))
+
     return render_template('index.html', title='Home')
 
 
@@ -252,3 +268,5 @@ def blog():
 @app.route("/donate")
 def donate():
     return render_template('donate.html', title='Make your donation now')
+
+
