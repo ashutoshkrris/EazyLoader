@@ -77,7 +77,7 @@ def download_video():
     itag = request.form.get("itag")
     print(itag)
     buffer, filename = yt.download_single_video(url, itag)
-    return send_file(buffer, as_attachment=True, attachment_filename=filename,mimetype="video/mp4")
+    return send_file(buffer, as_attachment=True, attachment_filename=filename, mimetype="video/mp4")
 
 
 @app.route('/yt-downloader/audio', methods=['GET', 'POST'])
@@ -189,6 +189,30 @@ def ig_dp_downloader():
             return redirect(url_for('ig_dp_downloader'))
 
     return render_template('instagram/profile_pic.html', title="Download Profile Picture")
+
+
+@app.route('/ig-downloader/latest-stories', methods=['GET', 'POST'])
+def ig_stories_downloader():
+    if request.method == 'POST':
+        try:
+            username = request.form.get('username')
+            filename = ig.download_latest_stories(username)
+            with open(os.path.abspath(filename), 'rb') as fp:
+                data = fp.readlines()
+            os.remove(os.path.abspath(filename))
+            return Response(
+                data,
+                headers={
+                    'Content-Type': 'application/zip',
+                    'Content-Disposition': f'attachment; filename={filename}'
+                }
+            )
+        except Exception as e:
+            app.logger.error(e)
+            flash('Unable to fetch and download the stories, try again!', 'error')
+            return redirect(url_for('ig_stories_downloader'))
+
+    return render_template('instagram/stories.html', title="Download Latest Stories")
 
 
 @app.route('/ig-downloader/image', methods=['GET', 'POST'])
