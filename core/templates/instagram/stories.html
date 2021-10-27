@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block title %}{{title}} | IG Downloader{% endblock title %} 
+
+{% block meta_tags %}
+<meta
+  name="description"
+  content="Download latest stories of users from Instagram for free using EazyLoader"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="Download latest stories of users from Instagram for free using EazyLoader"
+/>
+<meta
+  property="og:image"
+  content="https://i.imgur.com/q2rfxDO.png"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="Download latest stories of users from Instagram for free using EazyLoader"
+/>
+<meta
+  name="twitter:image"
+  content="https://i.imgur.com/q2rfxDO.png"
+/>
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron vertical-center">
+  <div class="container download-container shadow">
+    <div class="row">
+      <div class="col-12 text-center py-2">
+        <img
+          src="{{url_for('static', filename='assets/ig.png')}}"
+          style="height: 100px"
+          alt=""
+        />
+        <h3 class="mt-3">Download Latest Stories</h3>
+      </div>
+      <div class="col-12 col-sm-10 col-md-8 mx-auto">
+        {% include 'includes/alerts.html' %}
+
+        <form action="{{url_for('ig_stories_downloader')}}" method="POST">
+          <div class="form-group mb-3">
+            <input
+              type="text"
+              name="username"
+              class="form-control"
+              placeholder="Enter Username"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <center>
+              <input
+                type="submit"
+                id="download_btn"
+                class="btn btn-primary px-4"
+                value="Download Stories"
+              />
+            </center>
+          </div>
+        </form>
+      </div>
+      {% include 'includes/warning.html' %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("download_btn").addEventListener("click", () => {
+    new Notify({
+      status: "success",
+      title: "Trying to fetch latest stories",
+      text: "Hold on a bit...",
+      effect: "slide",
+      speed: 300,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: "right top",
+    });
+  });
+</script>
+{% endblock content %}
