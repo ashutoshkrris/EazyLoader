@@ -1,5 +1,9 @@
 {% extends "base.html" %} {% block title %}{{title}}{% endblock title %}
 {% block meta_tags %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <meta name="description"
   content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
 <meta property="og:title" content="{{title}} | EazyLoader" />
@@ -133,32 +137,29 @@
               A message is required.
             </div>
           </div>
-          <!-- Submit success message-->
-          <!---->
-          <!-- This is what your users will see when the form-->
-          <!-- has successfully submitted-->
-          <div class="d-none" id="submitSuccessMessage">
-            <div class="text-center mb-3">
-              <div class="fw-bolder">Form submission successful!</div>
-              To activate this form, sign up at
-              <br />
-              <a
-                href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+          
+          <!-- This section will show contact form submition status with alert box -->
+          
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="w3-panel w3-padding-large w3-{{color}} w3-display-container w3-card-4">
+              <span onclick="this.parentElement.style.display='none'"
+              class="w3-button w3-hover-{{color}} w3-large w3-display-topright">&times;</span>
+              
+                {% for message in messages %}
+                  <h5 class="w3-center w3-text-white"><b>{{message}}</b></h5>
+                {% endfor %}
+              
             </div>
-          </div>
-          <!-- Submit error message-->
-          <!---->
-          <!-- This is what your users will see when there is-->
-          <!-- an error submitting the form-->
-          <div class="d-none" id="submitErrorMessage">
-            <div class="text-center text-danger mb-3">
-              Error sending message!
-            </div>
-          </div>
+            {% endif %}
+          {% endwith %}
+          
+          
           <!-- Submit Button-->
           <div class="d-grid">
             <input class="btn btn-primary btn-lg " id="submitButton" type="submit" value="Submit" />
           </div>
+
         </form>
       </div>
     </div>

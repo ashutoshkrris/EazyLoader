@@ -14,23 +14,29 @@ IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
 ADMIN_EMAIL = config('ADMIN_EMAIL', default=None) 
 
+
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
 
     if request.method == 'POST':    
-        if True:
+        try:
             name = request.form.get('name')
             email = request.form.get('email')
             ph_no = request.form.get('ph_no')
             message = request.form.get('message')
             
-            msg = Message("HELLO", sender=ADMIN_EMAIL, recipients=[ADMIN_EMAIL])
-            msg.html = "Hey, sending this email from my Flask app"
+            msg = Message("EazyLoader Notification", sender=ADMIN_EMAIL, recipients=[ADMIN_EMAIL])
+            msg.html = render_template('email_template.html', name=name, email=email, ph_no=ph_no, message=message, ip_addr=str(request.remote_addr))
             mail.send(msg)
-            return 'Mail sent!'
+            flash('Form successfully submitted, Thank you!')
+            return render_template('index.html', title='Home', color="light-green")
             
-        # except Exception as e:
-        #     return(str(e))
+        except Exception as e:
+            flash('Something went wrong! Try Again.')
+            return render_template('index.html', title='Home', color="red")
+            # return(str(e))
 
     return render_template('index.html', title='Home')
 
