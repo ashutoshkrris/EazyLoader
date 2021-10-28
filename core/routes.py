@@ -9,7 +9,6 @@ from core.utils import playlist
 from core import ig, yt
 import shutil
 from flask_mail import Message
-from core.utils.blogs import fetch_posts
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
