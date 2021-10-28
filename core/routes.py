@@ -9,6 +9,8 @@ from core.utils import playlist
 from core import ig, yt
 import shutil
 
+from core.utils.blogs import fetch_posts
+
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
@@ -270,7 +272,8 @@ def tos():
 
 @app.route("/blog")
 def blog():
-    return render_template('blog.html', title='Blogs')
+    posts = fetch_posts()
+    return render_template('blog.html', title='Blogs', posts=posts)
 
 
 @app.route("/donate")

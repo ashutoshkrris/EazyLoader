@@ -2,7 +2,7 @@
 
 Please include a summary of the change and which issue is fixed. List any dependencies that are required for this change.
 
-Fixes #(issue_no)
+Fixes #issue_no
 
 Replace `issue_no` with the issue number which is fixed in this PR
 
