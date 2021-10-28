@@ -185,35 +185,25 @@
               </ul>
             </li>
             <li class="nav-item">
+              <a
+                class="nav-link"
+                id="contributorlink"
+                href="{{url_for('contributors_page')}}"
+                >Contributors</a
+              >
+            </li>
+            <li class="nav-item">
               <a class="nav-link" id="donatelink" href="{{url_for('donate')}}"
                 >Donate</a
               >
             </li>
             <li class="nav-item">
               <a
-                class="nav-link dropdown-toggle"
-                id="iglink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >Contact</a>
-              <ul class="dropdown-menu" aria-labelledby="iglink">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="{{url_for('index')}}#contact"
-                    >Contact</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="./contribution.html"
-                    target="_blank"
-                    >Contributors</a
-                  >
-                </li>
-              </ul>
+                class="nav-link"
+                id="contactlink"
+                href="{{url_for('index')}}#contact"
+                >Contact</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" id="toslink" href="{{url_for('tos')}}"
@@ -276,6 +266,10 @@
     {% elif 'donate' in request.path %}
     <script>
       document.getElementById("donatelink").classList.add("active");
+    </script>
+    {% elif 'contributors' in request.path %}
+    <script>
+      document.getElementById("contributorlink").classList.add("active");
     </script>
     {% else %}
     <script>

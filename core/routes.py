@@ -13,6 +13,8 @@ from werkzeug.exceptions import NotFound, InternalServerError, MethodNotAllowed
 from core.utils.blogs import fetch_posts
 from flask_mail import Message
 
+from core.utils.contributors import get_contributors
+
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
 ADMIN_EMAIL = config('ADMIN_EMAIL', default=None)
@@ -287,7 +289,7 @@ def ig_video_downloader():
     return render_template('instagram/video.html', title='Download Videos')
 
 
-#Custom routes to check errors.
+# Custom routes to check errors.
 @app.route("/tos")
 def tos():
     return render_template('tos.html', title='Terms of Service')
@@ -303,15 +305,23 @@ def blog():
 def donate():
     return render_template('donate.html', title='Make your donation now')
 
+
 @app.errorhandler(NotFound)
 def handle_not_found(e):
     return render_template('error/404.html', title="404 Not Found")
+
 
 @app.errorhandler(InternalServerError)
 def handle_internal_server_error(e):
     return render_template('error/500.html', title='500 Internal Server Error')
 
+
 @app.errorhandler(MethodNotAllowed)
 def method_not_allowed(e):
     return render_template('error/405.html', title="405 Method Not Allowed")
 
+
+@app.get('/contributors')
+def contributors_page():
+    contributors = get_contributors()
+    return render_template('contributors.html', title="Contributors", contributors=contributors)
