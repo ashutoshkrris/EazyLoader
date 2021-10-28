@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d38dbbae09b602725b7efd818a035482fe90206a1df66acaffcc98c044fffa83"
+            "sha256": "abc7ddcfd9ed0202d9df6e1306fe6d47da245d11558834f2a5568fc9770fca25"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,12 @@
         ]
     },
     "default": {
+        "blinker": {
+            "hashes": [
+                "sha256:471aee25f3992bd325afa3772f1063dbdbbca947a041b8b89466dc00d606f8b6"
+            ],
+            "version": "==1.4"
+        },
         "cachetools": {
             "hashes": [
                 "sha256:89ea6f1b638d5a73a4f9226be57ac5e4f399d22770b92355f92dcb0f7f001693",
@@ -63,6 +69,13 @@
             "index": "pypi",
             "version": "==2.0.2"
         },
+        "flask-mail": {
+            "hashes": [
+                "sha256:22e5eb9a940bf407bcf30410ecc3708f3c56cc44b29c34e1726fe85006935f41"
+            ],
+            "index": "pypi",
+            "version": "==0.9.1"
+        },
         "google-api-core": {
             "hashes": [
                 "sha256:8d20c8919fa32bfc9e2f67f98def477218102aae6b70e4912818aeb53fd4c256",
@@ -81,11 +94,11 @@
         },
         "google-auth": {
             "hashes": [
-                "sha256:4d73e41f4a59892bdd728ce1143f0dc3e1dd4f0130543ce492ce8de7cf5c9a18",
-                "sha256:6f3457723762eb5618429e4498c9d8dbd726963a1f25bd95f80682d2f6040d7d"
+                "sha256:2dc5218ee1192f9d67147cece18f47a929a9ef746cb69c50ab5ff5cfc983647b",
+                "sha256:6e99f4b3b099feb50de20302f2f8987c1c36e80a3f856ce852675bdf7a0935d3"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'",
-            "version": "==2.3.1"
+            "version": "==2.3.2"
         },
         "google-auth-httplib2": {
             "hashes": [
