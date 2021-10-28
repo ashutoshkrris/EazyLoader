@@ -11,6 +11,7 @@ gunicorn = "*"
 requests = "*"
 google-api-python-client = "*"
 instaloader = "*"
+flask-mail = "*"
 
 [dev-packages]
 autopep8 = "*"

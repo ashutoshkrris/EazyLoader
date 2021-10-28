@@ -1,19 +1,31 @@
 {% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
 block meta_tags %}
-<meta name="description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
+<meta
+  name="description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
 <meta property="og:title" content="{{title}} | EazyLoader" />
 <meta property="og:url" content="{{request.url}}" />
 
-<meta property="og:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
-<meta property="og:image" content="{{ url_for('static', filename='assets/logo.png') }}" />
+<meta
+  property="og:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:title" content="{{title}} | EazyLoader" />
-<meta name="twitter:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
-<meta name="twitter:image" content="{{ url_for('static', filename='assets/logo.png') }}" />
+<meta
+  name="twitter:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
 
 {% endblock %} {% block custom_head %}
 <!-- Custom CSS -->
@@ -42,120 +54,26 @@ block meta_tags %}
       <p data-aos="slide-down">Read recent blogs of EazyLoader</p>
     </div>
     <div class="blog-content">
+      {% for post in posts %}
       <!-- item -->
       <div class="blog-item">
         <div class="blog-img">
           <img
-            src="{{url_for('static', filename='assets/blog1.jpg')}}"
+            src="https://res.cloudinary.com/dlomjljb6/image/upload/v1/{{post.fields.thumbnail}}"
             alt=""
           />
         </div>
         <div class="blog-text">
-          <span>25 October, 2021</span>
-          <h2>Lorem ipsum, dolor sit amet consectetur adipisicing</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-            libero quas ipsum laudantium nihil! Quaerat.
-          </p>
-          <a href="#">Read More</a>
+          <span>{{post.fields.timestamp}}</span>
+          <h2>{{post.fields.title}}</h2>
+          <p>{{post.fields.seo_overview}}</p>
+          <a href="https://iread.ga/posts/{{post.pk}}/{{post.fields.slug}}"
+            >Read More</a
+          >
         </div>
       </div>
       <!-- end of item -->
-      <!-- item -->
-      <div class="blog-item">
-        <div class="blog-img">
-          <img
-            src="{{url_for('static', filename='assets/blog2.jpg')}}"
-            alt=""
-          />
-        </div>
-        <div class="blog-text">
-          <span>25 October, 2021</span>
-          <h2>Lorem ipsum, dolor sit amet consectetur adipisicing</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-            libero quas ipsum laudantium nihil! Quaerat.
-          </p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-      <!-- end of item -->
-      <!-- item -->
-      <div class="blog-item">
-        <div class="blog-img">
-          <img
-            src="{{url_for('static', filename='assets/blog3.jpg')}}"
-            alt=""
-          />
-        </div>
-        <div class="blog-text">
-          <span>25 October, 2021</span>
-          <h2>Lorem ipsum, dolor sit amet consectetur adipisicing</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-            libero quas ipsum laudantium nihil! Quaerat.
-          </p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-      <!-- end of item -->
-      <!-- item -->
-      <div class="blog-item">
-        <div class="blog-img">
-          <img
-            src="{{url_for('static', filename='assets/blog4.jpg')}}"
-            alt=""
-          />
-        </div>
-        <div class="blog-text">
-          <span>25 October, 2021</span>
-          <h2>Lorem ipsum, dolor sit amet consectetur adipisicing</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-            libero quas ipsum laudantium nihil! Quaerat.
-          </p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-      <!-- end of item -->
-      <!-- item -->
-      <div class="blog-item">
-        <div class="blog-img">
-          <img
-            src="{{url_for('static', filename='assets/blog5.jpg')}}"
-            alt=""
-          />
-        </div>
-        <div class="blog-text">
-          <span>25 October, 2021</span>
-          <h2>Lorem ipsum, dolor sit amet consectetur adipisicing</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-            libero quas ipsum laudantium nihil! Quaerat.
-          </p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-      <!-- end of item -->
-      <!-- item -->
-      <div class="blog-item">
-        <div class="blog-img">
-          <img
-            src="{{url_for('static', filename='assets/blog6.jpg')}}"
-            alt=""
-          />
-        </div>
-        <div class="blog-text">
-          <span>25 October, 2021</span>
-          <h2>Lorem ipsum, dolor sit amet consectetur adipisicing</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis
-            libero quas ipsum laudantium nihil! Quaerat.
-          </p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-      <!-- end of item -->
+      {% endfor %}
     </div>
   </div>
 </section>

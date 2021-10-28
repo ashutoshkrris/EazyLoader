@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+__pycache__
 *.py[cod]
 *$py.class
 
@@ -90,3 +91,4 @@ ENV/
 
 ig-video.mp4
 img.txt
+.DS_Store

@@ -121,6 +121,9 @@ GOOGLE_CLIENT_API_KEY=None
 GITHUB_API_TOKEN=None
 IG_USERNAME=None
 IG_PASSWORD=None
+ADMIN_EMAIL=None
+EMAIL_ADDRESS=None
+EMAIL_PASSWORD=None
 ```
 
 > Note : 
@@ -140,6 +143,8 @@ Open http://127.0.0.1:5000 to view it in your browser.
 
 The app will automatically reload if you make changes to the code.
 You will see the build errors and warnings in the console.
+
+> If you get BadCredentialsException, checkout this [discussion](https://github.com/ashutoshkrris/EazyLoader/discussions/41)
 
 
 **Step 5 : Work on the issue assigned**
