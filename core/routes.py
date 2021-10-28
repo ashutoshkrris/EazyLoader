@@ -1,6 +1,4 @@
-import werkzeug
-
-from core import app
+from core import app, mail
 from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
@@ -13,14 +11,35 @@ import shutil
 from werkzeug.exceptions import NotFound, InternalServerError, MethodNotAllowed
 
 from core.utils.blogs import fetch_posts
-
+from flask_mail import Message
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
+ADMIN_EMAIL = config('ADMIN_EMAIL', default=None)
 
 
-@app.get('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+
+    if request.method == 'POST':
+        try:
+            name = request.form.get('name')
+            email = request.form.get('email')
+            message = request.form.get('message')
+
+            msg = Message("EazyLoader Notification",
+                          sender=("EazyLoader", ADMIN_EMAIL), recipients=[ADMIN_EMAIL])
+            msg.html = render_template('email_template.html', name=name, email=email,
+                                       message=message, ip_addr=str(request.remote_addr))
+            mail.send(msg)
+            flash("We've received your details, thank you!", "success")
+            return redirect(url_for('index', _anchor="contact"))
+
+        except Exception as e:
+            print(e)
+            flash('Something went wrong! Try Again.', "error")
+            return redirect(url_for('index', _anchor="contact"))
+
     return render_template('index.html', title='Home')
 
 
@@ -268,6 +287,7 @@ def ig_video_downloader():
     return render_template('instagram/video.html', title='Download Videos')
 
 
+#Custom routes to check errors.
 @app.route("/tos")
 def tos():
     return render_template('tos.html', title='Terms of Service')
@@ -285,12 +305,13 @@ def donate():
 
 @app.errorhandler(NotFound)
 def handle_not_found(e):
-    return render_template('placeholder404.html', title="404 Not Found")
+    return render_template('error/404.html', title="404 Not Found")
 
 @app.errorhandler(InternalServerError)
 def handle_internal_server_error(e):
-    return render_template('placeholder500.html', title='500 Internal Server Error')
+    return render_template('error/500.html', title='500 Internal Server Error')
 
 @app.errorhandler(MethodNotAllowed)
 def method_not_allowed(e):
-    return render_template('placeholder405.html', title="405 Method Not Allowed")
+    return render_template('error/405.html', title="405 Method Not Allowed")
+

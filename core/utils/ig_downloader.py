@@ -7,7 +7,7 @@ class IGDownloader:
 
     def __init__(self, login_username, login_password):
         self.loader = Instaloader()
-        self.loader.login(login_username, login_password)
+        # self.loader.login(login_username, login_password)
         self.loader.post_metadata_txt_pattern = ''
         self.loader.save_metadata = False
         self.loader.download_comments = False
