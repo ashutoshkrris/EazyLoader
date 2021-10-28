@@ -8,6 +8,8 @@ import os
 from core.utils import playlist
 from core import ig, yt
 import shutil
+from werkzeug.exceptions import NotFound, InternalServerError, MethodNotAllowed
+
 from core.utils.blogs import fetch_posts
 from flask_mail import Message
 
@@ -301,15 +303,15 @@ def blog():
 def donate():
     return render_template('donate.html', title='Make your donation now')
 
+@app.errorhandler(NotFound)
+def handle_not_found(e):
+    return render_template('error/404.html', title="404 Not Found")
 
-@app.get('/error404')
-def error():
-    return render_template('error/404.html')
+@app.errorhandler(InternalServerError)
+def handle_internal_server_error(e):
+    return render_template('error/500.html', title='500 Internal Server Error')
 
-@app.get('/error405')
-def error1():
-    return render_template('error/405.html')
-    
-@app.get('/error500')
-def error2():
-    return render_template('error/500.html')
+@app.errorhandler(MethodNotAllowed)
+def method_not_allowed(e):
+    return render_template('error/405.html', title="405 Method Not Allowed")
+
