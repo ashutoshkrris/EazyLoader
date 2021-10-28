@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./contribution.css" rel="stylesheet"/>
     <!-- Bootstrap icons-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
@@ -17,7 +16,7 @@
         <div class="jumbotron bg-dark text-white jumbotron-fluid mb-4">
           <div class="container pb-2">
             <h1 class="display-4">Contributors</h1>
-            <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa asperiores commodi, saepe dignissimos quia explicabo nostrum sapiente, numquam fuga ratione esse nesciunt adipisci vitae, odio eius et aspernatur minus quasi?</p>
+            <p class="lead">Thank you for your contributions</p>
           </div>
         </div>
         <div class="container">
@@ -55,14 +54,13 @@
   let output = '';
         data.forEach(function(user) {
     output+=`
-    <div class="col-sm-6 col-md-3 mb-2">
+    <div class=" col-sm-3 col-md-2 mb-4">
     <div class="card bg-dark">
-        <a href="${user.html_url}" class="nounderline" >
         <img class="card-img-top" src="${user.avatar_url}" alt="contributor-image">
         <div class="card-body">
-          <h3 class="card-title text-white text-center text-uppercase">${user.login}</h3>
-          </div>
-        </a>
+          <p class="card-title text-white text-center text-uppercase text-truncate">${user.login}</p>
+          
+        </div><a href="${user.html_url}" class="btn btn-primary btn-block">Profile</a>
       </div>
       </div>`
         });
