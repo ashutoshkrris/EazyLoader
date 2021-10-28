@@ -285,6 +285,7 @@ def ig_video_downloader():
     return render_template('instagram/video.html', title='Download Videos')
 
 
+#Custom routes to check errors.
 @app.route("/tos")
 def tos():
     return render_template('tos.html', title='Terms of Service')
@@ -299,3 +300,16 @@ def blog():
 @app.route("/donate")
 def donate():
     return render_template('donate.html', title='Make your donation now')
+
+
+@app.get('/error404')
+def error():
+    return render_template('error/404.html')
+
+@app.get('/error405')
+def error1():
+    return render_template('error/405.html')
+    
+@app.get('/error500')
+def error2():
+    return render_template('error/500.html')

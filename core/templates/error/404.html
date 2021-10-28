@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
+    block meta_tags %}
+    <meta
+      name="description"
+      content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+    />
+    <meta property="og:title" content="{{title}} | EazyLoader" />
+    <meta property="og:url" content="{{request.url}}" />
+    <meta
+      property="og:description"
+      content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='assets/icon.png') }}"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@" />
+    <meta name="twitter:title" content="{{title}} | EazyLoader" />
+    <meta
+      name="twitter:description"
+      content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+    />
+    <meta
+      name="twitter:image"
+      content="{{ url_for('static', filename='assets/icon.png') }}"
+    />
+    {% endblock %} {% block content %}
+    <link href="{{url_for('static', filename='css/error.css')}}" rel="stylesheet" />
+    <center>
+        <div class="img-box">
+            <img src=" {{url_for('static', filename='/assets/404-Not-Found.png')}}"
+            alt = "404"
+            class="center-fit"/>
+        </div>
+    </center>
+
+{% endblock content %}
