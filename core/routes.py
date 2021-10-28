@@ -1,3 +1,5 @@
+import werkzeug
+
 from core import app
 from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
 from pytube import YouTube, Playlist
@@ -8,6 +10,7 @@ import os
 from core.utils import playlist
 from core import ig, yt
 import shutil
+from werkzeug.exceptions import NotFound, InternalServerError, MethodNotAllowed
 
 from core.utils.blogs import fetch_posts
 
@@ -279,3 +282,15 @@ def blog():
 @app.route("/donate")
 def donate():
     return render_template('donate.html', title='Make your donation now')
+
+@app.errorhandler(NotFound)
+def handle_not_found(e):
+    return render_template('placeholder404.html', title="404 Not Found")
+
+@app.errorhandler(InternalServerError)
+def handle_internal_server_error(e):
+    return render_template('placeholder500.html', title='500 Internal Server Error')
+
+@app.errorhandler(MethodNotAllowed)
+def method_not_allowed(e):
+    return render_template('placeholder405.html', title="405 Method Not Allowed")
