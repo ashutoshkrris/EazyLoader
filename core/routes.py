@@ -1,4 +1,4 @@
-from core import app
+from core import app, mail
 from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
@@ -8,16 +8,36 @@ import os
 from core.utils import playlist
 from core import ig, yt
 import shutil
-
 from core.utils.blogs import fetch_posts
-
+from flask_mail import Message
 
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
+ADMIN_EMAIL = config('ADMIN_EMAIL', default=None)
 
 
-@app.get('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+
+    if request.method == 'POST':
+        try:
+            name = request.form.get('name')
+            email = request.form.get('email')
+            message = request.form.get('message')
+
+            msg = Message("EazyLoader Notification",
+                          sender=("EazyLoader", ADMIN_EMAIL), recipients=[ADMIN_EMAIL])
+            msg.html = render_template('email_template.html', name=name, email=email,
+                                       message=message, ip_addr=str(request.remote_addr))
+            mail.send(msg)
+            flash("We've received your details, thank you!", "success")
+            return redirect(url_for('index', _anchor="contact"))
+
+        except Exception as e:
+            print(e)
+            flash('Something went wrong! Try Again.', "error")
+            return redirect(url_for('index', _anchor="contact"))
+
     return render_template('index.html', title='Home')
 
 

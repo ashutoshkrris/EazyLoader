@@ -9,6 +9,7 @@ click==8.0.3
 colorama==0.4.4
 cryptography==35.0.0
 Flask==2.0.2
+Flask-Mail==0.9.1
 google-api-core==2.1.1
 google-api-python-client==2.27.0
 google-auth==2.3.0
