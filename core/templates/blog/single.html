@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
+block meta_tags %}
+<meta name="description" content="{{post.fields.seo_overview}}" />
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta property="og:description" content="{{post.fields.seo_overview}}" />
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta name="twitter:description" content="{{post.fields.seo_overview}}" />
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
+/>
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/contributors.css')}}"
+/>
+
+{% endblock %} {% block content %}
+
+<!-- Contributors section-->
+
+<section id="single-blog">
+  <div class="container mt-5" style="margin-bottom: 100px">
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <!-- Post content-->
+        <article>
+          <!-- Post header-->
+          <header class="mb-4 text-center">
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1">{{post.fields.title}}</h1>
+            <!-- Post meta content-->
+            <div class="text-muted fst-italic mb-2">
+              Posted {{ momentjs(post.fields.timestamp).calendar() }}
+            </div>
+          </header>
+          <!-- Preview image figure-->
+          <figure class="mb-4">
+            <img
+              class="img-fluid rounded"
+              src="https://res.cloudinary.com/dlomjljb6/image/upload/v1/{{post.fields.thumbnail}}"
+              alt="..."
+            />
+          </figure>
+          <!-- Post content-->
+          <section class="mb-5">{{post.fields.content | safe}}</section>
+        </article>
+      </div>
+      <!-- Side widgets-->
+      <div class="col-lg-2"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  var imgs = document.querySelectorAll("#single-blog img");
+  [].forEach.call(imgs, function (img, index, array) {
+    img.classList.add("img-fluid");
+  });
+</script>
+
+{% endblock content %}

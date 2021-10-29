@@ -64,10 +64,10 @@ block meta_tags %}
           />
         </div>
         <div class="blog-text">
-          <span>{{post.fields.timestamp}}</span>
+          <span>{{ momentjs(post.fields.timestamp).calendar() }}</span>
           <h2>{{post.fields.title}}</h2>
           <p>{{post.fields.seo_overview}}</p>
-          <a href="https://iread.ga/posts/{{post.pk}}/{{post.fields.slug}}"
+          <a href="{{url_for('single_page', id=post.pk, slug=post.fields.slug)}}"
             >Read More</a
           >
         </div>

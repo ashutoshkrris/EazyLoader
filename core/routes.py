@@ -10,7 +10,7 @@ from core import ig, yt
 import shutil
 from werkzeug.exceptions import NotFound, InternalServerError, MethodNotAllowed
 
-from core.utils.blogs import fetch_posts
+from core.utils.blogs import fetch_posts, get_blog_post
 from flask_mail import Message
 
 from core.utils.contributors import get_contributors
@@ -298,7 +298,13 @@ def tos():
 @app.route("/blog")
 def blog():
     posts = fetch_posts()
-    return render_template('blog.html', title='Blogs', posts=posts)
+    return render_template('blog/blog.html', title='Blogs', posts=posts)
+
+
+@app.get('/post/<id>/<slug>')
+def single_page(id, slug):
+    post = get_blog_post(id, slug)
+    return render_template('blog/single.html', post=post, title=f"{post['fields']['title']}")
 
 
 @app.route("/donate")
