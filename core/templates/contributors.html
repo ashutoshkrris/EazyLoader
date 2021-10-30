@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
+block meta_tags %}
+<meta
+  name="description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
+/>
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
+/>
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/contributors.css')}}"
+/>
+
+{% endblock %} {% block content %}
+
+<!-- Contributors section-->
+
+<section id="team">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2>Meet Our Contributors</h2>
+        <p>
+          Individuals can and do make a difference, but it takes a lot of people
+          to really mess things up.
+        </p>
+      </div>
+    </div>
+    <div class="row mb-5">
+      {% for contributor in contributors %}
+      <div class="col-lg-3 col-md-6">
+        <div class="member">
+          <div class="member-img">
+            <img src="{{contributor.avatar_url}}" class="img-fluid" alt="" />
+          </div>
+          <div class="member-info">
+            <h4>{{contributor.name}}</h4>
+            <span>{{contributor.username}}</span>
+            <div class="social-links">
+              <a href="{{contributor.profile_url}}"
+                ><i class="bi bi-github"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

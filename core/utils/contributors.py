@@ -2,7 +2,7 @@ from decouple import config
 import requests
 
 header = {'Accept': 'application/vnd.github.v3+json',
-          'Authorization': config('GITHUB_API_TOKEN')}
+          'Authorization': f"token {config('GITHUB_API_TOKEN')}"}
 
 
 def get_name(username):
@@ -21,7 +21,6 @@ def get_contributors():
     returns contributor details
     """
     url = 'https://api.github.com/repos/ashutoshkrris/EazyLoader/contributors?per_page=1000'
-
     response = requests.get(url, headers=header)
     response_dict = response.json()
     bots = ['dependabot[bot]', 'dependabot-preview[bot]', 'restyled-commits',
