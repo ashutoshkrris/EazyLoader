@@ -15,7 +15,10 @@
     <meta name="robots" content="all,follow" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="EazyLoader" />
-    <meta name="google-site-verification" content="UtK6b6O_s4x8A1k-Zw5toYFb_26KjU8jS-WOWamuW1E" />
+    <meta
+      name="google-site-verification"
+      content="UtK6b6O_s4x8A1k-Zw5toYFb_26KjU8jS-WOWamuW1E"
+    />
 
     {% block meta_tags %}{% endblock %}
 
@@ -191,28 +194,35 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                id="contributorlink"
-                href="{{url_for('contributors_page')}}"
-                >Contributors</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="donatelink" href="{{url_for('donate')}}"
-                >Donate</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
                 id="contactlink"
                 href="{{url_for('index')}}#contact"
                 >Contact</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="toslink" href="{{url_for('tos')}}"
-                >Terms of Service</a
+              <a
+                class="nav-link"
+                id="faqlink"
+                href="{{url_for('index')}}#faq"
+                >FAQs</a
               >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                id="morelink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                More
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="morelink">
+                <li><a class="dropdown-item" href="{{url_for('contributors_page')}}">Contributors</a></li>
+                <li><a class="dropdown-item" href="https://github.com/ashutoshkrris/EazyLoader" target="_blank">Github</a></li>
+                <li><a class="dropdown-item" href="{{url_for('donate')}}">Donate</a></li>
+                <li><a class="dropdown-item" href="{{url_for('tos')}}">Terms of Service</a></li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -259,21 +269,9 @@
     <script>
       document.getElementById("iglink").classList.add("active");
     </script>
-    {% elif 'tos' in request.path %}
-    <script>
-      document.getElementById("toslink").classList.add("active");
-    </script>
     {% elif 'blog' in request.path %}
     <script>
       document.getElementById("bloglink").classList.add("active");
-    </script>
-    {% elif 'donate' in request.path %}
-    <script>
-      document.getElementById("donatelink").classList.add("active");
-    </script>
-    {% elif 'contributors' in request.path %}
-    <script>
-      document.getElementById("contributorlink").classList.add("active");
     </script>
     {% else %}
     <script>
@@ -302,6 +300,13 @@
           links[i].classList.remove("active");
         }
         document.getElementById("contactlink").classList.add("active");
+      };
+      document.getElementById("faqlink").onclick = function () {
+        var links = document.getElementsByClassName("nav-link");
+        for (var i = 0; i < links.length; i++) {
+          links[i].classList.remove("active");
+        }
+        document.getElementById("faqlink").classList.add("active");
       };
     </script>
   </body>
