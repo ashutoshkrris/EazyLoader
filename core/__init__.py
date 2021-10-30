@@ -1,3 +1,4 @@
+from core.utils.momentjs import momentjs
 from flask import Flask
 from decouple import config
 from core.utils.ig_downloader import IGDownloader
@@ -16,6 +17,8 @@ ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
 yt = YTDownloader()
 
 mail = Mail(app)
+
+app.jinja_env.globals['momentjs'] = momentjs
 
 from core import routes
 from core.utils import custom_filters, playlist, contributors
