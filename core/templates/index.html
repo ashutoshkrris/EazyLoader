@@ -1,24 +1,44 @@
-{% extends "base.html" %} {% block title %}{{title}}{% endblock title %}
-{% block meta_tags %}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{% extends "base.html" %} {% block title %}{{title}}{% endblock title %} {%
+block meta_tags %}
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 
-<meta name="description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
+<meta
+  name="description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
 <meta property="og:title" content="{{title}} | EazyLoader" />
 <meta property="og:url" content="{{request.url}}" />
 
-<meta property="og:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
-<meta property="og:image" content="{{ url_for('static', filename='assets/logo.png') }}" />
+<meta
+  property="og:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:title" content="{{title}} | EazyLoader" />
-<meta name="twitter:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram" />
-<meta name="twitter:image" content="{{ url_for('static', filename='assets/logo.png') }}" />
-
+<meta
+  name="twitter:description"
+  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+/>
+<meta
+  name="twitter:image"
+  content="{{ url_for('static', filename='assets/logo.png') }}"
+/>
+<style>
+  a {
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .accordion-item {
+    background-color: #f3f3f3;
+  }
+</style>
 {% endblock %} {% block content %}
 
 <!-- Header-->
@@ -35,8 +55,12 @@
             Instagram!
           </p>
           <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
-            <a class="btn btn-outline-light btn-lg px-4" href="#contact">Contact Us</a>
+            <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features"
+              >Get Started</a
+            >
+            <a class="btn btn-outline-light btn-lg px-4" href="#contact"
+              >Contact Us</a
+            >
           </div>
         </div>
       </div>
@@ -59,7 +83,10 @@
           download complete playlist in one go! Even downloading all videos from
           a channel won't be a problem for us. 😉
         </p>
-        <a class="text-decoration-none" href="{{url_for('yt_video_downloader')}}">
+        <a
+          class="text-decoration-none"
+          href="{{url_for('yt_video_downloader')}}"
+        >
           Let's Go
           <i class="bi bi-arrow-right"></i>
         </a>
@@ -74,7 +101,10 @@
           your screen to share with your friends? Now download pictures and
           videos from Instagram now without any hassle.😲
         </p>
-        <a class="text-decoration-none" href="{{url_for('ig_video_downloader')}}">
+        <a
+          class="text-decoration-none"
+          href="{{url_for('ig_video_downloader')}}"
+        >
           Let's Go
           <i class="bi bi-arrow-right"></i>
         </a>
@@ -83,8 +113,370 @@
   </div>
 </section>
 
+<!-- FAQ section-->
+<section class="bg-light py-3" id="contact">
+  <div class="container px-5 my-5 px-5">
+    <div class="text-center mb-5">
+      <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+        <i class="bi bi-question-circle-fill"></i>
+      </div>
+      <h2 class="fw-bolder">Frequently Asked Questions</h2>
+      <p class="lead mb-0">We've already answers to your questions</p>
+    </div>
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="accordionExample">
+          <!-- question - 1  -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="false"
+                aria-controls="collapseOne"
+              >
+                1. How can I download videos or shorts from YouTube?
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Copy the YouTube video or shorts link from the YouTube website
+                or mobile app. Go to
+                <a href="https://eazyloader.herokuapp.com/yt-downloader/video"
+                  >https://eazyloader.herokuapp.com/yt-downloader/video</a
+                >
+                and enter the video or shorts link. Wait for the video to be
+                fetched. Then you can select the video resolution and click on
+                the Download button to download the video.
+              </div>
+            </div>
+          </div>
 
+          <!-- question - 2  -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                2. How can I download audio from YouTube?
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Copy the YouTube video link from the YouTube website or mobile
+                app. Go to
+                <a href="https://eazyloader.herokuapp.com/yt-downloader/audio"
+                  >https://eazyloader.herokuapp.com/yt-downloader/audio</a
+                >
+                and enter the video link. Wait for the video to be fetched. Then
+                you can click on the Download button to download the audio in
+                the best quality.
+              </div>
+            </div>
+          </div>
 
+          <!-- question - 3  -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                3. Can I download a complete YouTube Playlist or Channel?
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                No, we currently do not support that feature. We're on it, and
+                we'll let you know once it's up and running.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 4  -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                4. How can I calculate YouTube Playlist Duration?
+              </button>
+            </h2>
+            <div
+              id="collapseFour"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFour"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Copy the YouTube playlist link from the YouTube website or
+                mobile app. Go to
+                <a
+                  href="https://eazyloader.herokuapp.com/yt-downloader/playlist/calculate"
+                  >https://eazyloader.herokuapp.com/yt-downloader/playlist/calculate</a
+                >
+                and enter the playlist link. Wait for the application to
+                calculate the total duration of the playlist at different
+                speeds.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 5 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFive"
+                aria-expanded="false"
+                aria-controls="collapseFive"
+              >
+                5. How can I download a post from Instagram?
+              </button>
+            </h2>
+            <div
+              id="collapseFive"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFive"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Copy the post link from the Instagram website or mobile app. The
+                post can have one or more images. Go to
+                <a href="https://eazyloader.herokuapp.com/ig-downloader/image"
+                  >https://eazyloader.herokuapp.com/ig-downloader/image</a
+                >
+                and paste the copied link. Wait for the post to be fetched. Once
+                the post is fetched, the file will be downloaded in JPG or ZIP
+                format depending on the number of images in the post.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 6 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseSix"
+                aria-expanded="false"
+                aria-controls="collapseSix"
+              >
+                6. How can I download videos, reels and IGTV videos from
+                Instagram?
+              </button>
+            </h2>
+            <div
+              id="collapseSix"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingSix"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Copy the video, reel or IGTV video link from the Instagram
+                website or mobile app. Go to
+                <a href="https://eazyloader.herokuapp.com/ig-downloader/video"
+                  >https://eazyloader.herokuapp.com/ig-downloader/video</a
+                >
+                and paste the link. Wait for the video to be fetched. It will
+                automatically download the video once it's successfully fetched.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 7 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseSeven"
+                aria-expanded="false"
+                aria-controls="collapseSeven"
+              >
+                7. How can I download Instagram user's profile pictures?
+              </button>
+            </h2>
+            <div
+              id="collapseSeven"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingSeven"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Go to
+                <a
+                  href="https://eazyloader.herokuapp.com/ig-downloader/profile-pic"
+                  >https://eazyloader.herokuapp.com/ig-downloader/profile-pic</a
+                >
+                and enter the username. If the username is valid, the user's
+                profile picture will be downloaded, else an error message will
+                be shown.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 8 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseEight"
+                aria-expanded="false"
+                aria-controls="collapseEight"
+              >
+                8. How can I download Instagram user's stories?
+              </button>
+            </h2>
+            <div
+              id="collapseEight"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingEight"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Go to
+                <a
+                  href="https://eazyloader.herokuapp.com/ig-downloader/latest-stories"
+                  >https://eazyloader.herokuapp.com/ig-downloader/latest-stories</a
+                >
+                and enter the username. If the username is valid, the user's
+                latest stories will be downloaded in a ZIP file, else an error
+                message will be shown.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 9 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNine">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseNine"
+                aria-expanded="false"
+                aria-controls="collapseNine"
+              >
+                9. Are there any download limits?
+              </button>
+            </h2>
+            <div
+              id="collapseNine"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingNine"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Yes, since we are running on free resources, the download limit
+                is quite low for the time being. Once we get enough support and
+                donation, the application will be scaled up to meet higher
+                requirements.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 10 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTen">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTen"
+                aria-expanded="false"
+                aria-controls="collapseTen"
+              >
+                10. How can I support?
+              </button>
+            </h2>
+            <div
+              id="collapseTen"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTen"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                You can support us by donating as much you like using
+                <a href="https://buy.stripe.com/4gw17t5uhaK26qsfYZ">Stripe</a>
+                or
+                <a
+                  href="https://razorpay.com/payment-button/pl_IDcRjGcPSWbnB5/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button"
+                  >Razorpay</a
+                >.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 11 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEleven">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseEleven"
+                aria-expanded="false"
+                aria-controls="collapseEleven"
+              >
+                11. How can I contact you?
+              </button>
+            </h2>
+            <div
+              id="collapseEleven"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingEleven"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Just fill up the contact form on the home page, we'll get in
+                touch with you as soon as possible.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- Contact section-->
 <section class="bg-light py-5" id="contact">
   <div class="container px-5 my-5 px-5">
@@ -101,8 +493,15 @@
         <form id="contactForm" action="{{url_for('index')}}" method="POST">
           <!-- Name input-->
           <div class="form-floating mb-3">
-            <input class="form-control" id="name" type="text" name="name" placeholder="Enter your name..."
-              data-sb-validations="required" required/>
+            <input
+              class="form-control"
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Enter your name..."
+              data-sb-validations="required"
+              required
+            />
             <label for="name">Full name</label>
             <div class="invalid-feedback" data-sb-feedback="name:required">
               A name is required.
@@ -110,8 +509,15 @@
           </div>
           <!-- Email address input-->
           <div class="form-floating mb-3">
-            <input class="form-control" id="email" type="email" name="email" placeholder="name@example.com"
-              data-sb-validations="required,email" required/>
+            <input
+              class="form-control"
+              id="email"
+              type="email"
+              name="email"
+              placeholder="name@example.com"
+              data-sb-validations="required,email"
+              required
+            />
             <label for="email">Email address</label>
             <div class="invalid-feedback" data-sb-feedback="email:required">
               An email is required.
@@ -122,8 +528,16 @@
           </div>
           <!-- Message input-->
           <div class="form-floating mb-3">
-            <textarea class="form-control" id="message" type="text" name="message" placeholder="Enter your message here..."
-              style="height: 10rem" data-sb-validations="required" required></textarea>
+            <textarea
+              class="form-control"
+              id="message"
+              type="text"
+              name="message"
+              placeholder="Enter your message here..."
+              style="height: 10rem"
+              data-sb-validations="required"
+              required
+            ></textarea>
             <label for="message">Message</label>
             <div class="invalid-feedback" data-sb-feedback="message:required">
               A message is required.
@@ -131,9 +545,13 @@
           </div>
           <!-- Submit Button-->
           <div class="d-grid">
-            <input class="btn btn-primary btn-lg " id="submitButton" type="submit" value="Submit" />
+            <input
+              class="btn btn-primary btn-lg"
+              id="submitButton"
+              type="submit"
+              value="Submit"
+            />
           </div>
-
         </form>
       </div>
     </div>
