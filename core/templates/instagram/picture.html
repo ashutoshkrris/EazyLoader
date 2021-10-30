@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% block title %}{{title}} | IG Downloader{% endblock title %} 
-{% block meta_tags %}
+{% extends "base.html" %} {% block title %}{{title}} | IG Downloader{% endblock
+title %} {% block meta_tags %}
 <meta
   name="description"
   content="Download image or series of images from Instagram for free using EazyLoader"
@@ -10,10 +10,7 @@
   property="og:description"
   content="Download image or series of images from Instagram for free using EazyLoader"
 />
-<meta
-  property="og:image"
-  content="https://i.imgur.com/q2rfxDO.png"
-/>
+<meta property="og:image" content="https://i.imgur.com/q2rfxDO.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:title" content="{{title}} | EazyLoader" />
@@ -21,13 +18,17 @@
   name="twitter:description"
   content="Download image or series of images from Instagram for free using EazyLoader"
 />
-<meta
-  name="twitter:image"
-  content="https://i.imgur.com/q2rfxDO.png"
-/>
-{% endblock %}
-{% block content %}
+<meta name="twitter:image" content="https://i.imgur.com/q2rfxDO.png" />
+{% endblock %} {% block content %}
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Download Post Images
+    </li>
+  </ol>
+</nav>
 <div class="jumbotron vertical-center">
   <div class="container download-container shadow">
     <div class="row">
