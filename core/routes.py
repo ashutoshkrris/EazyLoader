@@ -74,7 +74,7 @@ def yt_video_downloader():
                 'This is a private video. Please sign in to verify that you may see it.')
             return redirect(url_for('yt_video_downloader'))
         except Exception as e:
-            app.logger.error(e)
+            print(e)
             flash('Unable to fetch the video from YouTube', 'error')
             return redirect(url_for('yt_video_downloader'))
 
@@ -139,7 +139,7 @@ def yt_audio_downloader():
                 'This is a private video and hence cannot get the audio. Please sign in to verify that you may see it.')
             return redirect(url_for('yt_audio_downloader'))
         except Exception as e:
-            app.logger.error(e)
+            print(e)
             flash('Unable to fetch the video/audio from YouTube', 'error')
             return redirect(url_for('yt_audio_downloader'))
 
@@ -172,7 +172,7 @@ def yt_playlist_downloader():
                 'This is a private video. Please sign in to verify that you may see it.')
             return redirect(url_for('yt_playlist_downloader'), 'error')
         except Exception as e:
-            app.logger.error(e)
+            print(e)
             flash('Unable to fetch the videos from YouTube Playlist', 'error')
             return redirect(url_for('yt_playlist_downloader'))
 
@@ -223,7 +223,7 @@ def ig_dp_downloader():
             os.removedirs(os.path.abspath(username))
             return send_file(return_img, mimetype='image/jpg', as_attachment=True, attachment_filename=f'{username}.jpg')
         except Exception as e:
-            app.logger.error(e)
+            print(e)
             flash('Unable to fetch and download the profile picture, try again!', 'error')
             return redirect(url_for('ig_dp_downloader'))
 
@@ -247,7 +247,7 @@ def ig_stories_downloader():
                 }
             )
         except Exception as e:
-            app.logger.error(e)
+            print(e)
             flash('Unable to fetch and download the stories, try again!', 'error')
             return redirect(url_for('ig_stories_downloader'))
 
@@ -288,7 +288,7 @@ def ig_image_downloader():
                     'Please make sure the account is not private and the post contains image only!', 'error')
                 return redirect(url_for('ig_image_downloader'))
         except Exception as e:
-            app.logger.error(e)
+            print(e)
             flash('Unable to fetch and download the profile picture, try again!', 'error')
             return redirect(url_for('ig_image_downloader'))
 
@@ -317,7 +317,7 @@ def ig_video_downloader():
                     shutil.rmtree(os.path.abspath(folder_name))
                     return send_file(return_video, as_attachment=True, attachment_filename=f'{folder_name}.mp4')
         except Exception as e:
-            app.logger.error(e)
+            print(e)
             flash('Unable to fetch and download the video, try again!', 'error')
             return redirect(url_for('ig_video_downloader'))
 
