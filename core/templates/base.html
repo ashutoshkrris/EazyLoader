@@ -58,6 +58,15 @@
     <!-- MomentJS -->
     <script src="{{url_for('static', filename='js/moment.js')}}"></script>
     {% block custom_head %} {% endblock %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-N63QMEYC8C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N63QMEYC8C');
+</script>
   </head>
 
   <body>
