@@ -12,6 +12,10 @@ requests = "*"
 google-api-python-client = "*"
 instaloader = "*"
 flask-mail = "*"
+flask-socketio = "*"
+greenlet = "*"
+eventlet = "*"
+dnspython = "*"
 
 [dev-packages]
 autopep8 = "*"
