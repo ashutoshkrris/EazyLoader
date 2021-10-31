@@ -34,3 +34,8 @@ def humanize_date(date):
     if type(date) == str:
         return date
     return date.strftime("%b %d, %Y")
+
+
+@app.template_filter('megabytes')
+def size_in_megabytes(bytes):
+    return f"{round(bytes/1048576,1)} MB"

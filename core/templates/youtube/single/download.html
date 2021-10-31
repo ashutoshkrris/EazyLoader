@@ -1,5 +1,7 @@
 {% extends "base.html" %} {% block title %}{{ url.title }} | YT Downloader{% endblock title %} 
 
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 {% block meta_tags %}
 <meta
   name="description"
@@ -51,7 +53,8 @@
         <h3>Download Video</h3>
       </div>
       <div class="col-12 mx-auto">
-        <form method="POST" action="{{ url_for('download_video') }}">
+        
+
         <div class="card py-4 px-3 mx-auto" style="max-width: 1300px;">
             <div class="row no-gutters">
               <div class="col-md-4 mt-4">
@@ -63,27 +66,83 @@
                   <p>Length : {{url.length|humanize_duration}} | Views : {{url.views|humanize_views}} | Uploaded by <a href="{{url.channel_url}}" style="text-decoration: none;">{{url.author}}</a> on {{url.publish_date|humanize_date}}</p>
                   <p class="card-text">
                     <div class="col-md-5">
-                      <select name="itag" class="form-select input-sm" aria-label="Default select example">
+                      <select id="itag" class="form-select input-sm" aria-label="Default select example">
                           {% for i in url.streams.filter(progressive=True) %}
-                              <option value="{{ i.itag }}"> {{ i.resolution }} </option>
+                              <option value="{{ i.itag }}"> {{ i.resolution }} ({{i.filesize|megabytes}})</option>
                           {% endfor %}
 
                           {% if highest_res %}
-                          <option value="{{ highest_res.itag }}"> {{ highest_res.resolution }} </option>
+                          <option value="{{ highest_res.itag }}"> {{ highest_res.resolution}} ({{highest_res.filesize|megabytes}})</option> </option>
                           {% endif %}
                           
                       </select>
                     </div>
-                    <button type="submit" class="btn btn-danger mt-3" id="download_btn">
-                      Download
+
+                    <button type="submit" class="btn btn-danger mt-4" id="sendbutton">
+                      Prepare for Download
                     </button>
+
+                    <div id="prepare" class="mt-4 mb-2" style="display:none;">
+                      <strong class="w3-large" style="color: dodgerblue;">Preparing for download, please be patient!</strong> <br><br>
+                      <div class="spinner-border text-info" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                    </div>
+      
                   </p>
-                  <small class="text-muted"gi>Downloading high resolution videos may not work always, as we run on free resources. You may consider <a href="{{url_for('donate')}}">donating</a> to support us.</small>
+
+                  <div id="onreply" style="display: none;">
+                    <form method="POST" action="{{ url_for('download_video') }}">
+
+                      <button type="submit" class="btn btn-danger mt-3">
+                        Download Now
+                      </button>
+
+                    </form>
+                  </div>
+                  <br>
+
+                  <small class="text-muted"gi>Downloading high resolution videos(size>250 MBs) may not work always, as we run on free resources. You may consider <a href="{{url_for('donate')}}">donating</a> to support us.</small>
                 </div>
               </div>
             </div>
           </div>
-    </form>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.min.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var socket = io.connect('https://' + document.domain + ':' + location.port);
+
+	      socket.on('connect', function() {
+          socket.send(['User has connected!', "None"]);
+	      });
+
+        $('#sendbutton').on('click', function() {
+
+          $('#sendbutton').css('display', 'none');
+          $("#prepare").delay(1000).css('display', 'block');
+
+          var rno = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+          socket.send([rno, $('#itag').val()]);
+        });
+
+	      socket.on('message', function(msg) {
+
+          if (msg == "Download-Ready") {
+
+            $("#itag").prop('disabled', true);
+
+            $("#prepare").css('display', 'none')
+            $("#onreply").css('display', 'block')
+
+          }
+        });
+
+	    });
+    </script>
       </div>
     </div>
   </div>
