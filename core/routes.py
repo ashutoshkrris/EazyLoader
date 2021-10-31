@@ -1,4 +1,4 @@
-from core import app, mail
+from core import app, mail, socketio
 from flask import render_template, send_file, request, session, flash, url_for, redirect, Response
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
@@ -13,9 +13,16 @@ from werkzeug.exceptions import NotFound, InternalServerError, MethodNotAllowed
 from core.utils.blogs import fetch_posts
 from flask_mail import Message
 
+from flask_socketio import send
+from threading import Thread
+from time import sleep
+
 IG_USERNAME = config('IG_USERNAME', default='username')
 IG_PASSWORD = config('IG_PASSWORD', default='password')
 ADMIN_EMAIL = config('ADMIN_EMAIL', default=None)
+
+file_data = {}
+status = {}
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -39,7 +46,7 @@ def index():
             print(e)
             flash('Something went wrong! Try Again.', "error")
             return redirect(url_for('index', _anchor="contact"))
-
+        
     return render_template('index.html', title='Home')
 
 
@@ -73,13 +80,42 @@ def yt_video_downloader():
     return render_template('youtube/single/video.html', title='Download Video')
 
 
+
+def start_preparation(msg, url, itag):
+    
+    buffer, filename = yt.download_single_video(url, itag)
+    file_data.update(bfr=buffer)
+    file_data.update(fname=filename)
+    file_data.update(status="Done")
+    status.update({f"{msg}" : "Download-Ready"})
+
+
+@socketio.on('message')
+def socket_bidirct(msg):
+
+    if msg[0] != "User has connected!":
+        url = session['video_link']
+        t = Thread(target=start_preparation, args=(msg[0], url, msg[1],), daemon = True)
+        t.start()
+        
+        while True:
+            sleep(2)
+            if status.get(msg[0]) == "Download-Ready":
+                send("Download-Ready")
+                break
+        del status[msg[0]]
+            
+    if msg[0] == "User has connected!":
+        print(msg[0])
+
 @app.post('/yt-downloader/video/download')
 def download_video():
-    url = session['video_link']
-    itag = request.form.get("itag")
-    print(itag)
-    buffer, filename = yt.download_single_video(url, itag)
-    return send_file(buffer, as_attachment=True, attachment_filename=filename, mimetype="video/mp4")
+    try:
+        if file_data.get("status") == "Done":
+            return send_file(file_data.get('bfr'), as_attachment=True, attachment_filename=file_data.get('fname'), mimetype="video/mp4")
+    except:
+        return redirect(url_for('yt_video_downloader'))
+        
 
 
 @app.route('/yt-downloader/audio', methods=['GET', 'POST'])
