@@ -31,20 +31,22 @@
 {% block content %}
 
 
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
-    <li class="breadcrumb-item">
-      <a href="/yt-downloader/playlist">Download Playlist</a>
-    </li>
-    <li class="breadcrumb-item active" aria-current="page">
-      Download the Playlist
-    </li>
-  </ol>
-</nav>
 <div class="jumbotron vertical-center mb-5">
   <div class="container download-container shadow">
     <div class="row mb-4">
+      <nav aria-label="breadcrumb" class="py-4 px-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{{url_for('index')}}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{{url_for('yt_playlist_downloader')}}">Download Playlist</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Choose Resolution
+          </li>
+        </ol>
+      </nav>
       <div class="col-12 text-center py-2">
         <img src="{{url_for('static', filename='assets/yt.png')}}" style="height:100px" alt="">
         <h3>Download Playlist</h3>
