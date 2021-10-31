@@ -14,8 +14,8 @@ instaloader = "*"
 flask-mail = "*"
 flask-socketio = "*"
 greenlet = "*"
-eventlet = "*"
-dnspython = "*"
+dnspython = "==1.16.0"
+eventlet = "==0.30.2"
 
 [dev-packages]
 autopep8 = "*"

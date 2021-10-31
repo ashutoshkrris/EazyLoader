@@ -10,8 +10,8 @@ charset-normalizer==2.0.7
 click==8.0.3
 colorama==0.4.4
 cryptography==35.0.0
-dnspython==2.1.0
-eventlet==0.32.0
+dnspython==1.16.0
+eventlet==0.30.2
 Flask==2.0.2
 Flask-Mail==0.9.1
 Flask-SocketIO==5.1.1
