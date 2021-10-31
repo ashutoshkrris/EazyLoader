@@ -282,6 +282,10 @@
     <script>
       document.getElementById("bloglink").classList.add("active");
     </script>
+    {% elif 'contributor' in request.path or 'donate' in request.path or 'tos' in request.path %}
+    <script>
+      document.getElementById("morelink").classList.add("active");
+    </script>
     {% else %}
     <script>
       document.getElementById("homelink").classList.add("active");
