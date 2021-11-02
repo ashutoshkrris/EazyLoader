@@ -38,7 +38,10 @@ block meta_tags %}
             <h1 class="fw-bolder mb-1">{{post.fields.title}}</h1>
             <!-- Post meta content-->
             <div class="text-muted fst-italic mb-2">
-              Posted {{ momentjs(post.fields.timestamp).calendar() }}
+              Originally posted on {{ momentjs(post.fields.timestamp).format('MMMM Do YYYY') }} on <a href="https://iread.ga/posts/{{post.pk}}/{{post.fields.slug}}" target="_blank">iRead</a>
+            </div>
+            <div class="text-muted mb-2">
+              
             </div>
           </header>
           <!-- Preview image figure-->

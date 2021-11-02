@@ -333,7 +333,7 @@ def tos():
 @app.route("/blogs")
 def blog():
     posts = fetch_posts()
-    return render_template('blog/blog.html', title='Blogs', posts=posts)
+    return render_template('blog/blog2.html', title='Blogs', posts=posts)
 
 
 @app.get('/post/<id>/<slug>')

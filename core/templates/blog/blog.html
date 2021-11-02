@@ -2,85 +2,69 @@
 block meta_tags %}
 <meta
   name="description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+  content="Read latest blogs posted by Eazyloader
 />
 <meta property="og:title" content="{{title}} | EazyLoader" />
 <meta property="og:url" content="{{request.url}}" />
-
 <meta
   property="og:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+  content="Read latest blogs posted by Eazyloader
 />
 <meta
   property="og:image"
-  content="{{ url_for('static', filename='assets/logo.png') }}"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
 />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:title" content="{{title}} | EazyLoader" />
 <meta
   name="twitter:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram"
+  content="Read latest blogs posted by Eazyloader
 />
 <meta
   name="twitter:image"
-  content="{{ url_for('static', filename='assets/logo.png') }}"
+  content="{{ url_for('static', filename='assets/icon.png') }}"
 />
+<link rel="stylesheet" href="{{url_for('static', filename='css/blog2.css')}}" />
 
-{% endblock %} {% block custom_head %}
-<!-- Custom CSS -->
-<link href="{{url_for('static', filename='css/blog.css')}}" rel="stylesheet" />
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 {% endblock %} {% block content %}
 
-<!-- Features section-->
-<header
-  style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url({{url_for('static', filename='assets/banner.jpg') }}) center/cover no-repeat fixed;"
->
-  <div class="banner">
-    <div class="container">
-      <h1 class="banner-title" data-aos="fade-down">EazyLoader Blogs</h1>
-      <p data-aos="zoom-in">Everything you need to know about EazyLoader</p>
+<!-- Contributors section-->
+
+<section id="blogs">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2 class="heading">Latest Blogs</h2>
+        <p class="subheading">We keep sharing what we are currently working on..</p>
+      </div>
     </div>
   </div>
-</header>
-<!-- end of header -->
 
-<!-- blog -->
-<section class="blog" id="blog">
-  <div class="container">
-    <div class="title">
-      <h2 data-aos="fade-down">Latest Blogs</h2>
-      <p data-aos="slide-down">Read recent blogs of EazyLoader</p>
-    </div>
-    <div class="blog-content">
-      {% for post in posts %}
-      <!-- item -->
-      <div class="blog-item">
-        <div class="blog-img">
-          <img
-            src="https://res.cloudinary.com/dlomjljb6/image/upload/v1/{{post.fields.thumbnail}}"
-            alt=""
-          />
+  <div class="index-content">
+    <div class="container">
+      <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-4">
+          <a href="">
+            <div class="card">
+              <img
+                src="https://res.cloudinary.com/dlomjljb6/image/upload/v1/{{post.fields.thumbnail}}"
+              />
+              <h4>{{post.fields.title}}</h4>
+              <p>{{post.fields.seo_overview}}</p>
+              <a
+                href="{{url_for('single_page', id=post.pk, slug=post.fields.slug)}}"
+                class="blue-button"
+                >Read More</a
+              >
+            </div>
+          </a>
         </div>
-        <div class="blog-text">
-          <span>{{ momentjs(post.fields.timestamp).calendar() }}</span>
-          <h2>{{post.fields.title}}</h2>
-          <p>{{post.fields.seo_overview}}</p>
-          <a href="{{url_for('single_page', id=post.pk, slug=post.fields.slug)}}"
-            >Read More</a
-          >
-        </div>
+        {% endfor %}
       </div>
-      <!-- end of item -->
-      {% endfor %}
     </div>
   </div>
 </section>
-<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 1000, delay: 100 });
-</script>
-<!-- end of blog -->
 
 {% endblock content %}
