@@ -46,9 +46,9 @@ block meta_tags %}
       <div class="row">
         {% for post in posts %}
         <div class="col-lg-4">
-          <a href="">
+          <a href="{{url_for('single_page', id=post.pk, slug=post.fields.slug)}}">
             <div class="card">
-              <img
+              <img alt="..."
                 src="https://res.cloudinary.com/dlomjljb6/image/upload/v1/{{post.fields.thumbnail}}"
               />
               <h4>{{post.fields.title}}</h4>
