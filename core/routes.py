@@ -213,6 +213,9 @@ def ig_dp_downloader():
     if request.method == 'POST':
         try:
             username = request.form.get('username')
+            if 'instagram.com' in username:
+                flash('Please enter Instagram username, and not a link!', 'error')
+                return redirect(url_for('ig_dp_downloader'))
             filename = ig.download_profile_picture(username)
             file_path = os.path.join(os.path.abspath(username), filename)
             return_img = BytesIO()
@@ -235,6 +238,9 @@ def ig_stories_downloader():
     if request.method == 'POST':
         try:
             username = request.form.get('username')
+            if 'instagram.com' in username:
+                flash('Please enter Instagram username, and not a link!', 'error')
+                return redirect(url_for('ig_dp_downloader'))
             filename = ig.download_latest_stories(username)
             with open(os.path.abspath(filename), 'rb') as fp:
                 data = fp.readlines()
