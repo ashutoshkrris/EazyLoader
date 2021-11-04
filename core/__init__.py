@@ -21,5 +21,5 @@ socketio = SocketIO(app)
 
 app.jinja_env.globals['momentjs'] = momentjs
 
-from core import routes
+from core.routes import core, instagram, youtube
 from core.utils import custom_filters, playlist, contributors
