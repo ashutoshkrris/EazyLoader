@@ -1,0 +1,293 @@
+{% extends "base.html" %} {% block title %}{{title}} | YT Downloader{% endblock
+title %} {% block meta_tags %}
+<meta
+  name="description"
+  content="Get YouTube channel analytics for free using EazyLoader"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="Get YouTube channel analytics for free using EazyLoader"
+/>
+<meta property="og:image" content="https://i.imgur.com/9EhB31a.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="Get YouTube channel analytics for free using EazyLoader"
+/>
+<meta name="twitter:image" content="https://i.imgur.com/9EhB31a.png" />
+<style>
+  .table-image td,
+  .table-image th {
+    vertical-align: middle;
+  }
+  #table-scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 500px;
+  }
+</style>
+{% endblock %} {% block content %}
+
+<div class="jumbotron vertical-center">
+  <div class="container download-container shadow">
+    <div class="row">
+      <nav aria-label="breadcrumb" class="px-4 py-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{{url_for('index')}}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{{url_for('get_channel_analytics')}}"
+              >YouTube Channel Analytics
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Results</li>
+        </ol>
+      </nav>
+      <div class="col-12 text-center py-2">
+        <img
+          src="{{channel.thumbnail_url}}"
+          style="height: 100px; border-radius: 50%"
+          alt=""
+        />
+        <h3 class="mt-3 mb-2">{{channel.title}}</h3>
+        <small class="text-muted mb-3">{{channel.description}}</small>
+        <div class="row">
+          <div class="col-md-6">
+            <strong
+              >Channel Created: {{momentjs(channel.created_at).format('MMMM Do YYYY')}}</strong
+            >
+          </div>
+          <div class="col-md-6">
+            <strong>Total Uploads: {{channel.total_videos}}</strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <strong
+              >Total Subscribers:
+              {{channel.total_subscribers|humanize_views}}({{channel.total_subscribers}})</strong
+            >
+          </div>
+          <div class="col-md-6">
+            <strong
+              >Total Views:
+              {{channel.total_views|humanize_views}}({{channel.total_views}})</strong
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-12 text-center py-2 px-5">
+        <div class="row">
+          <h3 class="text-center mt-3 mb-2">All Playlists</h3>
+          <div id="table-scroll" class="col-12 mb-5">
+            <table class="table table-image">
+              <thead>
+                <tr>
+                  <th scope="col">S.No.</th>
+                  <th scope="col">Thumbnail</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Playlist Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in playlists %}
+                <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td class="w-25">
+                    <img
+                      src="{{item.thumbnail_url}}"
+                      class="img-fluid img-thumbnail"
+                      alt="{{item.title}}"
+                    />
+                  </td>
+                  <td>{{item.title}}</td>
+                  <td>{{item.description}}...</td>
+                  <td>
+                    <a href="{{item.playlist_url}}" class="btn btn-primary"
+                      >View Playlist</a
+                    >
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 text-center py-2 px-5">
+          <h3 class="text-center">Videos</h3>
+        <!-- Nav Pills -->
+        <ul class="nav nav-pills nav-fill" id="video-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" aria-current="page" data-bs-toggle="pill" data-bs-target="#video-tab-1" type="button" role="tab" aria-controls="video-tab-1" aria-selected="true"
+              >10 Latest Videos</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" aria-current="page" data-bs-toggle="pill" data-bs-target="#video-tab-2" type="button" role="tab" aria-controls="video-tab-2" aria-selected="true">10 Most Viewed Videos</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" aria-current="page" data-bs-toggle="pill" data-bs-target="#video-tab-3" type="button" role="tab" aria-controls="video-tab-3" aria-selected="true">10 Highest Rated Videos</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" aria-current="page" data-bs-toggle="pill" data-bs-target="#video-tab-4" type="button" role="tab" aria-controls="video-tab-4" aria-selected="true">10 Most Relevant</a>
+          </li>
+        </ul>
+        <!-- Nav Pills End -->
+
+        <!-- Nav Pills Content -->
+        <div class="tab-content" id="video-tabs-content">
+          <div
+            class="tab-pane fade show active"
+            id="video-tab-1"
+            role="tabpanel"
+            aria-labelledby="video-tab-1"
+          >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Views</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for video in latest_videos %}
+                <tr>
+                  <th scope="row">
+                    {{momentjs(video.uploaded_on).format('MMMM Do YYYY')}}
+                  </th>
+                  <td>
+                    <a href="https://www.youtube.com/watch?v={{video.id}}"
+                      >{{video.title}}</a
+                    >
+                  </td>
+                  <td>{{video.statistics.total_views|humanize_views}}</td>
+                  <td>{{video.statistics.rating}}%</td>
+                  <td>{{video.statistics.total_comments|humanize_views}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="video-tab-2"
+            role="tabpanel"
+            aria-labelledby="video-tab-2"
+          >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Views</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for video in most_viewed_videos %}
+                <tr>
+                  <th scope="row">
+                    {{momentjs(video.uploaded_on).format('MMMM Do YYYY')}}
+                  </th>
+                  <td>
+                    <a href="https://www.youtube.com/watch?v={{video.id}}"
+                      >{{video.title}}</a
+                    >
+                  </td>
+                  <td>{{video.statistics.total_views|humanize_views}}</td>
+                  <td>{{video.statistics.rating}}%</td>
+                  <td>{{video.statistics.total_comments|humanize_views}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="video-tab-3"
+            role="tabpanel"
+            aria-labelledby="video-tab-3"
+          >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Views</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for video in highest_rated_videos %}
+                <tr>
+                  <th scope="row">
+                    {{momentjs(video.uploaded_on).format('MMMM Do YYYY')}}
+                  </th>
+                  <td>
+                    <a href="https://www.youtube.com/watch?v={{video.id}}"
+                      >{{video.title}}</a
+                    >
+                  </td>
+                  <td>{{video.statistics.total_views|humanize_views}}</td>
+                  <td>{{video.statistics.rating}}%</td>
+                  <td>{{video.statistics.total_comments|humanize_views}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="video-tab-4"
+            role="tabpanel"
+            aria-labelledby="video-tab-4"
+          >
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Date</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Views</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for video in most_relevant_videos %}
+                <tr>
+                  <th scope="row">
+                    {{momentjs(video.uploaded_on).format('MMMM Do YYYY')}}
+                  </th>
+                  <td>
+                    <a href="https://www.youtube.com/watch?v={{video.id}}"
+                      >{{video.title}}</a
+                    >
+                  </td>
+                  <td>{{video.statistics.total_views|humanize_views}}</td>
+                  <td>{{video.statistics.rating}}%</td>
+                  <td>{{video.statistics.total_comments|humanize_views}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Nav Pills Content End -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

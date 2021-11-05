@@ -18,6 +18,7 @@ def humanize_duration(seconds):
 
 @app.template_filter('humanize_views')
 def humanize_views(views):
+    views = int(views)
     str_views = len(str(views))
     if str_views <= 3:
         return views

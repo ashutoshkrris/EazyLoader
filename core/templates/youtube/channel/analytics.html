@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block title %}{{title}} | YT Downloader{% endblock
+title %} {% block meta_tags %}
+<meta
+  name="description"
+  content="Get YouTube channel analytics for free using EazyLoader"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="Get YouTube channel analytics for free using EazyLoader"
+/>
+<meta property="og:image" content="https://i.imgur.com/9EhB31a.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="Get YouTube channel analytics for free using EazyLoader"
+/>
+<meta name="twitter:image" content="https://i.imgur.com/9EhB31a.png" />
+{% endblock %} {% block content %}
+
+<div class="jumbotron vertical-center">
+  <div class="container download-container shadow">
+    <div class="row">
+      <nav aria-label="breadcrumb" class="px-4 py-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{url_for('index')}}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            YouTube Channel Analytics
+          </li>
+        </ol>
+      </nav>
+      <div class="col-12 text-center py-2">
+        <img
+          src="{{url_for('static', filename='assets/yt.png')}}"
+          style="height: 100px"
+          alt=""
+        />
+        <h3>Get YouTube Channel Analytics</h3>
+      </div>
+      <div class="col-12 col-sm-10 col-md-8 mx-auto">
+        {% include 'includes/alerts.html' %}
+
+        <form action="{{url_for('get_channel_analytics')}}" method="POST">
+          <div class="form-group mb-3">
+            <input
+              type="url"
+              name="channel-url"
+              class="form-control"
+              placeholder="Enter Playlist Link Here"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <center>
+              <input
+                type="submit"
+                class="btn btn-primary px-4 mt-3 mb-3"
+                value="Calculate"
+              />
+            </center>
+          </div>
+        </form>
+      </div>
+      {% include 'includes/warning.html' %}
+    </div>
+  </div>
+
+  {% endblock content %}
+</div>

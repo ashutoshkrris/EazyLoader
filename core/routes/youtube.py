@@ -9,6 +9,8 @@ from flask_socketio import send
 from threading import Thread
 from time import sleep
 
+from core.utils.channel_analyser import ChannelAnalyser
+
 
 file_data = {}
 status = {}
@@ -169,3 +171,20 @@ def calculate_playlist_duration():
             return redirect(url_for('calculate_playlist_duration'))
 
     return render_template('youtube/duration/playlist.html', title='Calculate Playlist Duration')
+
+
+@app.route("/yt-downloader/channel/analytics", methods=['GET', 'POST'])
+def get_channel_analytics():
+    if request.method == 'POST':
+        channel_link = request.form.get('channel-url')
+        channel_username = channel_link.split('/c/')[1]
+        channel_analyser = ChannelAnalyser(channel_username)
+        channel_stats = channel_analyser.get_channel_stats()
+        playlists = channel_analyser.get_all_playlists()
+        latest_videos = channel_analyser.get_latest_videos(10)
+        most_viewed_videos = channel_analyser.get_most_viewed_videos(10)
+        highest_rated_videos = channel_analyser.get_highest_rated_videos(10)
+        most_relevant_videos = channel_analyser.get_most_relevant_videos(10)
+        return render_template('youtube/channel/analytics-results.html', title='Channel Analytics Results', playlists=playlists, channel=channel_stats, latest_videos=latest_videos, most_viewed_videos=most_viewed_videos, highest_rated_videos=highest_rated_videos, most_relevant_videos=most_relevant_videos)
+
+    return render_template('youtube/channel/analytics.html', title='Get YouTube Channel Analytics')
