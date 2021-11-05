@@ -62,9 +62,12 @@ class ChannelAnalyser:
         return playlists
 
     def calculate_video_rating(self, likes, dislikes):
-        total_reactions = int(likes)+int(dislikes)
-        rating = round(((int(likes)/total_reactions)*100), 1)
-        return rating
+        try:
+            total_reactions = int(likes)+int(dislikes)
+            rating = round(((int(likes)/total_reactions)*100), 1)
+            return rating
+        except ZeroDivisionError:
+            return 0
 
     def get_video_details(self, video_id):
         video = self.youtube.videos().list(
