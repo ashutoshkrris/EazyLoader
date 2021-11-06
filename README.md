@@ -15,11 +15,12 @@
 - [Introduction](#introduction) - What this project is all about
 - [Upcoming Features](#upcoming-features) - Features to be worked on
 - [Contributing Guide](https://github.com/ashutoshkrris/EazyLoader/blob/main/CONTRIBUTING.md) - How to contribute to the project
+- [Product Demo](#product-demo) - Product Demo
 
 
 ## <a name="introduction">📌 Introduction</a>
 
-EazyLoader is Flask based web-application built to make downloading easy for you. Now you can easily download videos from YouTube in the best available quality.
+EazyLoader is Flask based web-application built to make downloading easy for you. Download videos and pictures from YouTube and Instagram in the best available quality. In addition to that, you can calculate duration of YouTube Playlist at different speeds.
 
 Features of the application includes :
 - YouTube
@@ -49,6 +50,31 @@ Features of the application includes :
 - Create a Pull Request which will be promptly reviewed and suggestions would be added to improve it.
 - Add Screenshots to help us know what your contribution is all about.
 - Having difficulty in contributing? Read the [Contribution Guide](https://github.com/ashutoshkrris/EazyLoader/blob/main/CONTRIBUTING.md) for a detailed explanation.
+
+
+## <a name="product-demo">😲 Product Demo</a>
+
+#### Product Mockup
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yfsGD3AM6t0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+
+#### Download YouTube Videos
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rdQ6SKsyzJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+
+#### Calculate YouTube Playlist Duration
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pdozACL6_44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<br>
+
+#### Download Instagram Media
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QF5ecd_wc7Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 <br>
