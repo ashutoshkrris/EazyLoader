@@ -52,29 +52,29 @@ Features of the application includes :
 - Having difficulty in contributing? Read the [Contribution Guide](https://github.com/ashutoshkrris/EazyLoader/blob/main/CONTRIBUTING.md) for a detailed explanation.
 
 
-## <a name="product-demo">😲 Product Demo</a>
+## <a name='product-demo'>😲 Product Demo</a>
 
 #### Product Mockup
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yfsGD3AM6t0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Product Mockup](https://img.youtube.com/vi/yfsGD3AM6t0/0.jpg)](https://www.youtube.com/watch?v=yfsGD3AM6t0)
 
 <br>
 
 #### Download YouTube Videos
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rdQ6SKsyzJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Product Mockup](https://img.youtube.com/vi/rdQ6SKsyzJg/0.jpg)](https://www.youtube.com/watch?v=rdQ6SKsyzJg)
 
 <br>
 
 #### Calculate YouTube Playlist Duration
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pdozACL6_44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Product Mockup](https://img.youtube.com/vi/pdozACL6_44/0.jpg)](https://www.youtube.com/watch?v=pdozACL6_44)
 
 <br>
 
 #### Download Instagram Media
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QF5ecd_wc7Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Product Mockup](https://img.youtube.com/vi/QF5ecd_wc7Y/0.jpg)](https://www.youtube.com/watch?v=QF5ecd_wc7Y)
 
 
 <br>
