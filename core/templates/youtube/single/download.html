@@ -114,7 +114,7 @@
 
     <script type="text/javascript">
       $(document).ready(function() {
-        var socket = io.connect('http://' + document.domain + ':' + location.port);
+        var socket = io.connect('https://' + document.domain + ':' + location.port);
 
 	      socket.on('connect', function() {
           socket.send(['User has connected!', "None"]);
@@ -126,7 +126,7 @@
           $("#prepare").delay(1000).css('display', 'block');
 
           var rno = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
-          socket.send(["Youtube has connected!", $('#itag').val()]);
+          socket.send([rno, $('#itag').val()]);
         });
 
 	      socket.on('message', function(msg) {
