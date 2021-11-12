@@ -9,13 +9,17 @@ file_data = {}
 status = {}
 
 
-@app.route('/slideshare/slides', methods=['GET', 'POST'])
+@app.route('/slideshare-downloader/slides', methods=['GET', 'POST'])
 def slide_downloader():
     if request.method == 'POST':
         session['slide_url'] = request.form.get('slide-url')
-        title, image_url, total_slides, category, date, views= ss.get_slide_info(
-            session['slide_url'])
-        return render_template('slideshare/download.html', title=title, image_url=image_url, total_slides=total_slides, category=category, date=date, views=views)
+        try:
+            title, image_url, total_slides, category, date, views = ss.get_slide_info(
+                session['slide_url'])
+            return render_template('slideshare/download.html', title=title, image_url=image_url, total_slides=total_slides, category=category, date=date, views=views)
+        except Exception:
+            flash('Please enter valid slideshare link', 'error')
+            return redirect(url_for('slide_downloader'))
     return render_template('slideshare/slideshare.html', title="Download Slides")
 
 
@@ -48,7 +52,7 @@ def socket_bidirct(msg):
         print(msg[0])
 
 
-@app.post('/slideshare/slides/download')
+@app.post('/slideshare-downloader/slides/download')
 def download_slides():
     try:
         if file_data.get("status") == "Done":

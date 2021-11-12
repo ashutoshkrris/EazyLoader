@@ -8,7 +8,7 @@
     />
     <meta
       name="keywords"
-      content="Instagram,Youtube,Youtube Playlist,Playlist Duration,Instagram picture,Download,Video,Images,Pictures,Audio"
+      content="Instagram,Youtube,Youtube Playlist,Playlist Duration,Instagram picture,Download,Video,Images,Pictures,Audio,SlideShare,Slides,PDF"
     />
     <meta name="author" content="Ashutosh Krishna" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,6 +39,8 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
       rel="stylesheet"
     />
+    <!-- FontAwesome icons-->
+    <script src="https://use.fontawesome.com/60cbc14a2b.js"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link
       href="{{url_for('static', filename='css/styles.css')}}"
@@ -209,7 +211,7 @@
               <a
                 class="nav-link"
                 id="slidelink"
-                href="{{url_for('slide_downloader')}}#faq"
+                href="{{url_for('slide_downloader')}}"
                 >SlideShare Downloader</a
               >
             </li>
