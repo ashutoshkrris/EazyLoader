@@ -1,4 +1,4 @@
-from core import app, socketio
+from core import app, socketio, status
 from flask import render_template, send_file, request, session, flash, url_for, redirect
 from pytube import YouTube, Playlist
 import pytube.exceptions as exceptions
@@ -11,7 +11,6 @@ from time import sleep
 
 
 file_data = {}
-status = {}
 
 
 @app.route('/yt-downloader/video', methods=['GET', 'POST'])
@@ -53,24 +52,24 @@ def start_preparation(msg, url, itag):
     status.update({f"{msg}": "Download-Ready"})
 
 
-@socketio.on('message')
-def socket_bidirct(msg):
+# @socketio.on('youtube', namespace='/youtube')
+# def socket_bidirct(msg):
 
-    if msg[0] != "User has connected!":
-        url = session['video_link']
-        t = Thread(target=start_preparation, args=(
-            msg[0], url, msg[1],), daemon=True)
-        t.start()
+#     if msg[0] != "User has connected!":
+#         url = session['video_link']
+#         t = Thread(target=start_preparation, args=(
+#             msg[0], url, msg[1],), daemon=True)
+#         t.start()
 
-        while True:
-            sleep(2)
-            if status.get(msg[0]) == "Download-Ready":
-                send("Download-Ready")
-                break
-        del status[msg[0]]
+#         while True:
+#             sleep(2)
+#             if status.get(msg[0]) == "Download-Ready":
+#                 send("Download-Ready")
+#                 break
+#         del status[msg[0]]
 
-    if msg[0] == "User has connected!":
-        print(msg[0])
+#     if msg[0] == "User has connected!":
+#         print(msg[0], type(msg[0]))
 
 
 @app.post('/yt-downloader/video/download')

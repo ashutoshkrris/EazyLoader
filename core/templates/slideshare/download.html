@@ -117,10 +117,10 @@
 
     <script type="text/javascript">
       $(document).ready(function () {
-        var socket = io.connect("https://" + document.domain + ":" + location.port);
+        var socket = io.connect("http://" + document.domain + ":" + location.port);
 
         socket.on("connect", function () {
-          socket.send(["User has connected!", "None"]);
+          socket.send(["User has connected!"]);
         });
 
         $("#sendbutton").on("click", function () {
@@ -133,7 +133,7 @@
               (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
             ).toString(16)
           );
-          socket.send([rno]);
+          socket.send(["Slideshare ready!"]);
         });
 
         socket.on("message", function (msg) {

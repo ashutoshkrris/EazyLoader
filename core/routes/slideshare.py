@@ -1,12 +1,10 @@
-from core import app, socketio, ss
+from core import app, socketio, ss, status
 from flask import render_template, send_file, request, session, flash, url_for, redirect
 from flask_socketio import send
 from threading import Thread
 from time import sleep
 
-
 file_data = {}
-status = {}
 
 
 @app.route('/slideshare-downloader/slides', methods=['GET', 'POST'])
@@ -30,26 +28,27 @@ def start_slide_preparation(msg, url):
     file_data.update(fname=filename)
     file_data.update(status="Done")
     status.update({f"{msg}": "Download-Ready"})
+    print("Readyyyyyyyyyyyyyyyyy")
 
 
-@socketio.on('message')
-def socket_bidirct(msg):
+# @socketio.on('message')
+# def socket_bidirct(msg):
 
-    if msg[0] != "User has connected!":
-        url = session['slide_url']
-        t = Thread(target=start_slide_preparation, args=(
-            msg[0], url,), daemon=True)
-        t.start()
+#     if msg[0] != "User has connected!":
+#         url = session['slide_url']
+#         t = Thread(target=start_slide_preparation, args=(
+#             msg[0], url,), daemon=True)
+#         t.start()
 
-        while True:
-            sleep(2)
-            if status.get(msg[0]) == "Download-Ready":
-                send("Download-Ready")
-                break
-        del status[msg[0]]
+#         while True:
+#             sleep(2)
+#             if status.get(msg[0]) == "Download-Ready":
+#                 send("Download-Ready")
+#                 break
+#         del status[msg[0]]
 
-    if msg[0] == "User has connected!":
-        print(msg[0])
+#     if msg[0] == "User has connected!":
+#         print(msg[0])
 
 
 @app.post('/slideshare-downloader/slides/download')

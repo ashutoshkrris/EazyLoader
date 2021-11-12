@@ -18,10 +18,12 @@ ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
 yt = YTDownloader()
 ss = SlideShareDownloader()
 
+status = {}
+
 mail = Mail(app)
 socketio = SocketIO(app)
 
 app.jinja_env.globals['momentjs'] = momentjs
 
-from core.routes import core, instagram, youtube, slideshare
+from core.routes import core, instagram, youtube, slideshare, socket
 from core.utils import custom_filters, playlist, contributors
