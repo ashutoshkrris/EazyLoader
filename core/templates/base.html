@@ -208,6 +208,14 @@
             <li class="nav-item">
               <a
                 class="nav-link"
+                id="slidelink"
+                href="{{url_for('slide_downloader')}}#faq"
+                >SlideShare Downloader</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
                 id="contactlink"
                 href="{{url_for('index')}}#contact"
                 >Contact</a
@@ -282,6 +290,10 @@
     {% elif 'ig-downloader' in request.path %}
     <script>
       document.getElementById("iglink").classList.add("active");
+    </script>
+    {% elif 'slide' in request.path %}
+    <script>
+      document.getElementById("slidelink").classList.add("active");
     </script>
     {% elif 'blog' in request.path %}
     <script>
