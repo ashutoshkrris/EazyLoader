@@ -20,7 +20,7 @@
 
 ## <a name="introduction">📌 Introduction</a>
 
-EazyLoader is Flask based web-application built to make downloading easy for you. Download videos and pictures from YouTube and Instagram in the best available quality. In addition to that, you can calculate duration of YouTube Playlist at different speeds.
+EazyLoader is Flask based web-application built to make downloading easy for you. Download videos and pictures from YouTube and Instagram in the best available quality. You can also download slides from SlideShare in PDF format. In addition to that, you can calculate duration of YouTube Playlist at different speeds.
 
 Features of the application includes :
 - YouTube
@@ -33,6 +33,9 @@ Features of the application includes :
     - Download Post Images(containing one or more than one images)
     - Download Videos, Reels and IGTV Videos
     - Download Latest Stories
+
+- SlideShare
+    - Download Slides from SlideShare in PDF format
 
 
 ## <a name='upcoming-features'>⭐ Upcoming Features</a>
@@ -75,6 +78,12 @@ Features of the application includes :
 #### Download Instagram Media
 
 [![Product Mockup](https://img.youtube.com/vi/QF5ecd_wc7Y/0.jpg)](https://www.youtube.com/watch?v=QF5ecd_wc7Y)
+
+<br>
+
+#### Download SlideShare Slides as PDF
+
+[![Product Mockup](https://img.youtube.com/vi/cxFbvz4xp2k/0.jpg)](https://www.youtube.com/watch?v=cxFbvz4xp2k)
 
 
 <br>
