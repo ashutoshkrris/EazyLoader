@@ -51,7 +51,7 @@ block meta_tags %}
             Easily Download Videos and Images
           </h1>
           <p class="lead text-white-50 mb-4">
-            Quickly download audio, videos and shorts from Youtube and pictures, profile pictures, videos, IGTV videos and reels from Instagram
+            Quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare
           </p>
           <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
             <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features"
@@ -62,7 +62,16 @@ block meta_tags %}
             >
           </div>
           <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mt-4">
-            <a href="https://www.producthunt.com/posts/eazyloader?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-eazyloader" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=317311&theme=light" alt="EazyLoader - Downloading made easy | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+            <a
+              href="https://www.producthunt.com/posts/eazyloader?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-eazyloader"
+              target="_blank"
+              ><img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=317311&theme=light"
+                alt="EazyLoader - Downloading made easy | Product Hunt"
+                style="width: 250px; height: 54px"
+                width="250"
+                height="54"
+            /></a>
           </div>
         </div>
       </div>
@@ -74,14 +83,14 @@ block meta_tags %}
 <section class="py-5 border-bottom" id="features">
   <div class="container px-5 my-5">
     <div class="row gx-5">
-      <div class="col-lg-6 mb-5 mb-lg-0">
+      <div class="col-lg-4 mb-5 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
           <i class="bi bi-youtube"></i>
         </div>
         <h2 class="h4 fw-bolder">Download from YouTube</h2>
         <p>
-          You can download audio, video and shorts from YouTube in various available
-          resolutions upto 1080p(max. size upto 250MBs). You can also
+          You can download audio, video and shorts from YouTube in various
+          available resolutions upto 1080p(max. size upto 250MBs). You can also
           calculate complete playlist duration at different speeds. 😉
         </p>
         <a
@@ -92,20 +101,36 @@ block meta_tags %}
           <i class="bi bi-arrow-right"></i>
         </a>
       </div>
-      <div class="col-lg-6 mb-5 mb-lg-0">
+      <div class="col-lg-4 mb-5 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
           <i class="bi bi-instagram"></i>
         </div>
         <h2 class="h4 fw-bolder">Download from Instagram</h2>
         <p>
           Do you need to take screenshots of pictures on Instagram or record
-          your screen to share videos with your friends? Now download pictures and
-          videos(reels, videos and IGTV videos) from Instagram now without any hassle.😲
+          your screen to share videos with your friends? Now download pictures
+          and videos(reels, videos and IGTV videos) from Instagram now without
+          any hassle.😲
         </p>
         <a
           class="text-decoration-none"
           href="{{url_for('ig_video_downloader')}}"
         >
+          Let's Go
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+          <i class="fa fa-slideshare"></i>
+        </div>
+        <h2 class="h4 fw-bolder">Download from SlideShare</h2>
+        <p>
+          Do you need to download projects or slides from SlideShare? Now
+          download slides from SlideShare and convert into PDF using EazyLoader
+          without any hassle.😍
+        </p>
+        <a class="text-decoration-none" href="{{url_for('slide_downloader')}}">
           Let's Go
           <i class="bi bi-arrow-right"></i>
         </a>
@@ -397,7 +422,7 @@ block meta_tags %}
                 aria-expanded="false"
                 aria-controls="collapseNine"
               >
-                9. Are there any download limits?
+                9. How can I download slides from SlideShare?
               </button>
             </h2>
             <div
@@ -407,10 +432,14 @@ block meta_tags %}
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                Yes, since we are running on free resources, the download limit
-                is quite low for the time being. Once we get enough support and
-                donation, the application will be scaled up to meet higher
-                requirements.
+                Go to
+                <a
+                  href="https://eazyloader.herokuapp.com/slideshare-downloader/slides"
+                  >https://eazyloader.herokuapp.com/slideshare-downloader/slides</a
+                >
+                and enter the slide link. If the slide link is valid, slide will
+                be downloaded in PDF format, else an error message will be
+                shown.
               </div>
             </div>
           </div>
@@ -426,7 +455,7 @@ block meta_tags %}
                 aria-expanded="false"
                 aria-controls="collapseTen"
               >
-                10. How can I support?
+                10. Are there any download limits?
               </button>
             </h2>
             <div
@@ -436,13 +465,10 @@ block meta_tags %}
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                You can support us by donating as much you like using
-                <a href="https://buy.stripe.com/4gw17t5uhaK26qsfYZ">Stripe</a>
-                or
-                <a
-                  href="https://razorpay.com/payment-button/pl_IDcRjGcPSWbnB5/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button"
-                  >Razorpay</a
-                >.
+                Yes, since we are running on free resources, the download limit
+                is quite low for the time being. Once we get enough support and
+                donation, the application will be scaled up to meet higher
+                requirements.
               </div>
             </div>
           </div>
@@ -458,13 +484,45 @@ block meta_tags %}
                 aria-expanded="false"
                 aria-controls="collapseEleven"
               >
-                11. How can I contact you?
+                11. How can I support?
               </button>
             </h2>
             <div
               id="collapseEleven"
               class="accordion-collapse collapse"
               aria-labelledby="headingEleven"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                You can support us by donating as much you like using
+                <a href="https://buy.stripe.com/4gw17t5uhaK26qsfYZ">Stripe</a>
+                or
+                <a
+                  href="https://razorpay.com/payment-button/pl_IDcRjGcPSWbnB5/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button"
+                  >Razorpay</a
+                >.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 12 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwelve">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwelve"
+                aria-expanded="false"
+                aria-controls="collapseTwelve"
+              >
+                12. How can I contact you?
+              </button>
+            </h2>
+            <div
+              id="collapseTwelve"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTwelve"
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">

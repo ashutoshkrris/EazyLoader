@@ -95,3 +95,8 @@ a:hover {
     transform: translate3d(0, 0, 0) translateZ(0);
   }
 }
+@media (max-width: 575.98px) {
+  #ss_img {
+    width: 90%;
+  }
+}

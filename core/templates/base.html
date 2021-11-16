@@ -49,6 +49,7 @@
       href="{{url_for('static', filename='css/custom.css')}}"
       rel="stylesheet"
     />
+    <script src="https://use.fontawesome.com/60cbc14a2b.js"></script>
 
     <!-- Simple Notify -->
     <!-- CSS -->
@@ -208,7 +209,7 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                id="contactlink"
+                id="slidelink"
                 href="{{url_for('slide_downloader')}}"
                 >SlideShare Downloader</a
               >
@@ -290,6 +291,10 @@
     {% elif 'ig-downloader' in request.path %}
     <script>
       document.getElementById("iglink").classList.add("active");
+    </script>
+    {% elif 'slide' in request.path %}
+    <script>
+      document.getElementById("slidelink").classList.add("active");
     </script>
     {% elif 'blog' in request.path %}
     <script>
