@@ -21,7 +21,11 @@ ss = SlideShareDownloader()
 mail = Mail(app)
 socketio = SocketIO(app)
 
+
+file_data = {}
+status = {}
+
 app.jinja_env.globals['momentjs'] = momentjs
 
-from core.routes import core, instagram, youtube, slideshare
+from core.routes import core, instagram, youtube, slideshare, socket
 from core.utils import custom_filters, playlist, contributors
