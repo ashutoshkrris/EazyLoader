@@ -16,7 +16,6 @@ flask-socketio = "*"
 greenlet = "*"
 dnspython = "==1.16.0"
 eventlet = "==0.30.2"
-img2pdf = "*"
 
 [dev-packages]
 autopep8 = "*"
