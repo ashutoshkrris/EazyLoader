@@ -1,10 +1,6 @@
-from core import app, socketio, ss, status
+from core import app, ss, file_data, status
 from flask import render_template, send_file, request, session, flash, url_for, redirect
-from flask_socketio import send
-from threading import Thread
-from time import sleep
 
-file_data = {}
 
 
 @app.route('/slideshare-downloader/slides', methods=['GET', 'POST'])
@@ -24,38 +20,17 @@ def slide_downloader():
 def start_slide_preparation(msg, url):
 
     buffer, filename = ss.download_images(url)
-    file_data.update(bfr=buffer)
-    file_data.update(fname=filename)
-    file_data.update(status="Done")
-    status.update({f"{msg}": "Download-Ready"})
-    print("Readyyyyyyyyyyyyyyyyy")
-
-
-# @socketio.on('message')
-# def socket_bidirct(msg):
-
-#     if msg[0] != "User has connected!":
-#         url = session['slide_url']
-#         t = Thread(target=start_slide_preparation, args=(
-#             msg[0], url,), daemon=True)
-#         t.start()
-
-#         while True:
-#             sleep(2)
-#             if status.get(msg[0]) == "Download-Ready":
-#                 send("Download-Ready")
-#                 break
-#         del status[msg[0]]
-
-#     if msg[0] == "User has connected!":
-#         print(msg[0])
+    file_data.update(slide_bfr=buffer)
+    file_data.update(slide_fname=filename)
+    file_data.update(slide_status="Done")
+    status.update({f"slide_{msg}": "Download-Ready"})
 
 
 @app.post('/slideshare-downloader/slides/download')
 def download_slides():
     try:
-        if file_data.get("status") == "Done":
-            return send_file(file_data.get('bfr'), as_attachment=True, attachment_filename=file_data.get('fname'))
+        if file_data.get("slide_status") == "Done":
+            return send_file(file_data.get('slide_bfr'), as_attachment=True, attachment_filename=file_data.get('slide_fname'))
     except Exception:
         flash('Something went wrong while downloading', 'error')
         return redirect(url_for('slide_downloader'))
