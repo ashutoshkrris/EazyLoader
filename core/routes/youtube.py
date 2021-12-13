@@ -14,7 +14,7 @@ def yt_video_downloader():
             highest_res = False
             url = YouTube(session['video_link'])
             url.check_availability()
-            if url.streams.filter(res="1080p"):
+            if url.streams.filter(res="1080p") and url.streams.filter(res="1080p").first().filesize/1048576<200:
                 highest_res = url.streams.filter(res="1080p").first()
             return render_template('youtube/single/download.html', url=url, highest_res=highest_res)
         except exceptions.MembersOnly:
