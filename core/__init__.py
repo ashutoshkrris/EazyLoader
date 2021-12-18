@@ -2,7 +2,6 @@ from core.utils.momentjs import momentjs
 from flask import Flask
 from decouple import config
 from core.utils.ig_downloader import IGDownloader
-from logging.config import dictConfig
 from core.utils.yt_downloader import YTDownloader
 from core.utils.slideshare_downloader import SlideShareDownloader
 from flask_mail import Mail
