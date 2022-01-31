@@ -17,7 +17,8 @@ class SlideShareDownloader:
         html = requests.get(url).content
         soup = BeautifulSoup(html, 'lxml')
         title = soup.find(class_='j-title-breadcrumb').get_text().strip()
-        image_url = soup.find(class_='slide-image')['src']
+        image_url = soup.find(class_='slide-image')['srcset']
+        final_img_url = image_url.split(',')[2].replace(' ','').replace('1024w','')
         total_slides = soup.find(id='total-slides').get_text().strip()
         metadata = soup.find_all(class_='metadata-item')
         category, date, views = None, None, None
@@ -25,7 +26,7 @@ class SlideShareDownloader:
             category, date, views = metadata[0].get_text().strip(
             ), metadata[1].get_text().strip(), metadata[2].get_text().strip()
 
-        return title, image_url, total_slides, category, date, views
+        return title, final_img_url, total_slides, category, date, views
 
     def get_pdf_name(self, url):
         # get url basename and replace non-alpha with '_'
@@ -46,7 +47,8 @@ class SlideShareDownloader:
         i = 0
         for image in images:
             image_url = image.get('src')
-            img = requests.get(image_url, verify=False)
+            final_img_url = image_url.split(',')[2].replace(' ', '').replace('1024w', '')
+            img = requests.get(final_img_url, verify=False)
             if not os.path.exists(title):
                 os.makedirs(title)
             with open(f"{title}/{i}", 'wb') as f:
