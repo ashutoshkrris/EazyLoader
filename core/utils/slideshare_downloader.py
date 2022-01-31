@@ -42,7 +42,7 @@ class SlideShareDownloader:
         soup = BeautifulSoup(html, 'lxml')
         # soup.title.string
         title = '/tmp'
-        images = soup.findAll('img', {'class': 'slide_image'})
+        images = soup.findAll('img', {'class': 'slide-image'})
         i = 0
         for image in images:
             image_url = image.get('data-full').split('?')[0]
