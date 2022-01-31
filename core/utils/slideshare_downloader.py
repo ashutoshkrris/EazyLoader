@@ -17,7 +17,7 @@ class SlideShareDownloader:
         html = requests.get(url).content
         soup = BeautifulSoup(html, 'lxml')
         title = soup.find(class_='j-title-breadcrumb').get_text().strip()
-        image_url = soup.find(class_='slide_image').get('data-full')
+        image_url = soup.find(class_='slide-image')['src']
         total_slides = soup.find(id='total-slides').get_text().strip()
         metadata = soup.find_all(class_='metadata-item')
         category, date, views = None, None, None
