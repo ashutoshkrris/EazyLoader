@@ -21,10 +21,10 @@ class SlideShareDownloader:
         final_img_url = image_url.split(',')[2].replace(' ','').replace('1024w','')
         total_slides = soup.find(id='total-slides').get_text().strip()
         metadata = soup.find_all(class_='metadata-item')
-        category, date, views = None, None, None
-        if len(metadata) >= 3:
-            category, date, views = metadata[0].get_text().strip(
-            ), metadata[1].get_text().strip(), metadata[2].get_text().strip()
+        category = soup.find(class_='slideshow-category').get_text().strip()
+        date, views = None, None
+        if len(metadata) >= 2:
+            date, views = metadata[0].get_text().strip(), metadata[2].get_text().strip()
 
         return title, final_img_url, total_slides, category, date, views
 
@@ -46,7 +46,8 @@ class SlideShareDownloader:
         images = soup.findAll('img', {'class': 'slide-image'})
         i = 0
         for image in images:
-            image_url = image.get('src')
+            image_url = image.get('srcset')
+            print(image_url)
             final_img_url = image_url.split(',')[2].replace(' ', '').replace('1024w', '')
             img = requests.get(final_img_url, verify=False)
             if not os.path.exists(title):
