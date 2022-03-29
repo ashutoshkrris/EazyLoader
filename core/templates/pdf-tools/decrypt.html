@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% block title %}{{title}} | PDF Tools{% endblock
+title %} {% block meta_tags %}
+<meta
+  name="description"
+  content="Download image or series of images from Instagram for free using EazyLoader"
+/>
+<meta property="og:title" content="{{title}} | EazyLoader" />
+<meta property="og:url" content="{{request.url}}" />
+<meta
+  property="og:description"
+  content="Download image or series of images from Instagram for free using EazyLoader"
+/>
+<meta property="og:image" content="https://i.imgur.com/q2rfxDO.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:title" content="{{title}} | EazyLoader" />
+<meta
+  name="twitter:description"
+  content="Download image or series of images from Instagram for free using EazyLoader"
+/>
+<meta name="twitter:image" content="https://i.imgur.com/q2rfxDO.png" />
+{% endblock %} {% block content %}
+
+
+<div class="jumbotron vertical-center">
+  <div class="container download-container shadow">
+    <div class="row">
+      <nav aria-label="breadcrumb" class="px-4 py-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{url_for('index')}}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Decrypt PDF
+          </li>
+        </ol>
+      </nav>
+      <div class="col-12 text-center py-2">
+        <img
+          src="{{url_for('static', filename='assets/pdf.png')}}"
+          style="height: 100px"
+          alt=""
+        />
+        <h3 class="mt-3">Decrypt PDF</h3>
+      </div>
+      <div class="col-12 col-sm-10 col-md-8 mx-auto">
+        {% include 'includes/alerts.html' %}
+
+        <form action="{{url_for('decrypt_pdf_page')}}" method="POST" enctype=multipart/form-data>
+          <div class="form-group mb-3">
+            <input
+              type="file"
+              name="pdf-file"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <input
+              type="text"
+              name="password"
+              class="form-control"
+              placeholder="Enter Password"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <center>
+              <input
+                type="submit"
+                id="upload_btn"
+                class="btn btn-primary px-4"
+                value="Decrypt file"
+              />
+            </center>
+          </div>
+        </form>
+      </div>
+      {% include 'includes/amazon-ads.html' %}
+      {% include 'includes/warning.html' %}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("upload_btn").addEventListener("click", () => {
+    new Notify({
+      status: "success",
+      title: "Decrypting file",
+      text: "Hold on a bit...",
+      effect: "slide",
+      speed: 300,
+      showCloseButton: true,
+      autoclose: true,
+      autotimeout: 3000,
+      gap: 20,
+      distance: 20,
+      type: 1,
+      position: "right top",
+    });
+  });
+</script>
+{% endblock content %}

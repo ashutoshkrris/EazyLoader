@@ -96,15 +96,6 @@
             <li class="nav-item">
               <a
                 class="nav-link"
-                id="homelink"
-                aria-current="page"
-                href="{{url_for('index')}}"
-                >Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
                 id="ftrslink"
                 href="{{url_for('index')}}#features"
                 >Features</a
@@ -142,14 +133,6 @@
                     >Download Audio</a
                   >
                 </li>
-                <!-- <li>
-                  <a
-                    class="dropdown-item"
-                    href="{{url_for('yt_playlist_downloader')}}"
-                    >Download Playlist</a
-                  >
-                </li> -->
-                <!-- <li><a class="dropdown-item" href="#">Download Channel</a></li> -->
                 <li>
                   <a
                     class="dropdown-item"
@@ -208,6 +191,33 @@
                 href="{{url_for('slide_downloader')}}"
                 >SlideShare Downloader</a
               >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                id="iglink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                PDF Tools
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="iglink">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{url_for('encrypt_pdf_page')}}"
+                    >Encrypt PDF</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{{url_for('decrypt_pdf_page')}}"
+                    >Decrypt PDF</a
+                  >
+                </li>
+              </ul>
             </li>
             <li class="nav-item">
               <a
