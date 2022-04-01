@@ -6,14 +6,14 @@ block meta_tags %}
 
 <meta
   name="description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare"
+  content="A free tool to quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare. Additionally, you can also encrypt and decrypt your PDF documents."
 />
 <meta property="og:title" content="{{title}} | EazyLoader" />
 <meta property="og:url" content="{{request.url}}" />
 
 <meta
   property="og:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare"
+  content="A free tool to quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare. Additionally, you can also encrypt and decrypt your PDF documents."
 />
 <meta
   property="og:image"
@@ -24,7 +24,7 @@ block meta_tags %}
 <meta name="twitter:title" content="{{title}} | EazyLoader" />
 <meta
   name="twitter:description"
-  content="A free tool to quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare"
+  content="A free tool to quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare. Additionally, you can also encrypt and decrypt your PDF documents."
 />
 <meta
   name="twitter:image"
@@ -51,7 +51,7 @@ block meta_tags %}
             Easily Download Videos and Images
           </h1>
           <p class="lead text-white-50 mb-4">
-            Quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare
+            Quickly download audio, videos and shorts from Youtube, pictures, profile pictures, videos, IGTV videos and reels from Instagram and slides(in PDF) from SlideShare <br> Additionally, encrypt and decrypt your PDF files
           </p>
           <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
             <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features"
@@ -83,7 +83,7 @@ block meta_tags %}
 <section class="py-5 border-bottom" id="features">
   <div class="container px-5 my-5">
     <div class="row gx-5">
-      <div class="col-lg-4 mb-5 mb-lg-0">
+      <div class="col-lg-6 mb-5 mt-4 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
           <i class="bi bi-youtube"></i>
         </div>
@@ -101,7 +101,7 @@ block meta_tags %}
           <i class="bi bi-arrow-right"></i>
         </a>
       </div>
-      <div class="col-lg-4 mb-5 mb-lg-0">
+      <div class="col-lg-6 mb-5 mt-4 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
           <i class="bi bi-instagram"></i>
         </div>
@@ -120,7 +120,7 @@ block meta_tags %}
           <i class="bi bi-arrow-right"></i>
         </a>
       </div>
-      <div class="col-lg-4 mb-5 mb-lg-0">
+      <div class="col-lg-6 mb-5 mt-4 mb-lg-0">
         <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
           <i class="fa fa-slideshare"></i>
         </div>
@@ -131,6 +131,21 @@ block meta_tags %}
           without any hassle.😍
         </p>
         <a class="text-decoration-none" href="{{url_for('slide_downloader')}}">
+          Let's Go
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+      <div class="col-lg-6 mb-5 mt-4 mb-lg-0">
+        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+          <i class="fa fa-file-pdf-o"></i>
+        </div>
+        <h2 class="h4 fw-bolder">Encrypt/Decrypt PDF Files</h2>
+        <p>
+          Has your bank sent a PDF document which is encrypted? Or do you wish to send someone password-protected documents? Don't Worry!
+          Now encrypt and decrypt PDF files using EazyLoader
+          without any hassle.🤩
+        </p>
+        <a class="text-decoration-none" href="{{url_for('encrypt_pdf_page')}}">
           Let's Go
           <i class="bi bi-arrow-right"></i>
         </a>
@@ -444,7 +459,7 @@ block meta_tags %}
             </div>
           </div>
 
-          <!-- question - 10 -->
+          <!-- question 10 -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTen">
               <button
@@ -455,7 +470,7 @@ block meta_tags %}
                 aria-expanded="false"
                 aria-controls="collapseTen"
               >
-                10. Are there any download limits?
+                10. How can I encrypt my PDF file using EazyLoader?
               </button>
             </h2>
             <div
@@ -465,15 +480,19 @@ block meta_tags %}
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                Yes, since we are running on free resources, the download limit
-                is quite low for the time being. Once we get enough support and
-                donation, the application will be scaled up to meet higher
-                requirements.
+                Go to
+                <a
+                  href="{{url_for('encrypt_pdf_page')}}"
+                  >https://eazyloader.herokuapp.com/pdf-tools/encrypt</a
+                >, upload your PDF file and enter your desired password. If you don't enter a password, the default password is <strong>EazyLoader</strong>.
+                If the password length is more than or equal to 5 characters, your file will
+                be encrypted and downloaded, else an error message will be
+                shown.
               </div>
             </div>
           </div>
 
-          <!-- question - 11 -->
+          <!-- question 11 -->
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingEleven">
               <button
@@ -484,7 +503,7 @@ block meta_tags %}
                 aria-expanded="false"
                 aria-controls="collapseEleven"
               >
-                11. How can I support?
+                11. How can I decrypt my PDF file using EazyLoader?
               </button>
             </h2>
             <div
@@ -494,13 +513,13 @@ block meta_tags %}
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
-                You can support us by donating as much you like using
-                <a href="https://buy.stripe.com/4gw17t5uhaK26qsfYZ">Stripe</a>
-                or
+                Go to
                 <a
-                  href="https://razorpay.com/payment-button/pl_IDcRjGcPSWbnB5/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button"
-                  >Razorpay</a
-                >.
+                  href="{{url_for('decrypt_pdf_page')}}"
+                  >https://eazyloader.herokuapp.com/pdf-tools/decrypt</a
+                >, upload your PDF file and enter the correct password. If the password is correct, your file will
+                be decrypted and downloaded, else an error message will be
+                shown.
               </div>
             </div>
           </div>
@@ -516,13 +535,74 @@ block meta_tags %}
                 aria-expanded="false"
                 aria-controls="collapseTwelve"
               >
-                12. How can I contact you?
+                12. Are there any download limits?
               </button>
             </h2>
             <div
               id="collapseTwelve"
               class="accordion-collapse collapse"
               aria-labelledby="headingTwelve"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                Yes, since we are running on free resources, the download limit
+                is quite low for the time being. Once we get enough support and
+                donation, the application will be scaled up to meet higher
+                requirements.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 13 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThirteen">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThirteen"
+                aria-expanded="false"
+                aria-controls="collapseThirteen"
+              >
+                13. How can I support?
+              </button>
+            </h2>
+            <div
+              id="collapseThirteen"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThirteen"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                You can support us by donating as much you like using
+                <a href="https://buy.stripe.com/4gw17t5uhaK26qsfYZ">Stripe</a>
+                or
+                <a
+                  href="https://razorpay.com/payment-button/pl_IDcRjGcPSWbnB5/view/?utm_source=payment_button&utm_medium=button&utm_campaign=payment_button"
+                  >Razorpay</a
+                >.
+              </div>
+            </div>
+          </div>
+
+          <!-- question - 14 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFourteen">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFourteen"
+                aria-expanded="false"
+                aria-controls="collapseFourteen"
+              >
+                14. How can I contact you?
+              </button>
+            </h2>
+            <div
+              id="collapseFourteen"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFourteen"
               data-bs-parent="#accordionExample"
             >
               <div class="accordion-body">
