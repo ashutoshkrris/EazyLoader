@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from core.utils.pdf_tools import decrypt_file, encrypt_file
 
 ALLOWED_EXTENSIONS = {'pdf'}
+UPLOAD_DIR = app.config['UPLOAD_FOLDER']
 
 
 def allowed_file(filename):
@@ -26,13 +27,15 @@ def encrypt_pdf_page():
 
         if pdf_file and allowed_file(pdf_file.filename):
             filename = secure_filename(pdf_file.filename)
-            saved_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            if not os.path.exists(UPLOAD_DIR):
+                os.makedirs(UPLOAD_DIR)
+            saved_path = os.path.join(UPLOAD_DIR, filename)
             output_path = saved_path.removesuffix('.pdf') + '_encrypted.pdf'
             output_name = filename.removesuffix('.pdf') + '_encrypted.pdf'
             pdf_file.save(saved_path)
             result = encrypt_file(saved_path, password, output_path)
             if result == 1:
-                return send_from_directory(app.config['UPLOAD_FOLDER'], output_name, as_attachment=True)
+                return send_from_directory(UPLOAD_DIR, output_name, as_attachment=True)
             elif result == 2:
                 flash(
                     'Your file is already encrypted. Feel free to decrypt it using our tool', 'error')
@@ -58,18 +61,21 @@ def decrypt_pdf_page():
 
         if pdf_file and allowed_file(pdf_file.filename):
             filename = secure_filename(pdf_file.filename)
-            saved_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            if not os.path.exists(UPLOAD_DIR):
+                os.makedirs(UPLOAD_DIR)
+            saved_path = os.path.join(UPLOAD_DIR, filename)
             output_path = saved_path.removesuffix('.pdf') + '_decrypted.pdf'
             output_name = filename.removesuffix('.pdf') + '_decrypted.pdf'
             pdf_file.save(saved_path)
             result = decrypt_file(saved_path, password, output_path)
             if result == 1:
-                return send_from_directory(app.config['UPLOAD_FOLDER'], output_name, as_attachment=True)
+                return send_from_directory(UPLOAD_DIR, output_name, as_attachment=True)
             elif result == 2:
                 flash(
                     'Your file is already decrypted. Feel free to encrypt it using our tool', 'error')
                 return redirect(request.url)
             elif result == 3:
-                flash('Error while reading your file, please check your password', 'error')
+                flash(
+                    'Error while reading your file, please check your password', 'error')
                 return redirect(request.url)
     return render_template('pdf-tools/decrypt.html', title="Decrypt PDF")
