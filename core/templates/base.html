@@ -195,14 +195,14 @@
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
-                id="iglink"
+                id="pdflink"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
                 PDF Tools
               </a>
-              <ul class="dropdown-menu" aria-labelledby="iglink">
+              <ul class="dropdown-menu" aria-labelledby="pdflink">
                 <li>
                   <a
                     class="dropdown-item"
@@ -303,6 +303,10 @@
     <script>
       document.getElementById("slidelink").classList.add("active");
     </script>
+    {% elif 'pdf-tool' in request.path %}
+    <script>
+      document.getElementById("pdflink").classList.add("active");
+    </script>
     {% elif 'blog' in request.path %}
     <script>
       document.getElementById("bloglink").classList.add("active");
@@ -311,20 +315,9 @@
     <script>
       document.getElementById("morelink").classList.add("active");
     </script>
-    {% else %}
-    <script>
-      document.getElementById("homelink").classList.add("active");
-    </script>
 
     {% endif %}
     <script>
-      document.getElementById("homelink").onclick = function () {
-        var links = document.getElementsByClassName("nav-link");
-        for (var i = 0; i < links.length; i++) {
-          links[i].classList.remove("active");
-        }
-        document.getElementById("homelink").classList.add("active");
-      };
       document.getElementById("ftrslink").onclick = function () {
         var links = document.getElementsByClassName("nav-link");
         for (var i = 0; i < links.length; i++) {
