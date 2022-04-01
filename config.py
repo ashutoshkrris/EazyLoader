@@ -1,8 +1,12 @@
+import os
 from decouple import config
 
 
+UPLOAD_PATH = os.path.join(os.getcwd(), 'media', 'uploads')
+
 class Config(object):
     SECRET_KEY = config('SECRET_KEY') or 'guess-me'
+    UPLOAD_FOLDER = UPLOAD_PATH
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True

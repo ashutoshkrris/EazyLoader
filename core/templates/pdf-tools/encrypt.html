@@ -50,15 +50,17 @@ title %} {% block meta_tags %}
               type="file"
               name="pdf-file"
               class="form-control"
+              accept="application/pdf"
             />
           </div>
           <div class="form-group mb-3">
             <input
-              type="text"
+              type="password"
               name="password"
-              class="form-control"
+              class="form-control mb-2"
               placeholder="Enter Password"
             />
+            <small style="color:red;">Note: If you don't specify password, default password will be set to <strong>EazyLoader</strong>.</small>
           </div>
           <div class="form-group mb-3">
             <center>
