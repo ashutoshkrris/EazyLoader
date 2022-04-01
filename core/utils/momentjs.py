@@ -1,4 +1,4 @@
-from jinja2 import Markup
+from jinja2.utils import markupsafe
 
 
 class momentjs(object):
@@ -6,7 +6,7 @@ class momentjs(object):
         self.timestamp = timestamp
 
     def render(self, format):
-        return Markup(f"<script>\ndocument.write(moment(\"{self.timestamp}\").{format});\n</script>")
+        return markupsafe.Markup(f"<script>\ndocument.write(moment(\"{self.timestamp}\").{format});\n</script>")
 
     def format(self, fmt):
         return self.render(f"format(\"{fmt}\")")
