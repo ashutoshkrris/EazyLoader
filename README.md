@@ -15,6 +15,7 @@
 - [Introduction](#introduction) - What this project is all about
 - [Contributing Guide](https://github.com/ashutoshkrris/EazyLoader/blob/main/CONTRIBUTING.md) - How to contribute to the project
 - [Product Demo](#product-demo) - Product Demo
+- [Latest Blog Posts](#latest-blog-posts) - Latest Blog Posts
 
 
 ## <a name="introduction">📌 Introduction</a>
@@ -82,6 +83,14 @@ Features of the application includes :
 #### Download SlideShare Slides as PDF or PPTX
 
 [![Product Mockup](https://img.youtube.com/vi/cxFbvz4xp2k/0.jpg)](https://www.youtube.com/watch?v=cxFbvz4xp2k)
+
+
+## <a name="latest-blog-posts">📖 Latest Blog Posts</a>
+
+You can read our latest blogs at: https://eazyloader.herokuapp.com/blogs
+
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END -->
 
 
 <br>
