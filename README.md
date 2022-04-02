@@ -90,6 +90,10 @@ Features of the application includes :
 You can read our latest blogs at: https://eazyloader.herokuapp.com/blogs
 
 <!-- BLOG-POST-LIST:START -->
+- [Update - PDF Tools and Download Slides as PPTX](http://ireadblog.com/posts/157/update-pdf-tools-and-download-slides-as-pptx)
+- [Update - Download Slides from SlideShare](http://ireadblog.com/posts/63/update-download-slides-from-slideshare)
+- [Review by Fidel Navamuel](http://ireadblog.com/posts/61/review-by-fidel-navamuel)
+- [Let&#39;s launch EazyLoader](http://ireadblog.com/posts/59/lets-launch-eazyloader)
 <!-- BLOG-POST-LIST:END -->
 
 
