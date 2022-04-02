@@ -7,9 +7,11 @@ from flask import render_template, send_file, request, session, flash, url_for, 
 def slide_downloader():
     if request.method == 'POST':
         session['slide_url'] = request.form.get('slide-url')
+        ss.download_format = request.form.get('format')
+        ss.slideshare_url = request.form.get('slide-url')
+
         try:
-            title, image_url, total_slides, category, date, views = ss.get_slide_info(
-                session['slide_url'])
+            title, image_url, total_slides, category, date, views = ss.get_slide_info()
             return render_template('slideshare/download.html', title=title, image_url=image_url, total_slides=total_slides, category=category, date=date, views=views)
         except Exception:
             flash('Please enter valid slideshare link', 'error')
@@ -19,7 +21,7 @@ def slide_downloader():
 
 def start_slide_preparation(msg, url):
 
-    buffer, filename = ss.download_images(url)
+    buffer, filename = ss.download_images()
     file_data.update(slide_bfr=buffer)
     file_data.update(slide_fname=filename)
     file_data.update(slide_status="Done")
