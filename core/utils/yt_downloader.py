@@ -11,7 +11,8 @@ class YTDownloader:
 
         url = YouTube(video_link)
         video = url.streams.get_by_itag(itag)
-        if int(itag) != url.streams.filter(res="1080p").first().itag:
+        res_1080 = url.streams.filter(res="1080p")
+        if res_1080 and int(itag) != res_1080.first().itag:
             buffer = BytesIO()
             video.stream_to_buffer(buffer)
             buffer.seek(0)
