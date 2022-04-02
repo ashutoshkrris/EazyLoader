@@ -7,7 +7,7 @@ from os.path import join
 import requests
 from bs4 import BeautifulSoup
 import pptx
-import shutil
+# import shutil
 
 
 CURRENT = os.path.dirname(__file__)
@@ -111,7 +111,7 @@ class SlideShareDownloader:
 
             f_bfr.seek(0)
             os.remove(filename)
-            shutil.rmtree(join(CURRENT, img_dir_name))
+            # shutil.rmtree(join(CURRENT, img_dir_name))
             return f_bfr, filename
 
         except Exception as e:
