@@ -19,6 +19,7 @@ eventlet = "==0.30.2"
 img2pdf = "*"
 beautifulsoup4 = "*"
 pypdf2 = "*"
+python-pptx = "*"
 
 [dev-packages]
 autopep8 = "*"
