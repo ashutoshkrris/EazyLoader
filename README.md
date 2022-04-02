@@ -13,14 +13,13 @@
 ### Table of Contents
 
 - [Introduction](#introduction) - What this project is all about
-- [Upcoming Features](#upcoming-features) - Features to be worked on
 - [Contributing Guide](https://github.com/ashutoshkrris/EazyLoader/blob/main/CONTRIBUTING.md) - How to contribute to the project
 - [Product Demo](#product-demo) - Product Demo
 
 
 ## <a name="introduction">📌 Introduction</a>
 
-EazyLoader is Flask based web-application built to make downloading easy for you. Download videos and pictures from YouTube and Instagram in the best available quality. You can also download slides from SlideShare in PDF format. In addition to that, you can calculate duration of YouTube Playlist at different speeds.
+EazyLoader is Flask based web-application built to make downloading easy for you. Download videos and pictures from YouTube and Instagram in the best available quality. You can also download slides from SlideShare in PDF or PPTX format. In addition to that, you can calculate duration of YouTube Playlist at different speeds. You can also encrypt and decrypt your PDF files using this tool.
 
 Features of the application includes :
 - YouTube
@@ -36,12 +35,11 @@ Features of the application includes :
 
 - SlideShare
     - Download Slides from SlideShare in PDF format
+    - Download Slides from SlideShare in PPTX format
 
-
-## <a name='upcoming-features'>⭐ Upcoming Features</a>
-
-* YouTube Playlist Downloader
-* YouTube Channel Downloader
+- PDF Tools
+    - Encrypt your PDF files
+    - Decrypt your PDF files
 
 
 ## <a name='how-to-contribute'>💥 How to Contribute?</a>
@@ -81,7 +79,7 @@ Features of the application includes :
 
 <br>
 
-#### Download SlideShare Slides as PDF
+#### Download SlideShare Slides as PDF or PPTX
 
 [![Product Mockup](https://img.youtube.com/vi/cxFbvz4xp2k/0.jpg)](https://www.youtube.com/watch?v=cxFbvz4xp2k)
 
