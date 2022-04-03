@@ -43,6 +43,9 @@ def encrypt_pdf_page():
             elif result == 3:
                 flash('Error while reading your file', 'error')
                 return redirect(request.url)
+        else:
+            flash('Please choose a PDF file only!')
+            return redirect(request.url)
 
     return render_template('pdf-tools/encrypt.html', title="Encrypt PDF")
 
