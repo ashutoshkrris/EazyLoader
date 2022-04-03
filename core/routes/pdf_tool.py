@@ -81,4 +81,7 @@ def decrypt_pdf_page():
                 flash(
                     'Error while reading your file, please check your password', 'error')
                 return redirect(request.url)
+        else:
+            flash('Please choose a PDF file only!')
+            return redirect(request.url)
     return render_template('pdf-tools/decrypt.html', title="Decrypt PDF")
