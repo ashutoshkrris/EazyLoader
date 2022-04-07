@@ -1,15 +1,28 @@
 from datetime import datetime, timedelta
 from flask.helpers import make_response
 from core import app, mail
-from flask import render_template, send_file, request, flash, url_for, redirect, Response, current_app
+from flask import render_template, request, flash, url_for, redirect, current_app
 from decouple import config
 from werkzeug.exceptions import NotFound, InternalServerError, MethodNotAllowed
 from core.utils.blogs import fetch_posts, get_blog_post
 from flask_mail import Message
 from core.utils.contributors import get_contributors
+import requests
 
 
 ADMIN_EMAIL = config('ADMIN_EMAIL', default=None)
+RECAPTCHA_SITE_KEY = config('RECAPTCHA_SITE_KEY', default=None)
+RECAPTCHA_SECRET_KEY = config('RECAPTCHA_SECRET_KEY', default=None)
+
+
+def is_human(captcha_response):
+    """ Validating recaptcha response from google server
+        Returns True captcha test passed for submitted form else returns False.
+    """
+    payload = {'response': captcha_response, 'secret': RECAPTCHA_SECRET_KEY}
+    response = requests.post(
+        "https://www.google.com/recaptcha/api/siteverify", payload).json()
+    return response['success']
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -19,6 +32,11 @@ def index():
             name = request.form.get('name')
             email = request.form.get('email')
             message = request.form.get('message')
+            captcha_response = request.form.get('g-recaptcha-response')
+
+            if not is_human(captcha_response):
+                flash("Bots are not allowed.😡", "error")
+                return redirect(request.url)
 
             msg = Message("EazyLoader Notification",
                           sender=("EazyLoader", ADMIN_EMAIL), recipients=[ADMIN_EMAIL])
@@ -33,7 +51,7 @@ def index():
             flash('Something went wrong! Try Again.', "error")
             return redirect(url_for('index', _anchor="contact"))
 
-    return render_template('index.html', title='Home')
+    return render_template('index.html', title='Home', recaptcha_site_key=RECAPTCHA_SITE_KEY)
 
 
 # Custom routes to check errors.
