@@ -12,22 +12,24 @@ class YTDownloader:
         url = YouTube(video_link)
         video = url.streams.get_by_itag(itag)
         res_1080 = url.streams.filter(res="1080p")
-        if res_1080 and int(itag) != res_1080.first().itag:
-            buffer = BytesIO()
-            video.stream_to_buffer(buffer)
-            buffer.seek(0)
-            return buffer, video.default_filename
+        if res_1080 and int(itag) == res_1080.first().itag:
+            vid = video.download()
+            os.rename(vid, "video.mp4")
+            audio = url.streams.get_audio_only()
+            aud = audio.download()
+            os.rename(aud, "audio.mp4")
+            os.system(
+                "ffmpeg -y -i video.mp4 -i audio.mp4 -c:v copy -c:a aac out.mp4 -loglevel quiet -stats")
+            os.remove("audio.mp4")
+            os.remove("video.mp4")
+            return os.path.abspath("out.mp4"), video.default_filename
+            
 
-        # If 1080p
-        vid = video.download()
-        os.rename(vid, "video.mp4")
-        audio = url.streams.get_audio_only()
-        aud = audio.download()
-        os.rename(aud, "audio.mp4")
-        os.system("ffmpeg -y -i video.mp4 -i audio.mp4 -c:v copy -c:a aac out.mp4 -loglevel quiet -stats")
-        os.remove("audio.mp4")
-        os.remove("video.mp4")
-        return os.path.abspath("out.mp4"), video.default_filename
+        # If not 1080p
+        buffer = BytesIO()
+        video.stream_to_buffer(buffer)
+        buffer.seek(0)
+        return buffer, video.default_filename
 
     def download_audio(self, video_link):
         url = YouTube(video_link)
