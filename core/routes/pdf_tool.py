@@ -16,7 +16,7 @@ def allowed_file(filename):
 @app.route("/pdf-tools/encrypt", methods=["GET", "POST"])
 def encrypt_pdf_page():
     if request.method == "POST":
-        if not 'pdf-file' in request.files:
+        if 'pdf-file' not in request.files:
             flash('PDF file is missing', 'error')
             return redirect(request.url)
         pdf_file = request.files['pdf-file']
@@ -53,10 +53,10 @@ def encrypt_pdf_page():
 @app.route("/pdf-tools/decrypt", methods=["GET", "POST"])
 def decrypt_pdf_page():
     if request.method == "POST":
-        if not 'pdf-file' in request.files:
+        if 'pdf-file' not in request.files:
             flash('PDF file is missing', 'error')
             return redirect(request.url)
-        if not 'password' in request.form:
+        if 'password' not in request.form:
             flash('Password is missing', 'error')
             return redirect(request.url)
         pdf_file = request.files['pdf-file']
@@ -71,6 +71,7 @@ def decrypt_pdf_page():
             output_name = filename.removesuffix('.pdf') + '_decrypted.pdf'
             pdf_file.save(saved_path)
             result = decrypt_file(saved_path, password, output_path)
+            print(result)
             if result == 1:
                 return send_from_directory(UPLOAD_DIR, output_name, as_attachment=True)
             elif result == 2:
@@ -80,6 +81,10 @@ def decrypt_pdf_page():
             elif result == 3:
                 flash(
                     'Error while reading your file, please check your password', 'error')
+                return redirect(request.url)
+            elif result == 4:
+                flash(
+                    'We are unable to decrypt this file.', 'error')
                 return redirect(request.url)
         else:
             flash('Please choose a PDF file only!')

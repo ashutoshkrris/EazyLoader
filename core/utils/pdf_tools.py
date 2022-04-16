@@ -11,6 +11,7 @@ def is_encrypted(filepath: str) -> bool:
 # 1 -> Encryption Success
 # 2 -> Already encrypted/decrypted
 # 3 -> Error while reading file
+# 4 -> Error while decrypting file
 
 
 def encrypt_file(filepath: str, password: str, output_path: str) -> int:
@@ -39,8 +40,8 @@ def decrypt_file(filepath: str, password: str, output_path: str) -> int:
     if not is_encrypted(filepath):
         return 2
 
-    pdf_reader.decrypt(password=password)
     try:
+        pdf_reader.decrypt(password=password)
         for page_number in range(pdf_reader.numPages):
             pdf_writer.addPage(pdf_reader.getPage(page_number))
         with open(output_path, "wb") as f:
@@ -49,3 +50,5 @@ def decrypt_file(filepath: str, password: str, output_path: str) -> int:
         return 1
     except utils.PdfReadError:
         return 3
+    except NotImplementedError:
+        return 4
