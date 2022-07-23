@@ -95,6 +95,8 @@ class IGDownloader:
         username -- str
         Return: zip filename or None
         """
+        self.loader.download_pictures = True
+        self.loader.download_videos = True
 
         profile_id = self.loader.check_profile_id(username).userid
         try:
