@@ -1,4 +1,4 @@
-from PyPDF2 import PdfFileReader, PdfFileWriter, utils
+from PyPDF2 import PdfFileReader, PdfFileWriter, errors
 
 
 def is_encrypted(filepath: str) -> bool:
@@ -30,7 +30,7 @@ def encrypt_file(filepath: str, password: str, output_path: str) -> int:
         with open(output_path, "wb") as f:
             pdf_writer.write(f)
         return 1
-    except utils.PdfReadError:
+    except errors.PdfReadError:
         return 3
 
 
@@ -48,7 +48,7 @@ def decrypt_file(filepath: str, password: str, output_path: str) -> int:
             pdf_writer.write(f)
 
         return 1
-    except utils.PdfReadError:
+    except errors.PdfReadError:
         return 3
     except NotImplementedError:
         return 4
