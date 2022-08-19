@@ -12,8 +12,18 @@ IG_PASSWORD = config('IG_PASSWORD', default='password')
 
 app = Flask(__name__)
 app.config.from_object(config("APP_SETTINGS"))
-print("Logging into IG Account")
-ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
+try:
+    print("Logging into IG Account")
+    ig = IGDownloader(IG_USERNAME, IG_PASSWORD)
+    @app.context_processor
+    def inject_instagram():
+        return dict(ig_working=True)
+except Exception:
+    print("Unable to login to IG account")
+    ig = None
+    @app.context_processor
+    def inject_instagram():
+        return dict(ig_working=False)
 yt = YTDownloader()
 ss = SlideShareDownloader()
 
