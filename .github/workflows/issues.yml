@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: Renato66/auto-label@v2
+      - uses: Renato66/auto-label@v3
         with:
           # Change this to "repo-token: ${{ secrets.GITHUB_USER_TOKEN }}" if you want message to say that User Assigned issue rather than bot
           # Generate a Secret GITHUB_USER_TOKEN beforehand
